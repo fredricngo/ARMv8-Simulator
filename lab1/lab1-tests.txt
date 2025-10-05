@@ -1,0 +1,6 @@
+Incorrect test: add.x
+Incorrect test: addi.x
+Incorrect test: adds.x
+Incorrect test: addis.x
+Incorrect test: cbnz.x
+Incorrect test: cbz.x
