@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "shell.h"
 
+
 uint32_t extract_bits(uint32_t instruction, int start, int end){
     //Given an instruction type, returns a section from start:end (inclusive)
     int width = end - start + 1;
@@ -13,7 +14,13 @@ void fetch()
     //Given the instruction address, we retrieve from memory using mem_read_32
     uint32_t instruction = mem_read_32(CURRENT_STATE.PC);
 
+
+}
+
+void decode()
+{
     //Extract the operands using extract_bits, need to check opcodes and specific bit orientations
+    //Need to update the registers 
 
     //ADD(EXTENDED)
 
@@ -81,13 +88,6 @@ void fetch()
     //BGE
     
     //BLE
-
-
-}
-
-void decode()
-{
-
 }
 
 void execute()
