@@ -68,12 +68,28 @@ void decode()
     //ADD(EXTENDED)
 
     //ADD(IMM)
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)){
+        instruction_type = ADD_IMM;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 10, 21);
+    }
+
+    //ADDS(EXTENDED)
+
+    //ADDS(IMM)
 
     //CBNZ
 
     //CBZ
 
     //AND(SHIFTED REG)
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x8A)){
+        instruction_type = AND_SHIFTR;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        rm = extract_bits(current_instruction, 16, 20);
+    }
 
     //ANDS(SHIFTED REGISTER)
 
@@ -135,22 +151,91 @@ void decode()
 
 void execute()
 {
+    uint32_t result;
     //Checks the global instruction parameters, then performs the relevant operations
     switch(instruction_type) {
 
-        case MOVZ:
-            if (extract_bits(current_instruction, 31, 31)){
-                //we update NEW_STATE registers
-                //We move the immediate into the register
-                //only need to implement 64-bit variant, no shift needed
-                NEXT_STATE.REGS[rd] = (uint64_t) immediate;
-            }
+        //ADD(EXTENDED)
+
+        case ADD_IMM: 
+            result = CURRENT_STATE.REGS[rn] + immediate;
+            NEXT_STATE.REGS[rd] = (uint64_t) result;
+        
             break;
+
+        //ADDS(EXTENDED)
+
+        //ADDS(IMM) 
+
+        //AND(SHIFTED REG)
+        case AND_SHIFTR:
+            result = CURRENT_STATE.REGS[rn] & CURRENT_STATE.REGS[rm];
+            NEXT_STATE.REGS[rd] = (uint64_t) result;
+
+            break;
+
+        //ANDS(SHIFTED REGISTER)
+
+        //CBNZ
+
+        //CBZ
+
+        //EOR(SHIFTED REG)
+
+        //ORR (SHIFTED REG)
+
+        //LDUR (32-AND 64-BIT)
+
+        //LDURB 
+
+        //LDURH 
+
+        //LSL(IMM)
+
+        //LSR (IMM)
+
+        case MOVZ: // haven't implemented shift
+            //we update NEW_STATE registers
+            //We move the immediate into the register
+            //only need to implement 64-bit variant, no shift needed
+            NEXT_STATE.REGS[rd] = (uint64_t) immediate;
+        
+            break;
+        
+        //STUR (32-AND 64-BIT VAR)
+
+        //STURB
+
+        //STURH
+
+        //SUB
+
+        //SUBS
+
+        //MUL
         
         case HLT:
             //if HLT, we just set RUN_BIT to 0
             RUN_BIT = 0;
             break;
+        
+        //CMP
+
+        //BR
+
+        //B
+
+        //BEQ
+
+        //BNE
+
+        //BGT
+
+        //BLT
+
+        //BGE
+        
+        //BLE
         
     }
     NEXT_STATE.PC = CURRENT_STATE.PC + 4;

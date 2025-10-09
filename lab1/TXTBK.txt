@@ -3,5 +3,7 @@ For every jit's use.
 
 ADD (Extended) - 523
 ADD (Immediate) - 525 
+AND(shifted register) - 538
+HLT - 628
 MOVZ - 770 
 LSL(Immediate) - 754
