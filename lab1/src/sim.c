@@ -57,8 +57,6 @@ void fetch()
 {
     //Given the instruction address, we retrieve from memory using mem_read_32
     current_instruction = mem_read_32(CURRENT_STATE.PC);
-
-
 }
 
 void decode()
@@ -147,8 +145,7 @@ void execute()
             }
             break;
     }
-
-
+    NEXT_STATE.PC = CURRENT_STATE.PC + 4;
 }
 
 void process_instruction()
