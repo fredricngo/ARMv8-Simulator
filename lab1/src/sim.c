@@ -110,8 +110,10 @@ void decode()
 
     //MUL
 
-    //HLT
-
+    //HLT:
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x6a2)){
+        instruction_type = HLT;
+    }
     //CMP
 
     //BR
@@ -144,6 +146,12 @@ void execute()
                 NEXT_STATE.REGS[rd] = (uint64_t) immediate;
             }
             break;
+        
+        case HLT:
+            //if HLT, we just set RUN_BIT to 0
+            RUN_BIT = 0;
+            break;
+        
     }
     NEXT_STATE.PC = CURRENT_STATE.PC + 4;
 }
