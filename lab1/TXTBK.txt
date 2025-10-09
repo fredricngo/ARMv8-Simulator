@@ -1,0 +1,7 @@
+Txt file to map instruction types to pages in the ARMv8 Ref sheet.
+For every jit's use.
+
+ADD (Extended) - 523
+ADD (Immediate) - 525 
+MOVZ - 770 
+LSL(Immediate) - 754
