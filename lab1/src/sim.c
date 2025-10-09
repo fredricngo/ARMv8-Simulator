@@ -65,7 +65,7 @@ void decode()
     //Need to update the registers
     instruction_type = UNKNOWN;
 
-    //ADD(EXTENDED)
+    //ADD(EXTENDED) - K
 
     //ADD(IMM)
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)){
@@ -75,14 +75,14 @@ void decode()
         immediate = extract_bits(current_instruction, 10, 21);
     }
 
-    //ADDS(EXTENDED)
+    //ADDS(EXTENDED) - K
 
-    //ADDS(IMM)
+    //ADDS(IMM) - F
 
-    //CBNZ
+    //CBNZ - K
 
-    //CBZ
-
+    //CBZ - F
+ 
     //AND(SHIFTED REG)
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x8A)){
         instruction_type = AND_SHIFTR;
@@ -91,21 +91,21 @@ void decode()
         rm = extract_bits(current_instruction, 16, 20);
     }
 
-    //ANDS(SHIFTED REGISTER)
+    //ANDS(SHIFTED REGISTER) - K
 
-    //EOR(SHIFTED REG)
+    //EOR(SHIFTED REG) - K
 
-    //ORR (SHIFTED REG)
+    //ORR (SHIFTED REG) - F
 
-    //LDUR (32-AND 64-BIT)
+    //LDUR (32-AND 64-BIT) - K
 
-    //LDURB 
+    //LDURB - F
 
-    //LDURH 
+    //LDURH - K
 
-    //LSL(IMM)
+    //LSL(IMM) - F
 
-    //LSR (IMM)
+    //LSR (IMM) - K
 
     //MOVZ: !!Shift not required!! 
     if (!(extract_bits(current_instruction, 23, 30) ^ 0xA5)){
@@ -114,39 +114,39 @@ void decode()
         immediate = extract_bits(current_instruction, 5, 20);
     }
 
-    //STUR (32-AND 64-BIT VAR)
+    //STUR (32-AND 64-BIT VAR) - K
 
-    //STURB
+    //STURB - F
 
-    //STURH
+    //STURH - K
 
-    //SUB
+    //SUB - F
 
-    //SUBS
+    //SUBS - K
 
-    //MUL
+    //MUL - F
 
     //HLT:
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x6a2)){
         instruction_type = HLT;
     }
-    //CMP
+    //CMP - K
 
-    //BR
+    //BR - K
 
-    //B
+    //B - F
 
-    //BEQ
+    //BEQ - K
 
-    //BNE
+    //BNE - F
 
-    //BGT
+    //BGT - K
 
-    //BLT
+    //BLT - F
 
-    //BGE
+    //BGE - K
     
-    //BLE
+    //BLE - F
 }
 
 void execute()
