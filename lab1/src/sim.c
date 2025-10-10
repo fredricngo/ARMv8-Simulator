@@ -42,7 +42,8 @@ typedef enum {
 
 instruction_type_t instruction_type;
 uint32_t current_instruction;
-uint32_t rd, rn, rm; 
+uint32_t rd, rn, rm;
+uint32_t rt; 
 uint32_t immediate; 
 uint32_t shift_amount;
 
@@ -120,7 +121,9 @@ void decode()
 
     //STURH - K
 
-    //SUB - F
+    //SUB(IMM) - F
+
+    //SUB (EXT) - F
 
     //SUBS - K
 
@@ -160,7 +163,7 @@ void execute()
         case ADD_IMM: 
             result = CURRENT_STATE.REGS[rn] + immediate;
             NEXT_STATE.REGS[rd] = (uint64_t) result;
-        
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break;
 
         //ADDS(EXTENDED)
@@ -171,7 +174,7 @@ void execute()
         case AND_SHIFTR:
             result = CURRENT_STATE.REGS[rn] & CURRENT_STATE.REGS[rm];
             NEXT_STATE.REGS[rd] = (uint64_t) result;
-
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break;
 
         //ANDS(SHIFTED REGISTER)
@@ -199,7 +202,7 @@ void execute()
             //We move the immediate into the register
             //only need to implement 64-bit variant, no shift needed
             NEXT_STATE.REGS[rd] = (uint64_t) immediate;
-        
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break;
         
         //STUR (32-AND 64-BIT VAR)
@@ -208,7 +211,9 @@ void execute()
 
         //STURH
 
-        //SUB
+        //SUB(IMM)
+
+        //SUB (EXT)
 
         //SUBS
 
@@ -217,7 +222,9 @@ void execute()
         case HLT:
             //if HLT, we just set RUN_BIT to 0
             RUN_BIT = 0;
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break;
+            
         
         //CMP
 
@@ -238,7 +245,7 @@ void execute()
         //BLE
         
     }
-    NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+    
 }
 
 void process_instruction()
