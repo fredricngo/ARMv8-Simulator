@@ -6,4 +6,5 @@ ADD (Immediate) - 525
 AND(shifted register) - 538
 HLT - 628
 MOVZ - 770 
+LDURB - 741
 LSL(Immediate) - 754
