@@ -1,3 +1,4 @@
+//Fred worked on the instructions labelled F, Kayla worked on the instructions labelled K
 #include <stdio.h>
 #include "shell.h"
 
@@ -13,13 +14,15 @@ typedef enum {
     ANDS_SHIFTR,
     EOR_SHIFTR, 
     ORR_SHIFTR, 
-    LDUR,
+    LDUR_32,
+    LDUR_64,
     LDURB, 
     LDURH, 
     LSL_IMM,
     LSR_IMM, 
     MOVZ,
-    STUR, 
+    STUR_32,
+    STUR_64, 
     STURB, 
     STURH, 
     SUB_EXT, 
@@ -64,15 +67,8 @@ int64_t bit_extension(int32_t immediate, int start, int end){
     */
 
     int width = end - start + 1;
-
-
-    
     if ((immediate >> (width - 1)) & 1) {
-        //MSB is set to 1, so we perform bit extension with upper bits as 1s
-        uint64_t mask = ~((1ULL << width) - 1); //1ULL makes 1 64 bits long
-
-        // printf("  mask=0x%x, result=0x%llx\n", mask, (int64_t)(immediate | mask));
-
+        uint64_t mask = ~((1ULL << width) - 1); 
         return (int64_t) (immediate | mask);
     } else {
         return (int64_t) immediate; 
@@ -92,7 +88,6 @@ void write_register(int reg_num, int64_t value){
     }
 }
 
-
 void fetch()
 {
     //Given the instruction address, we retrieve from memory using mem_read_32
@@ -101,13 +96,17 @@ void fetch()
 
 void decode()
 {
-    //Extract the operands using extract_bits, need to check opcodes and specific bit orientations
-    //Need to update the registers
     instruction_type = UNKNOWN;
 
     //ADD(EXTENDED) - K
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x458)) {
+        instruction_type = ADD_EXT;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        rm = extract_bits(current_instruction, 16, 20);
+    }
 
-    //ADD(IMM) = addi.s
+    //ADD(IMM) - F
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)){
         instruction_type = ADD_IMM;
         rd = extract_bits(current_instruction, 0, 4);
@@ -117,8 +116,14 @@ void decode()
     }
 
     //ADDS(EXTENDED) - K
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x558)) {
+        instruction_type = ADDS_EXT;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        rm = extract_bits(current_instruction, 16, 20);
+    }
 
-    //ADDS(IMM) - F - addis.s
+    //ADDS(IMM) - F
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xB1)){
         instruction_type = ADDS_IMM; 
         rd = extract_bits(current_instruction, 0, 4);
@@ -128,8 +133,14 @@ void decode()
     }
 
     //CBNZ - K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0xB5)) {
+        instruction_type = CBNZ;
+        rt = extract_bits(current_instruction, 0, 4);
+        immediate = extract_bits(current_instruction, 5, 23);
+        extended_immediate = bit_extension(immediate, 0, 18);
+    }
 
-    //CBZ - F - cbz.s
+    //CBZ - F
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xB4)){
         instruction_type = CBZ;
         rt = extract_bits(current_instruction, 0, 4);
@@ -137,7 +148,7 @@ void decode()
         extended_immediate = bit_extension(immediate, 5, 23);
     }
  
-    //AND(SHIFTED REG) - and.s
+    //AND(SHIFTED REG) - F
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x8A)){
         instruction_type = AND_SHIFTR;
         rd = extract_bits(current_instruction, 0, 4);
@@ -146,8 +157,19 @@ void decode()
     }
 
     //ANDS(SHIFTED REGISTER) - K
-
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x750)) {
+        instruction_type = ANDS_SHIFTR;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        rm = extract_bits(current_instruction, 16, 20);
+    }
     //EOR(SHIFTED REG) - K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0xCA)) {
+        instruction_type = EOR_SHIFTR;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        rm = extract_bits(current_instruction, 16, 20);
+    }
 
     //ORR (SHIFTED REG) - F - orr.s
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xAA)){
@@ -158,8 +180,23 @@ void decode()
     }
 
     //LDUR (32-AND 64-BIT) - K
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x5C2)) {
+        instruction_type = LDUR_32;
+        rt = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 12, 20);
+        extended_immediate = bit_extension(immediate, 0, 8);
+    }
 
-    //LDURB - F - ldurb.s
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x7C2)) {
+        instruction_type = LDUR_64;
+        rt = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 12, 20);
+        extended_immediate = bit_extension(immediate, 0, 8);
+    }
+
+    //LDURB - F
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x1C2)){
         instruction_type = LDURB;
         rt = extract_bits(current_instruction, 0, 4);
@@ -169,8 +206,15 @@ void decode()
     }
 
     //LDURH - K
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x3C2)) {
+        instruction_type = LDURH;
+        rt = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 12, 20);
+        extended_immediate = bit_extension(immediate, 0, 8);
+    }
 
-    //LSL(IMM) - F - lsli.s
+    //LSL(IMM) - F
     if ((!(extract_bits(current_instruction, 22, 31) ^ 0x34D)) && ((extract_bits(current_instruction, 10, 15) != 0x3F))){
         uint32_t immr = extract_bits(current_instruction, 16, 21);  // Check this field
         uint32_t imms = extract_bits(current_instruction, 10, 15);
@@ -184,8 +228,14 @@ void decode()
     }
     
     //LSR (IMM) - K
+    if (!(extract_bits(current_instruction, 22, 31) ^ 0x34D) && !(extract_bits(current_instruction, 10, 15) ^ 0x3F)){
+        instruction_type = LSR_IMM;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        shift_amount = extract_bits(current_instruction, 16, 21);
+    }
 
-    //MOVZ: !!Shift not required!! - movz.s
+    //MOVZ - F
     if (!(extract_bits(current_instruction, 23, 30) ^ 0xA5)){
         instruction_type = MOVZ;
         rd = extract_bits(current_instruction, 0, 4);
@@ -193,6 +243,20 @@ void decode()
     }
 
     //STUR (32-AND 64-BIT VAR) - K
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x5C0)) {
+        instruction_type = STUR_32;
+        rt = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 12, 20);
+        extended_immediate = bit_extension(immediate, 0, 8);
+    }
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x7C0)) {
+        instruction_type = STUR_64;
+        rt = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 12, 20);
+        extended_immediate = bit_extension(immediate, 0, 8);
+    }
 
     //STURB - F
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x1C0)){
@@ -203,10 +267,16 @@ void decode()
         extended_immediate = bit_extension(immediate, 12, 20);
     }
 
-
     //STURH - K
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x3C0)) {
+        instruction_type = STURH;
+        rt = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 12, 20);
+        extended_immediate = bit_extension(immediate, 0, 8);
+    }
 
-    //SUB(IMM) - F - subi.s
+    //SUB(IMM) - F
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xD1)){
         instruction_type = SUB_IMM;
         rd = extract_bits(current_instruction, 0, 4);
@@ -214,14 +284,30 @@ void decode()
         immediate = extract_bits(current_instruction, 10, 21);
     }
 
-    //SUB (EXT) - F - sub.s
+    //SUB (EXT) - F
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x658)){
         instruction_type = SUB_EXT;
         rd = extract_bits(current_instruction, 0, 4);
         rn = extract_bits(current_instruction, 5, 9); 
         rm = extract_bits(current_instruction, 16, 20); 
     }
+
     //SUBS - K
+    if (!(extract_bits(current_instruction, 22, 31) ^ 0x3C4) && (extract_bits(current_instruction, 0, 4) != 31)){
+        instruction_type = SUBS_IMM;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        immediate = extract_bits(current_instruction, 10, 21);
+        extended_immediate = bit_extension(immediate, 0, 11);
+    }
+
+    //SUBS (EXT) K :)
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x758) && (extract_bits(current_instruction, 0, 4) != 31)) {
+        instruction_type = SUBS_EXT;
+        rd = extract_bits(current_instruction, 0, 4);
+        rn = extract_bits(current_instruction, 5, 9);
+        rm = extract_bits(current_instruction, 16, 20);
+    }
 
     //MUL - F - mul.s
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x4D8)){
@@ -235,7 +321,7 @@ void decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x6a2)){
         instruction_type = HLT;
     }
-    //CMP - K
+   
     //CMP (EXT) K
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x758)  && (extract_bits(current_instruction, 0, 4) == 31)) {
         instruction_type = CMP_EXT;
@@ -252,18 +338,26 @@ void decode()
     }
 
     //BR - K
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x6B0)){
+        instruction_type = BR;
+        rn = extract_bits(current_instruction, 5, 9);
+    }
 
-    //B - F - b.s
+    //B - F
     if (!(extract_bits(current_instruction, 26, 31) ^ 0x5)){
         instruction_type = B;
         immediate = extract_bits(current_instruction, 0, 25);
         extended_immediate = bit_extension(immediate, 0, 25);
     }
 
-
     //BEQ - K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0x0)){
+        instruction_type = BEQ;
+        immediate = extract_bits(current_instruction, 5, 23);
+        extended_immediate = bit_extension(immediate, 0, 18);
+    }
 
-    //BNE - F - bne.s
+    //BNE, BLT, BLE - F
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x54)){
         unsigned int cond_code = extract_bits(current_instruction, 0, 3);
         immediate = extract_bits(current_instruction, 5, 23);
@@ -283,22 +377,26 @@ void decode()
     }
 
     //BGT - K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && !(extract_bits(current_instruction, 0, 3) ^ 0xC)){
+        instruction_type = BGT;
+        immediate = extract_bits(current_instruction, 5, 23);
+        extended_immediate = bit_extension(immediate, 0, 18);
+    }
 
-    //BLT - F - blt.s
-
-    //BGE - K
-    
-    //BLE - F - ble.s
+    //BGE K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && !(extract_bits(current_instruction, 0, 3) ^ 0xA)){
+        instruction_type = BGE;
+        immediate = extract_bits(current_instruction, 5, 23);
+        extended_immediate = bit_extension(immediate, 0, 18);
+    }
 }
 
 void execute()
 {
     int64_t result;
-    //Checks the global instruction parameters, then performs the relevant operations
     switch(instruction_type) {
 
         //ADD(EXTENDED)
-
         case ADD_IMM: 
             result = read_register(rn) + extended_immediate;
             write_register(rd, result);
@@ -306,6 +404,11 @@ void execute()
             break;
 
         //ADDS(EXTENDED)
+        case ADD_EXT:
+            result = CURRENT_STATE.REGS[rn] + CURRENT_STATE.REGS[rm];
+            write_register(rd, result);
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
         //ADDS(IMM) 
         case ADDS_IMM:
@@ -316,6 +419,15 @@ void execute()
             NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break; 
 
+        //ADDS(EXTENDED)
+        case ADDS_EXT:
+            result = CURRENT_STATE.REGS[rn] + CURRENT_STATE.REGS[rm];
+            write_register(rd, result);
+            NEXT_STATE.FLAG_Z = (result == 0);
+            NEXT_STATE.FLAG_N = (result >> 63) & 1;
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
+
         //AND(SHIFTED REG)
         case AND_SHIFTR:
             result = read_register(rn) & read_register(rm); 
@@ -324,12 +436,25 @@ void execute()
             break;
 
         //ANDS(SHIFTED REGISTER)
+        case ANDS_SHIFTR:
+            result = CURRENT_STATE.REGS[rn] & CURRENT_STATE.REGS[rm];
+            write_register(rd, result);
+            NEXT_STATE.FLAG_Z = (result == 0);
+            NEXT_STATE.FLAG_N = (result >> 63) & 1;
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
         //CBNZ
+        case CBNZ:
+            if (CURRENT_STATE.REGS[rt]) {
+                NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
+            } else {
+                NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            }
+            break;
 
         //CBZ
         case CBZ:
-
             if (read_register(rt) == 0) {
                 int64_t byte_offset = extended_immediate << 2; 
                 NEXT_STATE.PC = (uint64_t) ((int64_t) CURRENT_STATE.PC + byte_offset);
@@ -340,6 +465,11 @@ void execute()
             break; 
 
         //EOR(SHIFTED REG)
+        case EOR_SHIFTR:
+            result = CURRENT_STATE.REGS[rn] ^ CURRENT_STATE.REGS[rm];
+            write_register(rd, result);
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
         //ORR (SHIFTED REG)
         case ORR_SHIFTR:
@@ -349,6 +479,20 @@ void execute()
             break; 
 
         //LDUR (32-AND 64-BIT)
+        case LDUR_32:
+            result = (int32_t) mem_read_32(CURRENT_STATE.REGS[rn] + extended_immediate);
+            write_register(rt, (uint64_t) result);
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
+        case LDUR_64:
+        {
+            uint32_t low_word = mem_read_32(CURRENT_STATE.REGS[rn] + extended_immediate);
+            uint32_t high_word = mem_read_32(CURRENT_STATE.REGS[rn] + extended_immediate + 4);
+            result = ((uint64_t)high_word << 32) | low_word;
+            write_register(rt, result);
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
+        }
 
         //LDURB 
         case LDURB:
@@ -363,40 +507,55 @@ void execute()
             write_register(rt, (uint64_t)byte_data);
             NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break; 
-        }
-            
+        }   
 
         //LDURH 
+        case LDURH:
+            result = (int16_t) mem_read_32(CURRENT_STATE.REGS[rn] + extended_immediate);
+            write_register(rt, (uint64_t) result);
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
         //LSL(IMM)
         case LSL_IMM:
         {
             uint32_t actual_shift = (64- immediate) % 64;
             result = read_register(rn) << actual_shift;
-            write_register(rd, result); //might be an issue with casting the shifted to a signed int?
+            write_register(rd, result);
             NEXT_STATE.PC = CURRENT_STATE.PC + 4; 
             break; 
         }
 
         //LSR (IMM)
+        case LSR_IMM:
+            result = CURRENT_STATE.REGS[rn] >> shift_amount;
+            write_register(rd, result);
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
-        case MOVZ: // haven't implemented shift
-            //we update NEW_STATE registers
-            //We move the immediate into the register
-            //only need to implement 64-bit variant, no shift needed
+        //MOVZ
+        case MOVZ:
             write_register(rd, immediate);
             NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break;
         
         //STUR (32-AND 64-BIT VAR)
+        case STUR_32:
+            mem_write_32(CURRENT_STATE.REGS[rn] + extended_immediate, (uint32_t)(CURRENT_STATE.REGS[rt] & 0xFFFFFFFF));
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
+        case STUR_64:
+            mem_write_32(CURRENT_STATE.REGS[rn] + extended_immediate, (uint32_t)(CURRENT_STATE.REGS[rt] & 0xFFFFFFFF));
+            mem_write_32(CURRENT_STATE.REGS[rn] + extended_immediate + 4, (uint32_t)(CURRENT_STATE.REGS[rt] >> 32));
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
         //STURB
         case STURB:
         {
-            uint64_t address = read_register(rn) + extended_immediate; //calculates address from base register and imm offset
+            uint64_t address = read_register(rn) + extended_immediate;
 
-            uint8_t store_byte = read_register(rt) & 0xFF; //grabs one byte from the other register
-
+            uint8_t store_byte = read_register(rt) & 0xFF;
             uint32_t aligned_addr = address & ~3;
             int byte_offset = address & 3;
 
@@ -411,6 +570,10 @@ void execute()
         }
 
         //STURH
+        case STURH:
+            mem_write_32(CURRENT_STATE.REGS[rn] + extended_immediate, (uint32_t)(CURRENT_STATE.REGS[rt] & 0xFFFF));
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
         //SUB(IMM)
         case SUB_IMM:
@@ -426,7 +589,23 @@ void execute()
             NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break; 
 
-        //SUBS
+        //SUBS (EXT)
+        case SUBS_EXT:
+            result = CURRENT_STATE.REGS[rn] - CURRENT_STATE.REGS[rm];
+            write_register(rd, result);
+            NEXT_STATE.FLAG_Z = (result == 0);
+            NEXT_STATE.FLAG_N = (result >> 63) & 1;
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
+
+        //SUBS (IMM)
+        case SUBS_IMM:
+            result = CURRENT_STATE.REGS[rn] - extended_immediate;
+            write_register(rd, result);
+            NEXT_STATE.FLAG_Z = (result == 0);
+            NEXT_STATE.FLAG_N = (result >> 63) & 1;
+            NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            break;
 
         //MUL
         case MUL:
@@ -436,14 +615,11 @@ void execute()
             break; 
         
         case HLT:
-            //if HLT, we just set RUN_BIT to 0
             RUN_BIT = 0;
             NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break;
             
-        
-        //CMP
-        //CMP ext
+        //CMP EXT
         case CMP_EXT:
             result = CURRENT_STATE.REGS[rn] - CURRENT_STATE.REGS[rm];
             NEXT_STATE.FLAG_Z = (result == 0);
@@ -451,7 +627,7 @@ void execute()
             NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             break;
         
-        //CMP imm
+        //CMP IMM
         case CMP_IMM:
             result = CURRENT_STATE.REGS[rn] - extended_immediate;
             NEXT_STATE.FLAG_Z = (result == 0);
@@ -460,6 +636,9 @@ void execute()
             break;
 
         //BR
+        case BR:
+            NEXT_STATE.PC = CURRENT_STATE.REGS[rn];
+            break;
 
         //B
         case B:
@@ -467,6 +646,13 @@ void execute()
             break; 
 
         //BEQ
+        case BEQ:
+            if (CURRENT_STATE.FLAG_Z) {
+                NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
+            } else {
+                NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            }
+            break;
 
         //BNE
         case BNE:
@@ -480,10 +666,16 @@ void execute()
         }
 
         //BGT
+        case BGT:
+            if (!CURRENT_STATE.FLAG_Z && (CURRENT_STATE.FLAG_N == 0)) {
+                NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
+            } else {
+                NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            }
+            break;
 
         //BLT
-
-        case BLT: //V flag is assumed to be 0
+        case BLT:
         {
             if (CURRENT_STATE.FLAG_N != 0){ 
                 NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
@@ -492,13 +684,19 @@ void execute()
             }
             break;
         }
-        
             
 
         //BGE
+        case BGE:
+            if (CURRENT_STATE.FLAG_N == 0) {
+                NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
+            } else {
+                NEXT_STATE.PC = CURRENT_STATE.PC + 4;
+            }
+            break;
         
         //BLE
-        case BLE: //v flag assumed 0 
+        case BLE:
         {
             if (!((CURRENT_STATE.FLAG_Z == 0) && (CURRENT_STATE.FLAG_N == 0))){
                 NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
