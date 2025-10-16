@@ -3,8 +3,11 @@ For every jit's use.
 
 ADD (Extended) - 523
 ADD (Immediate) - 525 
+B - 550
+
 AND(shifted register) - 538
 HLT - 628
 MOVZ - 770 
-LDURB - 741
+LDURB - 741 (143 for addressing modes)
 LSL(Immediate) - 754
+MUL - 778
