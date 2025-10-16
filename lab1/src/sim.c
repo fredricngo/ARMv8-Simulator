@@ -65,8 +65,7 @@ int64_t bit_extension(int32_t immediate, int start, int end){
 
     int width = end - start + 1;
 
-    // printf("bit_extension: immediate=0x%x, width=%d\n", immediate, width);
-    // printf("  MSB check: bit %d = %d\n", width-1, (immediate >> (width-1)) & 1);
+
     
     if ((immediate >> (width - 1)) & 1) {
         //MSB is set to 1, so we perform bit extension with upper bits as 1s
@@ -108,7 +107,7 @@ void decode()
 
     //ADD(EXTENDED) - K
 
-    //ADD(IMM) = add.s
+    //ADD(IMM) = addi.s
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)){
         instruction_type = ADD_IMM;
         rd = extract_bits(current_instruction, 0, 4);
@@ -119,7 +118,7 @@ void decode()
 
     //ADDS(EXTENDED) - K
 
-    //ADDS(IMM) - F - addi.s
+    //ADDS(IMM) - F - addis.s
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xB1)){
         instruction_type = ADDS_IMM; 
         rd = extract_bits(current_instruction, 0, 4);
@@ -201,7 +200,7 @@ void decode()
         rt = extract_bits(current_instruction, 0, 4);
         rn = extract_bits(current_instruction, 5, 9); 
         immediate = extract_bits(current_instruction, 12, 20);
-        extended_immediate = extract_bits(immediate, 12, 20);
+        extended_immediate = bit_extension(immediate, 12, 20);
     }
 
 
@@ -265,7 +264,7 @@ void decode()
     //BEQ - K
 
     //BNE - F - bne.s
-    if (!(extract_bits(current_instruction, 26, 31) ^ 0x54)){
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54)){
         unsigned int cond_code = extract_bits(current_instruction, 0, 3);
         immediate = extract_bits(current_instruction, 5, 23);
         extended_immediate = bit_extension(immediate, 5, 23);
@@ -371,14 +370,13 @@ void execute()
 
         //LSL(IMM)
         case LSL_IMM:
-            printf("Executing LSL: rn=%d, immediate=%d\n", rn, immediate);
-            printf("PC before: 0x%llx\n", CURRENT_STATE.PC);
+        {
             uint32_t actual_shift = (64- immediate) % 64;
             result = read_register(rn) << actual_shift;
             write_register(rd, result); //might be an issue with casting the shifted to a signed int?
             NEXT_STATE.PC = CURRENT_STATE.PC + 4; 
-            printf("PC after: 0x%llx\n", NEXT_STATE.PC);
             break; 
+        }
 
         //LSR (IMM)
 
@@ -395,9 +393,9 @@ void execute()
         //STURB
         case STURB:
         {
-            uint64_t address = read_register(rn) + extended_immediate;
+            uint64_t address = read_register(rn) + extended_immediate; //calculates address from base register and imm offset
 
-            uint8_t store_byte = read_register(rt) & 0xFF;
+            uint8_t store_byte = read_register(rt) & 0xFF; //grabs one byte from the other register
 
             uint32_t aligned_addr = address & ~3;
             int byte_offset = address & 3;
@@ -472,24 +470,28 @@ void execute()
 
         //BNE
         case BNE:
-            if (!CURRENT_STATE.FLAG_Z) {
+        {
+            if (CURRENT_STATE.FLAG_Z == 0) {
                 NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
             } else {
                 NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             }
             break; 
-
+        }
 
         //BGT
 
         //BLT
 
         case BLT: //V flag is assumed to be 0
+        {
             if (CURRENT_STATE.FLAG_N != 0){ 
                 NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
             } else {
                 NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             }
+            break;
+        }
         
             
 
@@ -497,11 +499,14 @@ void execute()
         
         //BLE
         case BLE: //v flag assumed 0 
+        {
             if (!((CURRENT_STATE.FLAG_Z == 0) && (CURRENT_STATE.FLAG_N == 0))){
                 NEXT_STATE.PC = CURRENT_STATE.PC + (extended_immediate << 2);
             } else {
                 NEXT_STATE.PC = CURRENT_STATE.PC + 4;
             }
+            break;
+        }
             
     }
     
