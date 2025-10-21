@@ -30,6 +30,20 @@ typedef struct Pipe_State {
 	/* place other information here as necessary */
 } Pipe_State;
 
+typedef struct Pipe_Reg{
+    uint32_t opcode;
+    uint64_t rn;
+    uint64_t rm; 
+    uint64_t rd;
+    uint64_t imm;
+    uint32_t sham;
+
+} Pipe_Reg;
+
+Pipe_Reg Pipe_Reg_IFtoDE, Pipe_Reg_DEtoEX, Pipe_Reg_EXtoMEM, Pipe_Reg_MEMtoWB;
+
+
+
 extern int RUN_BIT;
 
 /* global variable -- pipeline state */
