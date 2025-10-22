@@ -90,12 +90,19 @@ typedef struct Pipe_Reg_IFtoDE{
 
 typedef struct Pipe_Reg_DEtoEX{
     instruction_type_t INSTRUCTION; 
-    uint64_t RD;
-    uint64_t RN; 
-    uint64_t RM;
+    
+    uint64_t RD_REG;
+
+    uint64_t RN_REG; 
+    int64_t RN_VALUE;
+
+    uint64_t RM_REG;
+    int64_t RM_VALUE;
+
     uint64_t RT;
     int64_t IMM;
     uint32_t SHAM;
+
     int READ;
     int WRITE;
     int READ_MEM;
@@ -109,11 +116,18 @@ typedef struct Pipe_Reg_DEtoEX{
 
 typedef struct Pipe_Reg_EXtoMEM{
     instruction_type_t INSTRUCTION; 
-    uint64_t RD;
-    uint64_t RN;
-    uint64_t RM;
+
+    uint64_t RD_REG;
+
+    uint64_t RN_REG;
+    int64_t RN_VALUE;
+
+    uint64_t RM_REG;
+    int64_t RM_VALUE;
+
     int64_t MEM_ADDRESS; 
     int64_t result;
+
     int READ;
     int WRITE;
     int READ_MEM;
@@ -126,9 +140,12 @@ typedef struct Pipe_Reg_EXtoMEM{
 
 typedef struct Pipe_Reg_MEMtoWB{
     instruction_type_t INSTRUCTION; 
+
     int64_t MEM_DATA;
     int64_t result;
-    int64_t RD;
+
+    uint64_t RD_REG;
+    
     int READ;
     int WRITE;
     int READ_MEM;
