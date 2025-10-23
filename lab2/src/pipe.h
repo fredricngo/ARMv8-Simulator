@@ -11,12 +11,6 @@
 #include "stdbool.h"
 #include <limits.h>
 
-/* Represents an operation travelling through the pipeline. */
-typedef struct Pipe_Op {
-
-	/* place other information here as necessary */
-} Pipe_Op;
-
 /* Represents the current state of the pipeline. */
 typedef struct Pipe_State {
 	/* register file state */
@@ -71,6 +65,30 @@ typedef enum {
     BLE
 } instruction_type_t;
 
+/* Represents an operation travelling through the pipeline. */
+typedef struct Pipe_Op {
+    uint32_t raw_instruction;
+    uint64_t PC;
+    int NOP;
+    instruction_type_t INSTRUCTION;
+    uint64_t RD_REG;
+    uint64_t RN_REG;
+    uint64_t RN_VAL;
+    uint64_t RM_REG;
+    uint64_t RM_VAL;
+    uint64_t RT_REG;
+    uint64_t RT_VAL;
+    int64_t  IMM;
+    uint32_t SHAM;
+    int READ_MEM;
+    int WRITE_MEM;
+    int BRANCH;
+    int64_t result;
+    int64_t MEM_ADDRESS;
+    int64_t MEM_DATA;
+} Pipe_Op;
+
+
 // void set_flag()
 // {
 //     /* 
@@ -79,80 +97,80 @@ typedef enum {
 
 // }
 
-typedef struct Pipe_Reg_IFtoDE{
-    uint32_t raw_instruction;
-    uint64_t PC;
-    int NOP; 
+// typedef struct Pipe_Reg_IFtoDE{
+//     uint32_t raw_instruction;
+//     uint64_t PC;
+//     int NOP; 
 
-} Pipe_Reg_IFtoDE;
+// } Pipe_Reg_IFtoDE;
 
 
 
-typedef struct Pipe_Reg_DEtoEX{
-    instruction_type_t INSTRUCTION; 
+// typedef struct Pipe_Reg_DEtoEX{
+//     instruction_type_t INSTRUCTION; 
     
-    uint64_t RD_REG;
+//     uint64_t RD_REG;
 
-    uint64_t RN_REG; 
-    int64_t RN_VALUE;
+//     uint64_t RN_REG; 
+//     int64_t RN_VALUE;
 
-    uint64_t RM_REG;
-    int64_t RM_VALUE;
+//     uint64_t RM_REG;
+//     int64_t RM_VALUE;
 
-    uint64_t RT;
-    int64_t IMM;
-    uint32_t SHAM;
+//     uint64_t RT;
+//     int64_t IMM;
+//     uint32_t SHAM;
 
-    int READ;
-    int WRITE;
-    int READ_MEM;
-    int WRITE_MEM;
-    int BRANCH;
-    int NOP; 
+//     int READ;
+//     int WRITE;
+//     int READ_MEM;
+//     int WRITE_MEM;
+//     int BRANCH;
+//     int NOP; 
 
-} Pipe_Reg_DEtoEX; 
-
-
-
-typedef struct Pipe_Reg_EXtoMEM{
-    instruction_type_t INSTRUCTION; 
-
-    uint64_t RD_REG;
-
-    uint64_t RN_REG;
-    int64_t RN_VALUE;
-
-    uint64_t RM_REG;
-    int64_t RM_VALUE;
-
-    int64_t MEM_ADDRESS; 
-    int64_t result;
-
-    int READ;
-    int WRITE;
-    int READ_MEM;
-    int WRITE_MEM;
-    int BRANCH;
-    int NOP; 
-
-} Pipe_Reg_EXtoMEM;
+// } Pipe_Reg_DEtoEX; 
 
 
-typedef struct Pipe_Reg_MEMtoWB{
-    instruction_type_t INSTRUCTION; 
 
-    int64_t MEM_DATA;
-    int64_t result;
+// typedef struct Pipe_Reg_EXtoMEM{
+//     instruction_type_t INSTRUCTION; 
 
-    uint64_t RD_REG;
+//     uint64_t RD_REG;
+
+//     uint64_t RN_REG;
+//     int64_t RN_VALUE;
+
+//     uint64_t RM_REG;
+//     int64_t RM_VALUE;
+
+//     int64_t MEM_ADDRESS; 
+//     int64_t result;
+
+//     int READ;
+//     int WRITE;
+//     int READ_MEM;
+//     int WRITE_MEM;
+//     int BRANCH;
+//     int NOP; 
+
+// } Pipe_Reg_EXtoMEM;
+
+
+// typedef struct Pipe_Reg_MEMtoWB{
+//     instruction_type_t INSTRUCTION; 
+
+//     int64_t MEM_DATA;
+//     int64_t result;
+
+//     uint64_t RD_REG;
     
-    int READ;
-    int WRITE;
-    int READ_MEM;
-    int WRITE_MEM;
-    int BRANCH;
-    int NOP;
-} Pipe_Reg_MEMtoWB;
+//     int READ;
+//     int WRITE;
+//     int READ_MEM;
+//     int WRITE_MEM;
+//     int BRANCH;
+//     int NOP;
+// } Pipe_Reg_MEMtoWB;
 
 
 

@@ -8,7 +8,7 @@ CORRECT_TESTS=0
 cd src && make
 cd ..
 
-declare -a file_list=("step1-a-input.x" "step1-b-input.x"  "step2-a-input.x"  "step2-b-input.x"  "step3-input.x" "final_test.x" "final_test-2.x")
+declare -a file_list=("movz.x" "step1-a-input.x" "step1-b-input.x"  "step2-a-input.x"  "step2-b-input.x"  "step3-input.x" "final_test.x" "final_test-2.x")
 
 mkdir -p test
 ./cleaning.sh
