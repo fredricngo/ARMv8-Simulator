@@ -23,14 +23,15 @@ Pipe_Op DE_to_EX_PREV;
 Pipe_Op EX_to_MEM_PREV;
 Pipe_Op MEM_to_WB_PREV;
 
-int RUN_BIT;
 int HLT_FLAG = 0;
+int HLT_NEXT = 0;
+int RUN_BIT;
 
 void pipe_init()
 {
     memset(&pipe, 0, sizeof(Pipe_State));
     pipe.PC = 0x00400000;
-	RUN_BIT = true;
+    RUN_BIT = TRUE;
 }
 
 uint32_t extract_bits(uint32_t instruction, int start, int end){
@@ -48,7 +49,10 @@ void pipe_cycle()
 	pipe_stage_mem();
 	pipe_stage_execute();
 	pipe_stage_decode();
-	pipe_stage_fetch();
+    pipe_stage_fetch();
+
+    HLT_FLAG = HLT_NEXT;
+
     IF_to_DE_PREV = IF_to_DE_CURRENT;
     DE_to_EX_PREV = DE_to_EX_CURRENT;
     EX_to_MEM_PREV = EX_to_MEM_CURRENT;
@@ -89,10 +93,8 @@ void pipe_stage_wb()
         case HLT:
             RUN_BIT = 0;
             break;
-
     }
 
-    
 }
 
 void pipe_stage_mem()
@@ -209,7 +211,7 @@ void pipe_stage_decode()
     //HLT:
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x6a2)){
         IF_to_DE_CURRENT.INSTRUCTION = HLT;
-        HLT_FLAG = 1;
+        HLT_NEXT = 1;
     }
 
     //CMP (EXT) K
@@ -233,8 +235,11 @@ void pipe_stage_fetch()
 {  
     if (!HLT_FLAG) {
         IF_to_DE_CURRENT.raw_instruction = mem_read_32(pipe.PC);
+        IF_to_DE_CURRENT.NOP = 0;
+        IF_to_DE_CURRENT.INSTRUCTION = UNKNOWN;
         pipe.PC = pipe.PC + 4; 
     } else {
         IF_to_DE_CURRENT.NOP = 1;
+        IF_to_DE_CURRENT.INSTRUCTION = UNKNOWN;
     }   
 }
