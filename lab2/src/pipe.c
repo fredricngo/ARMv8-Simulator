@@ -73,41 +73,38 @@ int64_t read_register(int reg_num){
     return pipe.REGS[reg_num];
 }
 
+
 void pipe_stage_wb()
 {
-    MEM_to_WB_CURRENT = EX_to_MEM_PREV;
-    if (MEM_to_WB_CURRENT.NOP){
-        return;
-    }
+    Pipe_Op in = MEM_to_WB_PREV;
+    if (in.NOP) return;
 
-    switch(MEM_to_WB_CURRENT.INSTRUCTION){
-
+    switch (in.INSTRUCTION) {
         case ADD_IMM:
-        {
-            write_register(MEM_to_WB_CURRENT.RD_REG, MEM_to_WB_CURRENT.result);
+            write_register(in.RD_REG, in.result);
+            stat_inst_retire++;
             break; 
-        }
         case MOVZ:
-            write_register(MEM_to_WB_CURRENT.RD_REG, MEM_to_WB_CURRENT.result);
+            write_register(in.RD_REG, in.result);
+            stat_inst_retire++;
             break;
         case HLT:
             RUN_BIT = 0;
+            stat_inst_retire++;
             break;
     }
-
 }
 
 void pipe_stage_mem()
 {
-    EX_to_MEM_CURRENT = DE_to_EX_PREV;
-    if (EX_to_MEM_CURRENT.NOP){
-        return;
-    }
-    switch(EX_to_MEM_CURRENT.INSTRUCTION){
+    Pipe_Op in = EX_to_MEM_PREV;
+    if (in.NOP) { MEM_to_WB_CURRENT.NOP = 1; return; }
 
+    MEM_to_WB_CURRENT = in;
+
+    switch (in.INSTRUCTION) {
         case ADD_IMM:
             break;
-
         case MOVZ:
             break;
         case HLT:
@@ -117,46 +114,42 @@ void pipe_stage_mem()
 
 void pipe_stage_execute()
 {
-    DE_to_EX_CURRENT = IF_to_DE_PREV;
-    if (DE_to_EX_CURRENT.NOP){
-        return;
-    }
-    switch(DE_to_EX_CURRENT.INSTRUCTION){
+    Pipe_Op in = DE_to_EX_PREV;
+    if (in.NOP) { EX_to_MEM_CURRENT.NOP = 1; return; }
 
+    EX_to_MEM_CURRENT = in;
+
+    switch (in.INSTRUCTION) {
         case ADD_IMM:
-        {
-            DE_to_EX_CURRENT.result = DE_to_EX_CURRENT.RN_VAL + DE_to_EX_CURRENT.IMM;
-            break; 
-        }
-        case MOVZ:
-            DE_to_EX_CURRENT.result = DE_to_EX_CURRENT.IMM;
+            EX_to_MEM_CURRENT.result = in.RN_VAL + in.IMM;
             break;
-
+        case MOVZ:
+            EX_to_MEM_CURRENT.result = in.IMM;
+            break;
         case HLT:
             break;
-            
     }
 }
 
+
 void pipe_stage_decode()
 {
-    if (IF_to_DE_CURRENT.NOP){
-        return;
-    }
-    uint64_t current_instruction = IF_to_DE_CURRENT.raw_instruction;
+    Pipe_Op in = IF_to_DE_PREV;
+    if (in.NOP) { DE_to_EX_CURRENT.NOP = 1; return; }
+
+    uint64_t current_instruction = in.raw_instruction;
 
     //ADD(EXTENDED) - K
 
-    //ADD(IMM) - F
-
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)){
-        IF_to_DE_CURRENT.INSTRUCTION = ADD_IMM;
-        IF_to_DE_CURRENT.RD_REG  = extract_bits(current_instruction, 0, 4);
-        IF_to_DE_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
-        IF_to_DE_CURRENT.RN_VAL = read_register(IF_to_DE_CURRENT.RN_REG);
-        IF_to_DE_CURRENT.IMM = extract_bits(current_instruction, 10, 21);
+    // ADD_IMM
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)) {
+        DE_to_EX_CURRENT.INSTRUCTION = ADD_IMM;
+        DE_to_EX_CURRENT.RD_REG  = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.RN_REG  = extract_bits(current_instruction, 5, 9);
+        DE_to_EX_CURRENT.RN_VAL  = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.IMM     = extract_bits(current_instruction, 10, 21);
+        return;
     }
-
 
     //ADDS(EXTENDED) - K
 
@@ -184,13 +177,13 @@ void pipe_stage_decode()
 
     //LSR (IMM) - K
 
-    //MOVZ - F
-    if (!(extract_bits(current_instruction, 23, 30) ^ 0xA5)){
-        IF_to_DE_CURRENT.INSTRUCTION = MOVZ;
-        IF_to_DE_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
-        IF_to_DE_CURRENT.IMM = (uint32_t) extract_bits(current_instruction, 5, 20);
-        }
-
+    // MOVZ
+    if (!(extract_bits(current_instruction, 23, 30) ^ 0xA5)) {
+        DE_to_EX_CURRENT.INSTRUCTION = MOVZ;
+        DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.IMM    = (uint32_t)extract_bits(current_instruction, 5, 20);
+        return;
+    }
 
     //STUR (32-AND 64-BIT VAR) - K
 
@@ -208,12 +201,13 @@ void pipe_stage_decode()
 
     //MUL - F - mul.s
 
-    //HLT:
-    if (!(extract_bits(current_instruction, 21, 31) ^ 0x6a2)){
-        IF_to_DE_CURRENT.INSTRUCTION = HLT;
-        HLT_NEXT = 1;
-    }
 
+    // HLT
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x6a2)) {
+        DE_to_EX_CURRENT.INSTRUCTION = HLT;
+        HLT_NEXT = 1;
+        return;
+    }
     //CMP (EXT) K
 
     // CMP (IMM) K
@@ -231,15 +225,23 @@ void pipe_stage_decode()
     //BGE K
 }
 
+
 void pipe_stage_fetch()
 {  
+    static Pipe_Op fetched_instruction;
+    
     if (!HLT_FLAG) {
-        IF_to_DE_CURRENT.raw_instruction = mem_read_32(pipe.PC);
-        IF_to_DE_CURRENT.NOP = 0;
-        IF_to_DE_CURRENT.INSTRUCTION = UNKNOWN;
+        memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+        fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
+        fetched_instruction.PC = pipe.PC;
+        fetched_instruction.NOP = 0;
+        fetched_instruction.INSTRUCTION = UNKNOWN;
         pipe.PC = pipe.PC + 4; 
     } else {
-        IF_to_DE_CURRENT.NOP = 1;
-        IF_to_DE_CURRENT.INSTRUCTION = UNKNOWN;
-    }   
+        memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+        fetched_instruction.NOP = 1;
+        fetched_instruction.INSTRUCTION = UNKNOWN;
+    }
+
+    IF_to_DE_CURRENT = fetched_instruction;
 }
