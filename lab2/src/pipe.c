@@ -121,6 +121,10 @@ void pipe_stage_wb()
             write_register(in.RD_REG, in.result);
             stat_inst_retire++;
             break;
+        case SUB_IMM:
+            write_register(in.RD_REG, in.result);
+            stat_inst_retire++; 
+            break;
         case HLT:
             RUN_BIT = 0;
             stat_inst_retire++;
@@ -154,6 +158,8 @@ void pipe_stage_mem()
             break;
         case MOVZ:
             break;
+        case SUB_IMM:
+            break; 
         case HLT:
             break;
     }
@@ -193,6 +199,11 @@ void pipe_stage_execute()
         case MOVZ:
             EX_to_MEM_CURRENT.result = in.IMM;
             break;
+        case SUB_IMM:
+        {
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
+            break;
+        }
         case HLT:
             break;
     }
@@ -295,6 +306,14 @@ void pipe_stage_decode()
     //STURH - K
 
     //SUB(IMM) - F
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0xD1)){
+        DE_to_EX_CURRENT.INSTRUCTION = SUB_IMM;
+        DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
+        DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        uint32_t immediate = extract_bits(current_instruction, 10, 21);
+        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 10, 21); 
+    }
 
     //SUB (EXT) - F
 
