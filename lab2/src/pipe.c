@@ -125,6 +125,10 @@ void pipe_stage_wb()
             write_register(in.RD_REG, in.result);
             stat_inst_retire++; 
             break;
+        case SUB_EXT:
+            write_register(in.RD_REG, in.result); 
+            stat_inst_retire++;
+            break; 
         case HLT:
             RUN_BIT = 0;
             stat_inst_retire++;
@@ -159,6 +163,8 @@ void pipe_stage_mem()
         case MOVZ:
             break;
         case SUB_IMM:
+            break; 
+        case SUB_EXT:
             break; 
         case HLT:
             break;
@@ -203,6 +209,11 @@ void pipe_stage_execute()
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
             break;
+        }
+        case SUB_EXT:
+        {
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
+            break; 
         }
         case HLT:
             break;
@@ -316,6 +327,14 @@ void pipe_stage_decode()
     }
 
     //SUB (EXT) - F
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x658)){
+        DE_to_EX_CURRENT.INSTRUCTION = SUB_EXT;
+        DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9); 
+        DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.RM_REG  = extract_bits(current_instruction, 16, 20); 
+        DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+    }
 
     //SUBS - K
 
