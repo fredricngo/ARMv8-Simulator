@@ -324,6 +324,14 @@ void pipe_stage_decode()
     //STUR (32-AND 64-BIT VAR) - K
 
     //STURB - F
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x1C0)){
+        DE_to_EX_CURRENT.INSTRUCTION = STURB;
+        DE_to_EX_CURRENT.RT_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9); 
+        DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        uint32_t immediate = extract_bits(current_instruction, 12, 20);
+        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 12, 20);
+    }
 
     //STURH - K
 
