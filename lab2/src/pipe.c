@@ -214,6 +214,7 @@ void pipe_stage_wb()
 
 void pipe_stage_mem()
 {
+    memset(&MEM_to_WB_CURRENT, 0, sizeof(MEM_to_WB_CURRENT));
     Pipe_Op in = EX_to_MEM_PREV;
     if (in.NOP) { MEM_to_WB_CURRENT.NOP = 1; return; }
 
@@ -301,113 +302,222 @@ void pipe_stage_mem()
 
 void pipe_stage_execute()
 {
+    memset(&EX_to_MEM_CURRENT, 0, sizeof(EX_to_MEM_CURRENT));
     Pipe_Op in = DE_to_EX_PREV;
     if (in.NOP) { EX_to_MEM_CURRENT.NOP = 1; return; }
 
     EX_to_MEM_CURRENT = in;
 
+    // Debug: Print what instruction we're executing
+    printf("=== EXECUTE STAGE ===\n");
+    printf("Instruction: %d, RD=%d, RN=%d(0x%lx), RM=%d(0x%lx), IMM=0x%lx\n", 
+           in.INSTRUCTION, in.RD_REG, in.RN_REG, in.RN_VAL, in.RM_REG, in.RM_VAL, in.IMM);
+
+    // Forward RN_VAL if the CURRENT instruction reads RN
+    if (in.READS_RN) {
+        printf("Instruction needs RN (reg %d = 0x%lx)\n", in.RN_REG, in.RN_VAL);
+        
+        if (EX_to_MEM_PREV.WRITES_REG && 
+            EX_to_MEM_PREV.RD_REG == in.RN_REG && 
+            EX_to_MEM_PREV.RD_REG != 31) {
+            printf("EX->EX Forward: RN reg %d gets 0x%lx (was 0x%lx)\n", 
+                   in.RN_REG, EX_to_MEM_PREV.result, in.RN_VAL);
+            EX_to_MEM_CURRENT.RN_VAL = EX_to_MEM_PREV.result;
+        }
+        else if (MEM_to_WB_PREV.WRITES_REG && 
+                 MEM_to_WB_PREV.RD_REG == in.RN_REG && 
+                 MEM_to_WB_PREV.RD_REG != 31) {
+            printf("MEM->EX Forward: RN reg %d gets 0x%lx (was 0x%lx)\n", 
+                   in.RN_REG, MEM_to_WB_PREV.result, in.RN_VAL);
+            EX_to_MEM_CURRENT.RN_VAL = MEM_to_WB_PREV.result;
+        }
+    }
+
+    // Forward RM_VAL if the CURRENT instruction reads RM (SEPARATE if!)
+    if (in.READS_RM) {
+        printf("Instruction needs RM (reg %d = 0x%lx)\n", in.RM_REG, in.RM_VAL);
+        
+        // Check EX/MEM forwarding
+        if (EX_to_MEM_PREV.WRITES_REG && 
+            EX_to_MEM_PREV.RD_REG == in.RM_REG && 
+            EX_to_MEM_PREV.RD_REG != 31) {
+            printf("EX->EX Forward: RM reg %d gets 0x%lx (was 0x%lx)\n", 
+                in.RM_REG, EX_to_MEM_PREV.result, in.RM_VAL);
+            EX_to_MEM_CURRENT.RM_VAL = EX_to_MEM_PREV.result;
+        }
+        // Check MEM/WB forwarding
+        else if (MEM_to_WB_PREV.WRITES_REG && 
+                MEM_to_WB_PREV.RD_REG == in.RM_REG && 
+                MEM_to_WB_PREV.RD_REG != 31) {
+            printf("MEM->EX Forward: RM reg %d gets 0x%lx (was 0x%lx)\n", 
+                in.RM_REG, MEM_to_WB_PREV.result, in.RM_VAL);
+            EX_to_MEM_CURRENT.RM_VAL = MEM_to_WB_PREV.result;
+        }
+    }
+
+    // Debug: Print values before calculation
+    printf("Before calc: RN_VAL=0x%lx, RM_VAL=0x%lx, IMM=0x%lx\n", 
+           EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.IMM);
+
     switch (in.INSTRUCTION) {
         case ADD_EXT:
-            EX_to_MEM_CURRENT.result = in.RN_VAL + in.RM_VAL;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.RM_VAL;
+            printf("ADD_EXT: 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         case ADD_IMM:
-            EX_to_MEM_CURRENT.result = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("ADD_IMM: 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         case ADDS_IMM:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("ADDS_IMM: 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         case ADDS_EXT:
-            EX_to_MEM_CURRENT.result = in.RN_VAL + in.RM_VAL;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.RM_VAL;
+            printf("ADDS_EXT: 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         
         case AND_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL & EX_to_MEM_CURRENT.RM_VAL);
+            printf("AND_SHIFTR: 0x%lx & 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         case ANDS_SHIFTR:
-            EX_to_MEM_CURRENT.result = (in.RN_VAL & in.RM_VAL);
+            EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL & EX_to_MEM_CURRENT.RM_VAL);
+            printf("ANDS_SHIFTR: 0x%lx & 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         case EOR_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL ^ EX_to_MEM_CURRENT.RM_VAL);
+            printf("EOR_SHIFTR: 0x%lx ^ 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         case LSL_IMM:
         {
-            uint32_t actual_shift = (64 - in.SHAM) % 64;
-            EX_to_MEM_CURRENT.result = in.RN_VAL << actual_shift;
+            uint32_t actual_shift = (64 - EX_to_MEM_CURRENT.SHAM) % 64;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL << actual_shift;
+            printf("LSL_IMM: 0x%lx << %d = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, actual_shift, EX_to_MEM_CURRENT.result);
             break;
         }
         case LSR_IMM:
         {
-            EX_to_MEM_CURRENT.result = in.RN_VAL >> in.SHAM;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL >> EX_to_MEM_CURRENT.SHAM;
+            printf("LSR_IMM: 0x%lx >> %d = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.SHAM, EX_to_MEM_CURRENT.result);
             break;
         }
         case LDURB:
         {
             EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("LDURB: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         }
         case MOVZ:
-            EX_to_MEM_CURRENT.result = in.IMM;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.IMM;
+            printf("MOVZ: result = 0x%lx\n", EX_to_MEM_CURRENT.result);
             break;
         case MUL:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL * EX_to_MEM_CURRENT.RM_VAL;
+            printf("MUL: 0x%lx * 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break; 
         }
         case SUB_IMM:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
+            printf("SUB_IMM: 0x%lx - 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         }
         case SUB_EXT:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
+            printf("SUB_EXT: 0x%lx - 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break; 
         }
         case SUBS_IMM:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
+            printf("SUBS_IMM: 0x%lx - 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         }
         case SUBS_EXT:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
+            printf("SUBS_EXT: 0x%lx - 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break; 
         }
         case HLT:
+            printf("HLT instruction\n");
             break;
         case STUR_32:
-            EX_to_MEM_CURRENT.MEM_ADDRESS = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("STUR_32: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         case STUR_64:
-            EX_to_MEM_CURRENT.MEM_ADDRESS = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("STUR_64: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         case STURB:
-            EX_to_MEM_CURRENT.MEM_ADDRESS = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("STURB: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         case STURH:
-            EX_to_MEM_CURRENT.MEM_ADDRESS = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("STURH: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         case LDUR_32:
-            EX_to_MEM_CURRENT.MEM_ADDRESS = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("LDUR_32: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         case LDUR_64:
-            EX_to_MEM_CURRENT.MEM_ADDRESS = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("LDUR_64: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         case LDURH:
-            EX_to_MEM_CURRENT.MEM_ADDRESS = in.RN_VAL + in.IMM;
+            EX_to_MEM_CURRENT.MEM_ADDRESS = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            printf("LDURH: mem_addr = 0x%lx + 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.MEM_ADDRESS);
             break;
         case CMP_EXT:
-            EX_to_MEM_CURRENT.result = in.RN_VAL - in.RM_VAL;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
+            printf("CMP_EXT: 0x%lx - 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         case CMP_IMM:
-            EX_to_MEM_CURRENT.result = in.RN_VAL - in.IMM;
+            EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
+            printf("CMP_IMM: 0x%lx - 0x%lx = 0x%lx\n", 
+                   EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
+            break;
+        default:
+            printf("UNKNOWN INSTRUCTION: %d\n", in.INSTRUCTION);
             break;
     }
+    
+    printf("Final result: 0x%lx\n", EX_to_MEM_CURRENT.result);
+    printf("========================\n");
 }
 
 
 void pipe_stage_decode()
 {
+    memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
     Pipe_Op in = IF_to_DE_PREV;
     if (in.NOP) { DE_to_EX_CURRENT.NOP = 1; return; }
     
@@ -417,20 +527,31 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x458)) {
         DE_to_EX_CURRENT.INSTRUCTION = ADD_EXT;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
     // ADD_IMM
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)) {
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x91)) {
         DE_to_EX_CURRENT.INSTRUCTION = ADD_IMM;
         DE_to_EX_CURRENT.RD_REG  = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG  = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL  = read_register(DE_to_EX_CURRENT.RN_REG);
-        DE_to_EX_CURRENT.IMM     = extract_bits(current_instruction, 10, 21);
+        DE_to_EX_CURRENT.READS_RN = 1;
+        DE_to_EX_CURRENT.IMM  = extract_bits(current_instruction, 10, 21);
+        printf("ADD*_IMM: rn=X%d imm12=0x%llx sh=%llu IMM=0x%llx\n",
+       (int)DE_to_EX_CURRENT.RN_REG,
+       (unsigned long long)extract_bits(current_instruction,10,21),
+       (unsigned long long)extract_bits(current_instruction,22,22),
+       (unsigned long long)DE_to_EX_CURRENT.IMM);
+
         return;
     }
 
@@ -438,10 +559,13 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x558)) {
         DE_to_EX_CURRENT.INSTRUCTION = ADDS_EXT;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -449,8 +573,10 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xB1)){
         DE_to_EX_CURRENT.INSTRUCTION = ADDS_IMM; 
         DE_to_EX_CURRENT.RD_REG= extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 10, 21);
         return;
@@ -464,10 +590,13 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x8A)){
         DE_to_EX_CURRENT.INSTRUCTION = AND_SHIFTR; 
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG); 
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -475,10 +604,13 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x750)) {
         DE_to_EX_CURRENT.INSTRUCTION = ANDS_SHIFTR;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -487,10 +619,13 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xCA)) {
         DE_to_EX_CURRENT.INSTRUCTION = EOR_SHIFTR;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -542,8 +677,10 @@ void pipe_stage_decode()
  
         DE_to_EX_CURRENT.INSTRUCTION = LSL_IMM;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9); 
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.SHAM = extract_bits(current_instruction, 16, 21);
         DE_to_EX_CURRENT.READ_MEM = 1;
         return; 
@@ -553,8 +690,10 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 22, 31) ^ 0x34D) && !(extract_bits(current_instruction, 10, 15) ^ 0x3F)){
         DE_to_EX_CURRENT.INSTRUCTION = LSR_IMM;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.SHAM = extract_bits(current_instruction, 16, 21);
         DE_to_EX_CURRENT.READ_MEM = 1;
         return;
@@ -564,6 +703,7 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 23, 30) ^ 0xA5)) {
         DE_to_EX_CURRENT.INSTRUCTION = MOVZ;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.IMM    = (uint32_t)extract_bits(current_instruction, 5, 20);
         return;
     }
@@ -617,8 +757,10 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 24, 31) ^ 0xD1)){
         DE_to_EX_CURRENT.INSTRUCTION = SUB_IMM;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 10, 21); 
         return;
@@ -628,10 +770,13 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x658)){
         DE_to_EX_CURRENT.INSTRUCTION = SUB_EXT;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9); 
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG  = extract_bits(current_instruction, 16, 20); 
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -639,8 +784,10 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 22, 31) ^ 0x3C4) && (extract_bits(current_instruction, 0, 4) != 31)){
         DE_to_EX_CURRENT.INSTRUCTION = SUBS_IMM;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 11);
         return;
@@ -650,10 +797,13 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x758) && (extract_bits(current_instruction, 0, 4) != 31)) {
         DE_to_EX_CURRENT.INSTRUCTION = SUBS_EXT;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -662,10 +812,13 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x4D8)){
         DE_to_EX_CURRENT.INSTRUCTION = MUL;
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9); 
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG  = extract_bits(current_instruction, 16, 20); 
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -681,8 +834,10 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.INSTRUCTION = CMP_EXT;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+        DE_to_EX_CURRENT.READS_RM = 1;
         return;
     }
 
@@ -691,6 +846,7 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.INSTRUCTION = CMP_IMM;
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 11);
         return;
