@@ -26,6 +26,8 @@ Pipe_Op MEM_to_WB_PREV;
 int HLT_FLAG = 0;
 int HLT_NEXT = 0;
 int RUN_BIT;
+int STALL = 0;
+
 
 
 int64_t bit_extension(int32_t immediate, int start, int end){
@@ -57,6 +59,7 @@ void pipe_init()
     memset(&pipe, 0, sizeof(Pipe_State));
     pipe.PC = 0x00400000;
     RUN_BIT = TRUE;
+    printf("Pipeline initialized: PC=0x%lx\n", pipe.PC);
 }
 
 
@@ -313,7 +316,7 @@ void pipe_stage_execute()
     printf("Instruction: %d, RD=%d, RN=%d(0x%lx), RM=%d(0x%lx), IMM=0x%lx\n", 
            in.INSTRUCTION, in.RD_REG, in.RN_REG, in.RN_VAL, in.RM_REG, in.RM_VAL, in.IMM);
 
-    // Forward RN_VAL if the CURRENT instruction reads RN
+    // Forward RN_VAL
     if (in.READS_RN) {
         printf("Instruction needs RN (reg %d = 0x%lx)\n", in.RN_REG, in.RN_VAL);
         
@@ -330,10 +333,17 @@ void pipe_stage_execute()
             printf("MEM->EX Forward: RN reg %d gets 0x%lx (was 0x%lx)\n", 
                    in.RN_REG, MEM_to_WB_PREV.result, in.RN_VAL);
             EX_to_MEM_CURRENT.RN_VAL = MEM_to_WB_PREV.result;
+        } 
+        else if (MEM_to_WB_PREV.LOAD && 
+                 MEM_to_WB_PREV.RT_REG == in.RN_REG && 
+                 MEM_to_WB_PREV.RT_REG != 31) {
+            printf("MEM->EX Forward (LOAD): RN reg %d gets 0x%lx (was 0x%lx)\n", 
+                   in.RN_REG, MEM_to_WB_PREV.MEM_DATA, in.RN_VAL);
+            EX_to_MEM_CURRENT.RN_VAL = MEM_to_WB_PREV.MEM_DATA;
         }
     }
 
-    // Forward RM_VAL if the CURRENT instruction reads RM (SEPARATE if!)
+    // Forward RM_VAL
     if (in.READS_RM) {
         printf("Instruction needs RM (reg %d = 0x%lx)\n", in.RM_REG, in.RM_VAL);
         
@@ -353,7 +363,32 @@ void pipe_stage_execute()
                 in.RM_REG, MEM_to_WB_PREV.result, in.RM_VAL);
             EX_to_MEM_CURRENT.RM_VAL = MEM_to_WB_PREV.result;
         }
+        else if (MEM_to_WB_PREV.LOAD && 
+                 MEM_to_WB_PREV.RT_REG == in.RM_REG && 
+                 MEM_to_WB_PREV.RT_REG != 31) {
+            printf("MEM->EX Forward (LOAD): RM reg %d gets 0x%lx (was 0x%lx)\n", 
+                   in.RM_REG, MEM_to_WB_PREV.MEM_DATA, in.RM_VAL);
+            EX_to_MEM_CURRENT.RM_VAL = MEM_to_WB_PREV.MEM_DATA;
+        }
     }
+    // Forward RT_VAL for STORE
+    if (in.STORE) {
+    if (EX_to_MEM_PREV.WRITES_REG &&
+        EX_to_MEM_PREV.RD_REG == in.RT_REG &&
+        in.RT_REG != 31) {
+        EX_to_MEM_CURRENT.RT_VAL = EX_to_MEM_PREV.result;
+    }
+    else if (MEM_to_WB_PREV.WRITES_REG &&
+             MEM_to_WB_PREV.RD_REG == in.RT_REG &&
+             in.RT_REG != 31) {
+        EX_to_MEM_CURRENT.RT_VAL = MEM_to_WB_PREV.result;
+    }
+    else if (MEM_to_WB_PREV.LOAD &&
+             MEM_to_WB_PREV.RT_REG == in.RT_REG &&
+             in.RT_REG != 31) {
+        EX_to_MEM_CURRENT.RT_VAL = MEM_to_WB_PREV.MEM_DATA;
+    }
+}
 
     // Debug: Print values before calculation
     printf("Before calc: RN_VAL=0x%lx, RM_VAL=0x%lx, IMM=0x%lx\n", 
@@ -534,7 +569,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
     // ADD_IMM
@@ -546,13 +580,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RN_VAL  = read_register(DE_to_EX_CURRENT.RN_REG);
         DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.IMM  = extract_bits(current_instruction, 10, 21);
-        printf("ADD*_IMM: rn=X%d imm12=0x%llx sh=%llu IMM=0x%llx\n",
-       (int)DE_to_EX_CURRENT.RN_REG,
-       (unsigned long long)extract_bits(current_instruction,10,21),
-       (unsigned long long)extract_bits(current_instruction,22,22),
-       (unsigned long long)DE_to_EX_CURRENT.IMM);
-
-        return;
     }
 
     //ADDS(EXTENDED) - K
@@ -566,7 +593,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
     //ADDS(IMM) - F
@@ -579,7 +605,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 10, 21);
-        return;
     }
 
     //CBNZ - K
@@ -597,7 +622,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG); 
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
     //ANDS(SHIFTED REGISTER) - K
@@ -611,7 +635,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
 
@@ -626,7 +649,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
     //ORR (SHIFTED REG) - F - orr.s
@@ -637,8 +659,11 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_REG = extract_bits(current_instruction, 0, 4);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 8);
+        DE_to_EX_CURRENT.READ_MEM = 1;
+        DE_to_EX_CURRENT.LOAD = 1;
     }
 
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x7C2)) {
@@ -646,8 +671,11 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_REG = extract_bits(current_instruction, 0, 4);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 8);
+        DE_to_EX_CURRENT.READ_MEM = 1;
+        DE_to_EX_CURRENT.LOAD = 1;
     }
 
     //LDURB - F
@@ -656,9 +684,11 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_REG = extract_bits(current_instruction, 0, 4);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20); 
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 12, 20); 
-        return; 
+        DE_to_EX_CURRENT.READ_MEM = 1;
+        DE_to_EX_CURRENT.LOAD = 1;
     }
 
     //LDURH - K
@@ -667,9 +697,11 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_REG = extract_bits(current_instruction, 0, 4);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 8);
-        return;
+        DE_to_EX_CURRENT.READ_MEM = 1;
+        DE_to_EX_CURRENT.LOAD = 1;
     }
 
     //LSL(IMM) - F
@@ -682,8 +714,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
         DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.SHAM = extract_bits(current_instruction, 16, 21);
-        DE_to_EX_CURRENT.READ_MEM = 1;
-        return; 
     }
 
     //LSR (IMM) - K
@@ -695,8 +725,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
         DE_to_EX_CURRENT.READS_RN = 1;
         DE_to_EX_CURRENT.SHAM = extract_bits(current_instruction, 16, 21);
-        DE_to_EX_CURRENT.READ_MEM = 1;
-        return;
     }
 
     // MOVZ
@@ -705,7 +733,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
         DE_to_EX_CURRENT.WRITES_REG = 1;
         DE_to_EX_CURRENT.IMM    = (uint32_t)extract_bits(current_instruction, 5, 20);
-        return;
     }
 
     //STUR (32-AND 64-BIT VAR) - K
@@ -715,9 +742,10 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_VAL = read_register(DE_to_EX_CURRENT.RT_REG);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 8);
-        return;
+        DE_to_EX_CURRENT.STORE = 1;
     }
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x7C0)) {
         DE_to_EX_CURRENT.INSTRUCTION = STUR_64;
@@ -725,9 +753,10 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_VAL = read_register(DE_to_EX_CURRENT.RT_REG);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 8);
-        return;
+        DE_to_EX_CURRENT.STORE = 1;
     }
 
     //STURB - F
@@ -737,9 +766,10 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_VAL = read_register(DE_to_EX_CURRENT.RT_REG);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9); 
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 12, 20);
-        return;
+        DE_to_EX_CURRENT.STORE = 1;
     }
 
     //STURH - K
@@ -749,8 +779,10 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RT_VAL = read_register(DE_to_EX_CURRENT.RT_REG);
         DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 12, 20);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 8);
+        DE_to_EX_CURRENT.STORE = 1;
     }
 
     //SUB(IMM) - F
@@ -763,7 +795,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 10, 21); 
-        return;
     }
 
     //SUB (EXT) - F
@@ -777,7 +808,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG  = extract_bits(current_instruction, 16, 20); 
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
     //SUBS - K
@@ -790,7 +820,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 11);
-        return;
     }
 
     //SUBS (EXT) K :)
@@ -804,7 +833,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
 
@@ -819,7 +847,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG  = extract_bits(current_instruction, 16, 20); 
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
 
@@ -827,7 +854,6 @@ void pipe_stage_decode()
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x6a2)) {
         DE_to_EX_CURRENT.INSTRUCTION = HLT;
         HLT_NEXT = 1;
-        return;
     }
     //CMP (EXT) K
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x758)  && (extract_bits(current_instruction, 0, 4) == 31)) {
@@ -838,7 +864,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
         DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
         DE_to_EX_CURRENT.READS_RM = 1;
-        return;
     }
 
     // CMP (IMM) K
@@ -849,7 +874,6 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 11);
-        return;
     }
 
     //BR - K
@@ -863,24 +887,93 @@ void pipe_stage_decode()
     //BGT - K
 
     //BGE K
+
+    printf("=== HAZARD CHECK DEBUG ===\n");
+    printf("DE_to_EX_PREV (currently in EX): inst=%d, LOAD=%d, RT_REG=%d, NOP=%d\n", 
+           DE_to_EX_PREV.INSTRUCTION, DE_to_EX_PREV.LOAD, DE_to_EX_PREV.RT_REG, DE_to_EX_PREV.NOP);
+    printf("Current decode: READS_RN=%d (X%d), READS_RM=%d (X%d), STORE=%d (X%d)\n",
+           DE_to_EX_CURRENT.READS_RN, DE_to_EX_CURRENT.RN_REG,
+           DE_to_EX_CURRENT.READS_RM, DE_to_EX_CURRENT.RM_REG, 
+           DE_to_EX_CURRENT.STORE, DE_to_EX_CURRENT.RT_REG);
+
+    if (DE_to_EX_PREV.LOAD && !DE_to_EX_PREV.NOP) {
+        printf("LOAD in EX stage detected, checking for hazards...\n");
+        
+        int load_target = DE_to_EX_PREV.RT_REG;
+        int need_stall = 0;
+        
+        if (DE_to_EX_CURRENT.READS_RN && DE_to_EX_CURRENT.RN_REG == load_target && load_target != 31) {
+            printf("*** HAZARD: Current instruction needs X%d (RN) but load writing to X%d ***\n", 
+                   DE_to_EX_CURRENT.RN_REG, load_target);
+            need_stall = 1;
+        }
+        if (DE_to_EX_CURRENT.READS_RM && DE_to_EX_CURRENT.RM_REG == load_target && load_target != 31) {
+            printf("*** HAZARD: Current instruction needs X%d (RM) but load writing to X%d ***\n", 
+                   DE_to_EX_CURRENT.RM_REG, load_target);
+            need_stall = 1;
+        }
+        if (DE_to_EX_CURRENT.STORE && DE_to_EX_CURRENT.RT_REG == load_target && load_target != 31) {
+            printf("*** HAZARD: Store instruction needs X%d (RT) but load writing to X%d ***\n", 
+                   DE_to_EX_CURRENT.RT_REG, load_target);
+            need_stall = 1;
+        }
+        
+        if (need_stall) {
+            printf("*** INSERTING STALL - LOAD-USE HAZARD DETECTED ***\n");
+            // Insert bubble into EX stage
+            memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
+            DE_to_EX_CURRENT.NOP = 1;
+
+            // Request stall
+            STALL = 1;
+            printf("STALL flag set\n");
+            printf("==========================\n");
+            return;
+        }
+        
+        printf("No hazard detected\n");
+    } else {
+        printf("No load in EX stage\n");
+    }
+    printf("==========================\n");
+
+    if (DE_to_EX_CURRENT.LOAD) {
+        printf("*** SETTING LOAD FLAG: inst=%d writing to X%d ***\n", 
+               DE_to_EX_CURRENT.INSTRUCTION, DE_to_EX_CURRENT.RT_REG);
+    }
 }
 
 
 void pipe_stage_fetch()
 {  
     static Pipe_Op fetched_instruction;
+    static int cycle_count = 0;
+    cycle_count++;
+    
+     printf("FETCH CYCLE %d: PC=0x%lx, STALL=%d\n", cycle_count, pipe.PC, STALL);
+    
+    if (STALL) {
+        printf("STALL active - repeating previous instruction, keeping PC at 0x%lx\n", pipe.PC);
+        IF_to_DE_CURRENT = IF_to_DE_PREV;
+        STALL = 0;
+        return;
+    }
     
     if (!HLT_FLAG) {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+        uint32_t raw_inst = mem_read_32(pipe.PC);
+        printf("FETCH: Read 0x%08x from PC=0x%lx\n", raw_inst, pipe.PC);
         fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
         fetched_instruction.PC = pipe.PC;
         fetched_instruction.NOP = 0;
         fetched_instruction.INSTRUCTION = UNKNOWN;
         pipe.PC = pipe.PC + 4; 
+        printf("FETCH: Advanced PC to 0x%lx\n", pipe.PC);
     } else {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
         fetched_instruction.NOP = 1;
         fetched_instruction.INSTRUCTION = UNKNOWN;
+        printf("HLT_FLAG set - inserting NOP\n");
     }
 
     IF_to_DE_CURRENT = fetched_instruction;
