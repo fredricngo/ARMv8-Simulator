@@ -27,6 +27,7 @@ int HLT_FLAG = 0;
 int HLT_NEXT = 0;
 int RUN_BIT;
 int STALL = 0;
+int SQUASH = 0; 
 
 
 
@@ -110,14 +111,14 @@ void pipe_stage_wb()
             break; 
         case ADDS_IMM:
             write_register(in.RD_REG, in.result);
-            pipe.FLAG_Z = (in.result == 0);
-            pipe.FLAG_N = (in.result >> 63) & 1;
+            pipe.FLAG_Z = in.FLAG_Z;
+            pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break; 
         case ADDS_EXT:
             write_register(in.RD_REG, in.result);
-            pipe.FLAG_Z = (in.result == 0);
-            pipe.FLAG_N = (in.result >> 63) & 1;
+            pipe.FLAG_Z = in.FLAG_Z;
+            pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break;
         case AND_SHIFTR:
@@ -126,8 +127,8 @@ void pipe_stage_wb()
             break; 
         case ANDS_SHIFTR:
             write_register(in.RD_REG, in.result);
-            pipe.FLAG_Z = (in.result == 0);
-            pipe.FLAG_N = (in.result >> 63) & 1;
+            pipe.FLAG_Z = in.FLAG_Z;
+            pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break;
         case EOR_SHIFTR:
@@ -164,14 +165,14 @@ void pipe_stage_wb()
             break; 
         case SUBS_IMM:
             write_register(in.RD_REG, in.result);
-            pipe.FLAG_Z = (in.result == 0);
-            pipe.FLAG_N = (in.result >> 63) & 1;
+            pipe.FLAG_Z = in.FLAG_Z;
+            pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break;
         case SUBS_EXT:
             write_register(in.RD_REG, in.result);
-            pipe.FLAG_Z = (in.result == 0);
-            pipe.FLAG_N = (in.result >> 63) & 1;
+            pipe.FLAG_Z = in.FLAG_Z;
+            pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break;
         case HLT:
@@ -203,13 +204,13 @@ void pipe_stage_wb()
             stat_inst_retire++;
             break;
         case CMP_EXT:
-            pipe.FLAG_Z = (in.result == 0);
-            pipe.FLAG_N = ((in.result) >> 63) & 1;
+            pipe.FLAG_Z = in.FLAG_Z;
+            pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break;
         case CMP_IMM:
-            pipe.FLAG_Z = (in.result == 0);
-            pipe.FLAG_N = ((in.result) >> 63) & 1;
+            pipe.FLAG_Z = in.FLAG_Z;
+            pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break;
     }
@@ -407,11 +408,15 @@ void pipe_stage_execute()
             break;
         case ADDS_IMM:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
+            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
             printf("ADDS_IMM: 0x%lx + 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         case ADDS_EXT:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.RM_VAL;
+            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
             printf("ADDS_EXT: 0x%lx + 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
@@ -423,9 +428,23 @@ void pipe_stage_execute()
             break;
         case ANDS_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL & EX_to_MEM_CURRENT.RM_VAL);
+            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
             printf("ANDS_SHIFTR: 0x%lx & 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
+        
+        case BR:
+            {
+                EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.RN_VAL; 
+                if (EX_to_MEM_CURRENT.BR_TARGET == pipe.PC - 4){
+                    SQUASH = 0;
+                } else {
+                    SQUASH = 1; 
+                    stat_squash++;
+                }
+                break; 
+            }
         case EOR_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL ^ EX_to_MEM_CURRENT.RM_VAL);
             printf("EOR_SHIFTR: 0x%lx ^ 0x%lx = 0x%lx\n", 
@@ -481,6 +500,8 @@ void pipe_stage_execute()
         case SUBS_IMM:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
+            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
             printf("SUBS_IMM: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
@@ -488,6 +509,8 @@ void pipe_stage_execute()
         case SUBS_EXT:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
+            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
             printf("SUBS_EXT: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break; 
@@ -532,11 +555,15 @@ void pipe_stage_execute()
             break;
         case CMP_EXT:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
+            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = ((in.result) >> 63) & 1;
             printf("CMP_EXT: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         case CMP_IMM:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
+            EX_to_MEM_CURRENT.FLAG_Z = (EX_to_MEM_CURRENT.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = ((EX_to_MEM_CURRENT.result) >> 63) & 1;
             printf("CMP_IMM: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
@@ -553,6 +580,14 @@ void pipe_stage_execute()
 void pipe_stage_decode()
 {
     memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
+
+    // // If we're stalled, insert a NOP and don't decode new instruction
+    // if (STALL) {
+    //     DE_to_EX_CURRENT.NOP = 1;
+    //     STALL = 0;  // ← CLEAR STALL AFTER ONE CYCLE!
+    //     return;
+    // }
+    
     Pipe_Op in = IF_to_DE_PREV;
     if (in.NOP) { DE_to_EX_CURRENT.NOP = 1; return; }
     
@@ -876,7 +911,15 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 11);
     }
 
-    //BR - K
+    //BR - K -
+    if (!(extract_bits(current_instruction, 21, 31) ^ 0x6B0)){
+        DE_to_EX_CURRENT.INSTRUCTION = BR;
+        DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
+        DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+        DE_to_EX_CURRENT.READS_RN = 1; 
+        DE_to_EX_CURRENT.UBRANCH = 1; 
+    }
+
 
     //B - F
 
@@ -923,7 +966,6 @@ void pipe_stage_decode()
             // Insert bubble into EX stage
             memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
             DE_to_EX_CURRENT.NOP = 1;
-
             // Request stall
             STALL = 1;
             printf("STALL flag set\n");
@@ -940,6 +982,10 @@ void pipe_stage_decode()
     if (DE_to_EX_CURRENT.LOAD) {
         printf("*** SETTING LOAD FLAG: inst=%d writing to X%d ***\n", 
                DE_to_EX_CURRENT.INSTRUCTION, DE_to_EX_CURRENT.RT_REG);
+    }
+
+    if (DE_to_EX_CURRENT.UBRANCH){
+        STALL = 1; 
     }
 }
 
@@ -958,6 +1004,27 @@ void pipe_stage_fetch()
         STALL = 0;
         return;
     }
+
+    if (SQUASH){
+
+        if (HLT_FLAG){
+             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+            fetched_instruction.NOP = 1;
+            fetched_instruction.INSTRUCTION = UNKNOWN;
+            printf("HLT_FLAG set - inserting NOP\n");
+        } else {
+            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+            fetched_instruction.raw_instruction = mem_read_32(EX_to_MEM_CURRENT.BR_TARGET);  // Use pipe.PC (already set in EX)
+            fetched_instruction.PC = EX_to_MEM_CURRENT.BR_TARGET;
+            fetched_instruction.NOP = 0;
+            fetched_instruction.INSTRUCTION = UNKNOWN;
+            printf("FETCH: Read 0x%08x from PC=0x%lx (after branch)\n", fetched_instruction.raw_instruction, EX_to_MEM_CURRENT.BR_TARGET);
+            pipe.PC = pipe.PC + 4;  // Now advance for next instruction
+            printf("FETCH: Advanced PC to 0x%lx\n", pipe.PC);
+            SQUASH = 0;  // Clear squash flag!
+            STALL = 0;
+        }
+    } 
     
     else if (!HLT_FLAG) {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));

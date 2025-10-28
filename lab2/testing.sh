@@ -8,7 +8,7 @@ CORRECT_TESTS=0
 cd src && make
 cd ..
 
-declare -a file_list=("forwarding.x" "ldur.x" "stur.x" "lsri.x" "jitmul.x" "jitsub.x" "ldurb.x" "jitlsl.x" "jitand.x" "jitaddi.x"  "step1-a-input.x" "step1-b-input.x" "movz_lsl_test.x" "step2-a-input.x"  "step2-b-input.x"  "step3-input.x" "final_test.x" "final_test-2.x")
+declare -a file_list=("br.x" "forwarding.x" "ldur.x" "stur.x" "lsri.x" "jitmul.x" "jitsub.x" "ldurb.x" "jitlsl.x" "jitand.x" "jitaddi.x"  "step1-a-input.x" "step1-b-input.x" "movz_lsl_test.x" "step2-a-input.x"  "step2-b-input.x"  "step3-input.x" "final_test.x" "final_test-2.x")
 
 mkdir -p test
 ./cleaning.sh

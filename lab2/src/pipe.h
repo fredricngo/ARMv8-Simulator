@@ -86,8 +86,10 @@ typedef struct Pipe_Op {
     int LOAD;
     int STORE;
 
-    int BRANCH;
-    
+    int UBRANCH;
+    int CBRANCH;
+    uint64_t BR_TARGET;
+
     int WRITES_REG;
     int READS_RN;
     int READS_RM;
@@ -96,6 +98,11 @@ typedef struct Pipe_Op {
     int64_t result;
     int64_t MEM_ADDRESS;
     int64_t MEM_DATA;
+
+    int FLAG_N;
+    int FLAG_Z;
+
+
 } Pipe_Op;
 
 
