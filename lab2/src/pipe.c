@@ -572,7 +572,7 @@ void pipe_stage_decode()
     }
 
     // ADD_IMM
-    if (!(extract_bits(current_instruction, 21, 31) ^ 0x91)) {
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x91)) {
         DE_to_EX_CURRENT.INSTRUCTION = ADD_IMM;
         DE_to_EX_CURRENT.RD_REG  = extract_bits(current_instruction, 0, 4);
         DE_to_EX_CURRENT.WRITES_REG = 1;
@@ -959,7 +959,7 @@ void pipe_stage_fetch()
         return;
     }
     
-    if (!HLT_FLAG) {
+    else if (!HLT_FLAG) {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
         uint32_t raw_inst = mem_read_32(pipe.PC);
         printf("FETCH: Read 0x%08x from PC=0x%lx\n", raw_inst, pipe.PC);
