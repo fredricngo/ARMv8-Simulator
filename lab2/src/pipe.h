@@ -80,9 +80,19 @@ typedef struct Pipe_Op {
     uint64_t RT_VAL;
     int64_t  IMM;
     uint32_t SHAM;
+
     int READ_MEM;
     int WRITE_MEM;
+    int LOAD;
+    int STORE;
+
     int BRANCH;
+    
+    int WRITES_REG;
+    int READS_RN;
+    int READS_RM;
+    int READS_RT;
+
     int64_t result;
     int64_t MEM_ADDRESS;
     int64_t MEM_DATA;
