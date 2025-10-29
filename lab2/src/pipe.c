@@ -408,15 +408,15 @@ void pipe_stage_execute()
             break;
         case ADDS_IMM:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.IMM;
-            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
-            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
+            EX_to_MEM_CURRENT.FLAG_Z = (EX_to_MEM_CURRENT.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (EX_to_MEM_CURRENT.result >> 63) & 1;
             printf("ADDS_IMM: 0x%lx + 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         case ADDS_EXT:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.RM_VAL;
-            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
-            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
+            EX_to_MEM_CURRENT.FLAG_Z = (EX_to_MEM_CURRENT.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (EX_to_MEM_CURRENT.result >> 63) & 1;
             printf("ADDS_EXT: 0x%lx + 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
@@ -428,23 +428,24 @@ void pipe_stage_execute()
             break;
         case ANDS_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL & EX_to_MEM_CURRENT.RM_VAL);
-            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
-            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
+            EX_to_MEM_CURRENT.FLAG_Z = (EX_to_MEM_CURRENT.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (EX_to_MEM_CURRENT.result >> 63) & 1;
             printf("ANDS_SHIFTR: 0x%lx & 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         
         case BR:
-            {
-                EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.RN_VAL; 
-                if (EX_to_MEM_CURRENT.BR_TARGET == pipe.PC - 4){
-                    SQUASH = 0;
-                } else {
-                    SQUASH = 1; 
-                    stat_squash++;
-                }
-                break; 
-            }
+        {
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.RN_VAL; 
+            printf("BR: Branch target = 0x%lx, current PC = 0x%lx\n", 
+                EX_to_MEM_CURRENT.BR_TARGET, pipe.PC);
+            
+            // Always squash for unconditional branch - remove the conditional check
+            SQUASH = 1; 
+            stat_squash++;
+            printf("BR: Setting SQUASH=1\n");
+            break; 
+        }
         case EOR_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL ^ EX_to_MEM_CURRENT.RM_VAL);
             printf("EOR_SHIFTR: 0x%lx ^ 0x%lx = 0x%lx\n", 
@@ -500,8 +501,8 @@ void pipe_stage_execute()
         case SUBS_IMM:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.IMM;
-            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
-            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
+            EX_to_MEM_CURRENT.FLAG_Z = (EX_to_MEM_CURRENT.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (EX_to_MEM_CURRENT.result >> 63) & 1;
             printf("SUBS_IMM: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
@@ -509,8 +510,8 @@ void pipe_stage_execute()
         case SUBS_EXT:
         {
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
-            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
-            EX_to_MEM_CURRENT.FLAG_N = (in.result >> 63) & 1;
+            EX_to_MEM_CURRENT.FLAG_Z = (EX_to_MEM_CURRENT.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = (EX_to_MEM_CURRENT.result >> 63) & 1;
             printf("SUBS_EXT: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break; 
@@ -555,8 +556,8 @@ void pipe_stage_execute()
             break;
         case CMP_EXT:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL - EX_to_MEM_CURRENT.RM_VAL;
-            EX_to_MEM_CURRENT.FLAG_Z = (in.result == 0);
-            EX_to_MEM_CURRENT.FLAG_N = ((in.result) >> 63) & 1;
+            EX_to_MEM_CURRENT.FLAG_Z = (EX_to_MEM_CURRENT.result == 0);
+            EX_to_MEM_CURRENT.FLAG_N = ((EX_to_MEM_CURRENT.result) >> 63) & 1;
             printf("CMP_EXT: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
@@ -568,7 +569,7 @@ void pipe_stage_execute()
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         default:
-            printf("UNKNOWN INSTRUCTION: %d\n", in.INSTRUCTION);
+            printf("UNKNOWN INSTRUCTION: %d\n", EX_to_MEM_CURRENT.INSTRUCTION);
             break;
     }
     
@@ -1006,26 +1007,32 @@ void pipe_stage_fetch()
     }
 
     if (SQUASH){
-
         if (HLT_FLAG){
-             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
             fetched_instruction.NOP = 1;
             fetched_instruction.INSTRUCTION = UNKNOWN;
             printf("HLT_FLAG set - inserting NOP\n");
         } else {
             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
-            fetched_instruction.raw_instruction = mem_read_32(EX_to_MEM_CURRENT.BR_TARGET);  // Use pipe.PC (already set in EX)
-            fetched_instruction.PC = EX_to_MEM_CURRENT.BR_TARGET;
+            
+            // Set PC to branch target FIRST
+            pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+            printf("SQUASH: Setting PC to branch target 0x%lx\n", pipe.PC);
+            
+            // Then fetch from the new PC
+            fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
+            fetched_instruction.PC = pipe.PC;
             fetched_instruction.NOP = 0;
             fetched_instruction.INSTRUCTION = UNKNOWN;
-            printf("FETCH: Read 0x%08x from PC=0x%lx (after branch)\n", fetched_instruction.raw_instruction, EX_to_MEM_CURRENT.BR_TARGET);
-            pipe.PC = pipe.PC + 4;  // Now advance for next instruction
+            printf("FETCH: Read 0x%08x from PC=0x%lx (after branch)\n", fetched_instruction.raw_instruction, pipe.PC);
+            
+            // Now advance for next instruction
+            pipe.PC = pipe.PC + 4;
             printf("FETCH: Advanced PC to 0x%lx\n", pipe.PC);
-            SQUASH = 0;  // Clear squash flag!
-            STALL = 0;
         }
+        SQUASH = 0;  // Clear squash flag
     } 
-    
+
     else if (!HLT_FLAG) {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
         uint32_t raw_inst = mem_read_32(pipe.PC);
