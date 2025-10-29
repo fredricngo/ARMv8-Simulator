@@ -584,6 +584,7 @@ void pipe_stage_decode()
 
     // // If we're stalled, insert a NOP and don't decode new instruction
     // if (STALL) {
+    //     printf("ENTERING STALL IN DECODE, GOING TO CLEAR STALL");
     //     DE_to_EX_CURRENT.NOP = 1;
     //     STALL = 0;  // ← CLEAR STALL AFTER ONE CYCLE!
     //     return;
@@ -985,8 +986,13 @@ void pipe_stage_decode()
                DE_to_EX_CURRENT.INSTRUCTION, DE_to_EX_CURRENT.RT_REG);
     }
 
-    if (DE_to_EX_CURRENT.UBRANCH){
-        STALL = 1; 
+    if (DE_to_EX_PREV.UBRANCH){
+        printf("FOUND UNCONDITIONAL, SETTING STALL");
+        STALL = 1;
+        memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
+        DE_to_EX_CURRENT.NOP = 1;
+        // Request stall
+        return;
     }
 }
 
@@ -1008,6 +1014,7 @@ void pipe_stage_fetch()
 
     if (SQUASH){
         if (HLT_FLAG){
+            printf("SQUASH active -  PC at 0x%lx\n", pipe.PC);
             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
             fetched_instruction.NOP = 1;
             fetched_instruction.INSTRUCTION = UNKNOWN;
@@ -1016,7 +1023,7 @@ void pipe_stage_fetch()
             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
             
             // Set PC to branch target FIRST
-            pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+            pipe.PC = EX_to_MEM_PREV.BR_TARGET;
             printf("SQUASH: Setting PC to branch target 0x%lx\n", pipe.PC);
             
             // Then fetch from the new PC
@@ -1024,6 +1031,7 @@ void pipe_stage_fetch()
             fetched_instruction.PC = pipe.PC;
             fetched_instruction.NOP = 0;
             fetched_instruction.INSTRUCTION = UNKNOWN;
+            // STALL = 0; 
             printf("FETCH: Read 0x%08x from PC=0x%lx (after branch)\n", fetched_instruction.raw_instruction, pipe.PC);
             
             // Now advance for next instruction
@@ -1031,6 +1039,8 @@ void pipe_stage_fetch()
             printf("FETCH: Advanced PC to 0x%lx\n", pipe.PC);
         }
         SQUASH = 0;  // Clear squash flag
+        IF_to_DE_CURRENT = fetched_instruction;
+        return; 
     } 
 
     else if (!HLT_FLAG) {
