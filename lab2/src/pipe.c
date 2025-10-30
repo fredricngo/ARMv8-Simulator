@@ -38,6 +38,8 @@ int RUN_BIT;
 
 int CLEAR_DE = 0;
 int SQUASH = 0;
+int BRANCH = 0;
+int BRANCH_NEXT = 0;
 
 
 int64_t bit_extension(int32_t immediate, int start, int end){
@@ -64,6 +66,18 @@ uint32_t extract_bits(uint32_t instruction, int start, int end){
     return (instruction >> start) & mask;
 }
 
+////this can also be called for the taken conditional branch bc the logic is the same!
+void unconditional_branching(void) {
+    if (!(MEM_to_WB_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
+        printf("BRANCH MISPREDICTION - Redirecting to 0x%lx\n", 
+        MEM_to_WB_CURRENT.BR_TARGET);
+        pipe.PC = MEM_to_WB_CURRENT.BR_TARGET;
+        SQUASH = 1;
+        stat_squash ++;
+        CLEAR_DE = 1;
+            }
+}
+
 void pipe_init()
 {
     memset(&pipe, 0, sizeof(Pipe_State));
@@ -85,6 +99,8 @@ void pipe_cycle()
     REFETCH_PC_NEXT = 0;
     UPDATE_EX = UPDATE_EX_NEXT;
     UPDATE_EX_NEXT = 0;
+    BRANCH = BRANCH_NEXT;
+    BRANCH_NEXT = 0;
 
     HLT_FLAG = HLT_NEXT;
 
@@ -326,6 +342,8 @@ void pipe_stage_mem()
         case BR:
             break;
         case B:
+        //this is the same case as a taken conditional branch (squash case)
+            unconditional_branching();
             break;
     }
 }
@@ -591,8 +609,13 @@ void pipe_stage_execute()
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         case B:
-            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + in.IMM;
-            SQUASH = 1;
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            break;
+        case BR:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.RN_VAL;
+            break;
         default:
             printf("UNKNOWN INSTRUCTION: %d\n", EX_to_MEM_CURRENT.INSTRUCTION);
             break;
@@ -950,6 +973,7 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.INSTRUCTION = B;
         uint32_t immediate = extract_bits(current_instruction, 0, 25);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 25);
+        DE_to_EX_CURRENT.PC = in.PC;
         DE_to_EX_CURRENT.UBRANCH = 1;
     }
 
@@ -960,6 +984,14 @@ void pipe_stage_decode()
     //BGT - K
 
     //BGE K
+
+    if (DE_to_EX_CURRENT.UBRANCH) {
+        REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;    // re-fetch SAME instruction as in N
+        REFETCH_PC_NEXT  = 1;                   // triggers in fetch at N+1
+        CLEAR_DE         = 1;
+        BRANCH_NEXT = 1;                   // bubble DE at N+1
+        return;
+    }
 
     printf("=== HAZARD CHECK DEBUG ===\n");
     printf("DE_to_EX_PREV (currently in EX): inst=%d, LOAD=%d, RT_REG=%d, NOP=%d\n", 
@@ -1008,12 +1040,6 @@ void pipe_stage_decode()
             return;
         }
 
-        if (DE_to_EX_CURRENT.UBRANCH) {
-            REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;
-            REFETCH_PC_NEXT  = 1;
-            CLEAR_DE = 1;
-            return;
-        }
     }
 }
 
@@ -1040,7 +1066,9 @@ void pipe_stage_fetch()
             fetched_instruction.raw_instruction, REFETCH_ADDR);
         REFETCH_PC = 0;
         IF_to_DE_CURRENT = fetched_instruction;
-        UPDATE_EX_NEXT = 1;
+        if (!BRANCH) {
+            UPDATE_EX_NEXT = 1;
+        }
         return;
     }
     if (SQUASH) {
@@ -1053,7 +1081,7 @@ void pipe_stage_fetch()
         } else {
             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
             
-            pipe.PC = EX_to_MEM_PREV.BR_TARGET;
+            pipe.PC = MEM_to_WB_CURRENT.BR_TARGET;
             printf("SQUASH: Setting PC to branch target 0x%lx\n", pipe.PC);
             fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
             fetched_instruction.PC = pipe.PC;
