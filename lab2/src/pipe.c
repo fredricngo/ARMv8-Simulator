@@ -23,12 +23,21 @@ Pipe_Op DE_to_EX_PREV;
 Pipe_Op EX_to_MEM_PREV;
 Pipe_Op MEM_to_WB_PREV;
 
+//STALLING LOGIC
+Pipe_Op SAVED_INSTRUCTION;
+int INSTRUCTION_SAVED = 0;
+uint64_t REFETCH_ADDR  = 0;
+int REFETCH_PC = 0;
+int REFETCH_PC_NEXT = 0;
+int UPDATE_EX = 0;
+int UPDATE_EX_NEXT = 0;
+
 int HLT_FLAG = 0;
 int HLT_NEXT = 0;
 int RUN_BIT;
-int STALL = 0;
-int SQUASH = 0; 
 
+int CLEAR_DE = 0;
+int SQUASH = 0;
 
 
 int64_t bit_extension(int32_t immediate, int start, int end){
@@ -71,6 +80,11 @@ void pipe_cycle()
 	pipe_stage_execute();
 	pipe_stage_decode();
     pipe_stage_fetch();
+
+    REFETCH_PC = REFETCH_PC_NEXT;
+    REFETCH_PC_NEXT = 0;
+    UPDATE_EX = UPDATE_EX_NEXT;
+    UPDATE_EX_NEXT = 0;
 
     HLT_FLAG = HLT_NEXT;
 
@@ -213,6 +227,12 @@ void pipe_stage_wb()
             pipe.FLAG_N = in.FLAG_N;
             stat_inst_retire++;
             break;
+        case BR:
+            stat_inst_retire++;
+            break;
+        case B:
+            stat_inst_retire++;
+            break;
     }
 }
 
@@ -292,6 +312,8 @@ void pipe_stage_mem()
             uint32_t low_word = mem_read_32(in.MEM_ADDRESS);
             uint32_t high_word = mem_read_32(in.MEM_ADDRESS + 4);
             MEM_to_WB_CURRENT.MEM_DATA = ((uint64_t)high_word << 32) | low_word;
+            printf("LDUR_64 DEBUG: Loading from addr 0x%lx, low=0x%x, high=0x%x, result=0x%lx\n",
+            in.MEM_ADDRESS, low_word, high_word, MEM_to_WB_CURRENT.MEM_DATA);
             break;
         }
         case LDURH:
@@ -301,6 +323,10 @@ void pipe_stage_mem()
             break;
         case CMP_IMM:
             break;
+        case BR:
+            break;
+        case B:
+            break;
     }
 }
 
@@ -308,8 +334,16 @@ void pipe_stage_execute()
 {
     memset(&EX_to_MEM_CURRENT, 0, sizeof(EX_to_MEM_CURRENT));
     Pipe_Op in = DE_to_EX_PREV;
-    if (in.NOP) { EX_to_MEM_CURRENT.NOP = 1; return; }
 
+    if (UPDATE_EX) {
+        printf("=== EXECUTE STAGE - USING SAVED INSTRUCTION ===\n");
+        in = SAVED_INSTRUCTION;
+        UPDATE_EX = 0;
+        printf("Executing saved instruction %d\n", in.INSTRUCTION);
+    } else {
+        printf("=== EXECUTE STAGE ===\n");
+    }
+    if (in.NOP) { EX_to_MEM_CURRENT.NOP = 1; printf("NOP in execute stage \n"); return; }
     EX_to_MEM_CURRENT = in;
 
     // Debug: Print what instruction we're executing
@@ -434,18 +468,6 @@ void pipe_stage_execute()
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
             break;
         
-        case BR:
-        {
-            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.RN_VAL; 
-            printf("BR: Branch target = 0x%lx, current PC = 0x%lx\n", 
-                EX_to_MEM_CURRENT.BR_TARGET, pipe.PC);
-            
-            // Always squash for unconditional branch - remove the conditional check
-            SQUASH = 1; 
-            stat_squash++;
-            printf("BR: Setting SQUASH=1\n");
-            break; 
-        }
         case EOR_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL ^ EX_to_MEM_CURRENT.RM_VAL);
             printf("EOR_SHIFTR: 0x%lx ^ 0x%lx = 0x%lx\n", 
@@ -568,6 +590,9 @@ void pipe_stage_execute()
             printf("CMP_IMM: 0x%lx - 0x%lx = 0x%lx\n", 
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
+        case B:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + in.IMM;
+            SQUASH = 1;
         default:
             printf("UNKNOWN INSTRUCTION: %d\n", EX_to_MEM_CURRENT.INSTRUCTION);
             break;
@@ -577,22 +602,19 @@ void pipe_stage_execute()
     printf("========================\n");
 }
 
-
 void pipe_stage_decode()
 {
     memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
 
-    // // If we're stalled, insert a NOP and don't decode new instruction
-    // if (STALL) {
-    //     printf("ENTERING STALL IN DECODE, GOING TO CLEAR STALL");
-    //     DE_to_EX_CURRENT.NOP = 1;
-    //     STALL = 0;  // ← CLEAR STALL AFTER ONE CYCLE!
-    //     return;
-    // }
-    
     Pipe_Op in = IF_to_DE_PREV;
     if (in.NOP) { DE_to_EX_CURRENT.NOP = 1; return; }
-    
+
+    if (CLEAR_DE) {
+        DE_to_EX_CURRENT.NOP = 1;
+        CLEAR_DE = 0; 
+        printf("DE stage cleared due to branch\n");
+        return;
+    }
     uint64_t current_instruction = in.raw_instruction;
 
     //ADD(EXTENDED) - K
@@ -641,7 +663,7 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
         DE_to_EX_CURRENT.READS_RN = 1;
         uint32_t immediate = extract_bits(current_instruction, 10, 21);
-        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 10, 21);
+        DE_to_EX_CURRENT.IMM = immediate;
     }
 
     //CBNZ - K
@@ -924,6 +946,12 @@ void pipe_stage_decode()
 
 
     //B - F
+    if (!(extract_bits(current_instruction, 26, 31) ^ 0x5)){
+        DE_to_EX_CURRENT.INSTRUCTION = B;
+        uint32_t immediate = extract_bits(current_instruction, 0, 25);
+        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 25);
+        DE_to_EX_CURRENT.UBRANCH = 1;
+    }
 
     //BEQ - K
 
@@ -964,37 +992,31 @@ void pipe_stage_decode()
         }
         
         if (need_stall) {
-            printf("*** INSERTING STALL - LOAD-USE HAZARD DETECTED ***\n");
-            // Insert bubble into EX stage
+            printf("*** LOAD-USE HAZARD DETECTED - INITIATING STALL SEQUENCE ***\n");
+
+            // Save the consumer exactly as decoded in cycle N
+            SAVED_INSTRUCTION = DE_to_EX_CURRENT;
             memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
             DE_to_EX_CURRENT.NOP = 1;
-            // Request stall
-            STALL = 1;
-            printf("STALL flag set\n");
-            printf("==========================\n");
+
+            // Ask IF to re-fetch the SAME instruction next cycle (N+1)
+            REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;
+            REFETCH_PC_NEXT  = 1;
+
+            // Make DE a NOP in N+1
+            CLEAR_DE = 1;
             return;
         }
-        
-        printf("No hazard detected\n");
-    } else {
-        printf("No load in EX stage\n");
-    }
-    printf("==========================\n");
 
-    if (DE_to_EX_CURRENT.LOAD) {
-        printf("*** SETTING LOAD FLAG: inst=%d writing to X%d ***\n", 
-               DE_to_EX_CURRENT.INSTRUCTION, DE_to_EX_CURRENT.RT_REG);
-    }
-
-    if (DE_to_EX_PREV.UBRANCH){
-        printf("FOUND UNCONDITIONAL, SETTING STALL");
-        STALL = 1;
-        memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
-        DE_to_EX_CURRENT.NOP = 1;
-        // Request stall
-        return;
+        if (DE_to_EX_CURRENT.UBRANCH) {
+            REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;
+            REFETCH_PC_NEXT  = 1;
+            CLEAR_DE = 1;
+            return;
+        }
     }
 }
+
 
 
 void pipe_stage_fetch()
@@ -1003,16 +1025,25 @@ void pipe_stage_fetch()
     static int cycle_count = 0;
     cycle_count++;
     
-     printf("FETCH CYCLE %d: PC=0x%lx, STALL=%d\n", cycle_count, pipe.PC, STALL);
+    printf("FETCH CYCLE %d: PC=0x%lx, REFETCH_PC=0x%lx\n", 
+           cycle_count, pipe.PC, REFETCH_PC);
     
-    if (STALL) {
-        printf("STALL active - repeating previous instruction, keeping PC at 0x%lx\n", pipe.PC);
-        IF_to_DE_CURRENT = IF_to_DE_PREV;
-        STALL = 0;
+    if (REFETCH_PC) {
+        printf("REFETCH - Re-fetching instruction from PC=0x%lx due to load stall\n", REFETCH_ADDR);
+
+        memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+        fetched_instruction.raw_instruction = mem_read_32(REFETCH_ADDR);
+        fetched_instruction.PC = REFETCH_ADDR;
+        fetched_instruction.NOP = 0;
+        fetched_instruction.INSTRUCTION = UNKNOWN;
+        printf("REFETCH: Read 0x%08x from PC=0x%lx\n",
+            fetched_instruction.raw_instruction, REFETCH_ADDR);
+        REFETCH_PC = 0;
+        IF_to_DE_CURRENT = fetched_instruction;
+        UPDATE_EX_NEXT = 1;
         return;
     }
-
-    if (SQUASH){
+    if (SQUASH) {
         if (HLT_FLAG){
             printf("SQUASH active -  PC at 0x%lx\n", pipe.PC);
             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
@@ -1022,32 +1053,26 @@ void pipe_stage_fetch()
         } else {
             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
             
-            // Set PC to branch target FIRST
             pipe.PC = EX_to_MEM_PREV.BR_TARGET;
             printf("SQUASH: Setting PC to branch target 0x%lx\n", pipe.PC);
-            
-            // Then fetch from the new PC
             fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
             fetched_instruction.PC = pipe.PC;
             fetched_instruction.NOP = 0;
             fetched_instruction.INSTRUCTION = UNKNOWN;
-            // STALL = 0; 
             printf("FETCH: Read 0x%08x from PC=0x%lx (after branch)\n", fetched_instruction.raw_instruction, pipe.PC);
-            
-            // Now advance for next instruction
             pipe.PC = pipe.PC + 4;
             printf("FETCH: Advanced PC to 0x%lx\n", pipe.PC);
         }
         SQUASH = 0;  // Clear squash flag
         IF_to_DE_CURRENT = fetched_instruction;
         return; 
-    } 
+    }
 
-    else if (!HLT_FLAG) {
+    if (!HLT_FLAG) {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
         uint32_t raw_inst = mem_read_32(pipe.PC);
         printf("FETCH: Read 0x%08x from PC=0x%lx\n", raw_inst, pipe.PC);
-        fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
+        fetched_instruction.raw_instruction = raw_inst;
         fetched_instruction.PC = pipe.PC;
         fetched_instruction.NOP = 0;
         fetched_instruction.INSTRUCTION = UNKNOWN;
