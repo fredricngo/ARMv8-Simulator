@@ -340,10 +340,18 @@ void pipe_stage_mem()
         case CMP_IMM:
             break;
         case BR:
+            unconditional_branching();
             break;
         case B:
         //this is the same case as a taken conditional branch (squash case)
             unconditional_branching();
+            break;
+        case BEQ:
+            if (MEM_to_WB_CURRENT.BR_TAKEN) {
+                unconditional_branching();
+            } else {
+                printf("BEQ: Branch not taken, continuing sequentially.\n");
+            }
             break;
     }
 }
@@ -616,6 +624,13 @@ void pipe_stage_execute()
         case BR:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.RN_VAL;
             break;
+        case BEQ:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_Z;
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            break;
+            
         default:
             printf("UNKNOWN INSTRUCTION: %d\n", EX_to_MEM_CURRENT.INSTRUCTION);
             break;
@@ -639,6 +654,8 @@ void pipe_stage_decode()
         return;
     }
     uint64_t current_instruction = in.raw_instruction;
+
+    DE_to_EX_CURRENT.PC = in.PC; 
 
     //ADD(EXTENDED) - K
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x458)) {
@@ -973,11 +990,18 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.INSTRUCTION = B;
         uint32_t immediate = extract_bits(current_instruction, 0, 25);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 25);
-        DE_to_EX_CURRENT.PC = in.PC;
         DE_to_EX_CURRENT.UBRANCH = 1;
     }
 
     //BEQ - K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0x0)){
+        DE_to_EX_CURRENT.INSTRUCTION = BEQ;
+        uint32_t immediate = extract_bits(current_instruction, 5, 23);
+        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
+        DE_to_EX_CURRENT.CBRANCH = 1;
+    }
+
+
 
     //BNE, BLT, BLE - F
 
@@ -986,6 +1010,14 @@ void pipe_stage_decode()
     //BGE K
 
     if (DE_to_EX_CURRENT.UBRANCH) {
+        REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;    // re-fetch SAME instruction as in N
+        REFETCH_PC_NEXT  = 1;                   // triggers in fetch at N+1
+        CLEAR_DE         = 1;
+        BRANCH_NEXT = 1;                   // bubble DE at N+1
+        return;
+    }
+
+    if (DE_to_EX_CURRENT.CBRANCH) {
         REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;    // re-fetch SAME instruction as in N
         REFETCH_PC_NEXT  = 1;                   // triggers in fetch at N+1
         CLEAR_DE         = 1;
