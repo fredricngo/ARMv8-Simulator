@@ -617,7 +617,7 @@ void pipe_stage_execute()
                    EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.IMM, EX_to_MEM_CURRENT.result);
             break;
         case B:
-            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            EX_to_MEM_CURRENT.BR_TARGET = in.PC + (in.IMM << 2);
             printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
                 in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
             break;
@@ -1010,6 +1010,8 @@ void pipe_stage_decode()
     //BGE K
 
     if (DE_to_EX_CURRENT.UBRANCH) {
+        printf("Unconditional branch detected in DE stage - initiating branch sequence\n");
+        printf("Branch instruction: 0x%08x at PC=0x%lx\n", current_instruction, DE_to_EX_CURRENT.PC);
         REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;    // re-fetch SAME instruction as in N
         REFETCH_PC_NEXT  = 1;                   // triggers in fetch at N+1
         CLEAR_DE         = 1;
@@ -1018,13 +1020,15 @@ void pipe_stage_decode()
     }
 
     if (DE_to_EX_CURRENT.CBRANCH) {
+        printf("Conditional branch detected in DE stage - initiating branch sequence\n");
+        printf("Branch instruction: 0x%08x at PC=0x%lx\n", current_instruction, DE_to_EX_CURRENT.PC);
         REFETCH_ADDR     = IF_to_DE_PREV.PC + 4;    // re-fetch SAME instruction as in N
         REFETCH_PC_NEXT  = 1;                   // triggers in fetch at N+1
         CLEAR_DE         = 1;
         BRANCH_NEXT = 1;                   // bubble DE at N+1
         return;
     }
-
+    printf("DE stage decoded instruction: %d\n", DE_to_EX_CURRENT.INSTRUCTION);
     printf("=== HAZARD CHECK DEBUG ===\n");
     printf("DE_to_EX_PREV (currently in EX): inst=%d, LOAD=%d, RT_REG=%d, NOP=%d\n", 
            DE_to_EX_PREV.INSTRUCTION, DE_to_EX_PREV.LOAD, DE_to_EX_PREV.RT_REG, DE_to_EX_PREV.NOP);
@@ -1083,8 +1087,7 @@ void pipe_stage_fetch()
     static int cycle_count = 0;
     cycle_count++;
     
-    printf("FETCH CYCLE %d: PC=0x%lx, REFETCH_PC=0x%lx\n", 
-           cycle_count, pipe.PC, REFETCH_PC);
+    printf("FETCH CYCLE %d: PC=0x%lx, REFETCH_PC=0x%lx\n", cycle_count, pipe.PC, REFETCH_PC);
     
     if (REFETCH_PC) {
         printf("REFETCH - Re-fetching instruction from PC=0x%lx due to load stall\n", REFETCH_ADDR);

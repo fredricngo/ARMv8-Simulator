@@ -7,33 +7,34 @@ ARM-SIM>
 Simulating for 10 cycles...
 
 === EXECUTE STAGE ===
-Instruction: 0, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
-Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
-UNKNOWN INSTRUCTION: 0
-Final result: 0x0
-========================
-=== HAZARD CHECK DEBUG ===
-DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=0
-Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
-No load in EX stage
-==========================
-FETCH CYCLE 1: PC=0x400000, STALL=0
-FETCH: Read 0x91000540 from PC=0x400000
-FETCH: Advanced PC to 0x400004
 === EXECUTE STAGE ===
 Instruction: 0, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
 UNKNOWN INSTRUCTION: 0
 Final result: 0x0
 ========================
+DE stage decoded instruction: 0
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 1: PC=0x400000, REFETCH_PC=0x0
+FETCH: Read 0x91000540 from PC=0x400000
+FETCH: Advanced PC to 0x400004
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 0, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
+UNKNOWN INSTRUCTION: 0
+Final result: 0x0
+========================
+DE stage decoded instruction: 2
 === HAZARD CHECK DEBUG ===
 DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=0
 Current decode: READS_RN=1 (X10), READS_RM=0 (X0), STORE=0 (X0)
-No load in EX stage
-==========================
-FETCH CYCLE 2: PC=0x400004, STALL=0
+FETCH CYCLE 2: PC=0x400004, REFETCH_PC=0x0
 FETCH: Read 0x91002d61 from PC=0x400004
 FETCH: Advanced PC to 0x400008
+=== EXECUTE STAGE ===
 === EXECUTE STAGE ===
 Instruction: 2, RD=0, RN=10(0x0), RM=0(0x0), IMM=0x1
 Instruction needs RN (reg 10 = 0x0)
@@ -41,14 +42,14 @@ Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x1
 ADD_IMM: 0x0 + 0x1 = 0x1
 Final result: 0x1
 ========================
+DE stage decoded instruction: 2
 === HAZARD CHECK DEBUG ===
 DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
 Current decode: READS_RN=1 (X11), READS_RM=0 (X0), STORE=0 (X0)
-No load in EX stage
-==========================
-FETCH CYCLE 3: PC=0x400008, STALL=0
+FETCH CYCLE 3: PC=0x400008, REFETCH_PC=0x0
 FETCH: Read 0xd343fd40 from PC=0x400008
 FETCH: Advanced PC to 0x40000c
+=== EXECUTE STAGE ===
 === EXECUTE STAGE ===
 Instruction: 2, RD=1, RN=11(0x0), RM=0(0x0), IMM=0xb
 Instruction needs RN (reg 11 = 0x0)
@@ -56,14 +57,14 @@ Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0xb
 ADD_IMM: 0x0 + 0xb = 0xb
 Final result: 0xb
 ========================
+DE stage decoded instruction: 16
 === HAZARD CHECK DEBUG ===
 DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
 Current decode: READS_RN=1 (X10), READS_RM=0 (X0), STORE=0 (X0)
-No load in EX stage
-==========================
-FETCH CYCLE 4: PC=0x40000c, STALL=0
+FETCH CYCLE 4: PC=0x40000c, REFETCH_PC=0x0
 FETCH: Read 0xd344fd41 from PC=0x40000c
 FETCH: Advanced PC to 0x400010
+=== EXECUTE STAGE ===
 === EXECUTE STAGE ===
 Instruction: 16, RD=0, RN=10(0x0), RM=0(0x0), IMM=0x0
 Instruction needs RN (reg 10 = 0x0)
@@ -71,14 +72,14 @@ Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
 LSR_IMM: 0x0 >> 3 = 0x0
 Final result: 0x0
 ========================
+DE stage decoded instruction: 16
 === HAZARD CHECK DEBUG ===
 DE_to_EX_PREV (currently in EX): inst=16, LOAD=0, RT_REG=0, NOP=0
 Current decode: READS_RN=1 (X10), READS_RM=0 (X0), STORE=0 (X0)
-No load in EX stage
-==========================
-FETCH CYCLE 5: PC=0x400010, STALL=0
+FETCH CYCLE 5: PC=0x400010, REFETCH_PC=0x0
 FETCH: Read 0xd4400000 from PC=0x400010
 FETCH: Advanced PC to 0x400014
+=== EXECUTE STAGE ===
 === EXECUTE STAGE ===
 Instruction: 16, RD=1, RN=10(0x0), RM=0(0x0), IMM=0x0
 Instruction needs RN (reg 10 = 0x0)
@@ -86,36 +87,38 @@ Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
 LSR_IMM: 0x0 >> 4 = 0x0
 Final result: 0x0
 ========================
+DE stage decoded instruction: 27
 === HAZARD CHECK DEBUG ===
 DE_to_EX_PREV (currently in EX): inst=16, LOAD=0, RT_REG=0, NOP=0
 Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
-No load in EX stage
-==========================
-FETCH CYCLE 6: PC=0x400014, STALL=0
+FETCH CYCLE 6: PC=0x400014, REFETCH_PC=0x0
 FETCH: Read 0x00000000 from PC=0x400014
 FETCH: Advanced PC to 0x400018
+=== EXECUTE STAGE ===
 === EXECUTE STAGE ===
 Instruction: 27, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
 HLT instruction
 Final result: 0x0
 ========================
+DE stage decoded instruction: 0
 === HAZARD CHECK DEBUG ===
 DE_to_EX_PREV (currently in EX): inst=27, LOAD=0, RT_REG=0, NOP=0
 Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
-No load in EX stage
-==========================
-FETCH CYCLE 7: PC=0x400018, STALL=0
+FETCH CYCLE 7: PC=0x400018, REFETCH_PC=0x0
 HLT_FLAG set - inserting NOP
+=== EXECUTE STAGE ===
 === EXECUTE STAGE ===
 Instruction: 0, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
 UNKNOWN INSTRUCTION: 0
 Final result: 0x0
 ========================
-FETCH CYCLE 8: PC=0x400018, STALL=0
+FETCH CYCLE 8: PC=0x400018, REFETCH_PC=0x0
 HLT_FLAG set - inserting NOP
-FETCH CYCLE 9: PC=0x400018, STALL=0
+=== EXECUTE STAGE ===
+NOP in execute stage 
+FETCH CYCLE 9: PC=0x400018, REFETCH_PC=0x0
 HLT_FLAG set - inserting NOP
 Simulator halted
 

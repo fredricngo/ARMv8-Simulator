@@ -1,0 +1,448 @@
+ARM Simulator
+
+Pipeline initialized: PC=0x400000
+Read 22 words from program into memory.
+
+ARM-SIM> 
+Simulating for 30 cycles...
+
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 0, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
+UNKNOWN INSTRUCTION: 0
+Final result: 0x0
+========================
+DE stage decoded instruction: 0
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 1: PC=0x400000, REFETCH_PC=0x0
+FETCH: Read 0xd2800021 from PC=0x400000
+FETCH: Advanced PC to 0x400004
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 0, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
+UNKNOWN INSTRUCTION: 0
+Final result: 0x0
+========================
+DE stage decoded instruction: 17
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 2: PC=0x400004, REFETCH_PC=0x0
+FETCH: Read 0x14000002 from PC=0x400004
+FETCH: Advanced PC to 0x400008
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 17, RD=1, RN=0(0x0), RM=0(0x0), IMM=0x1
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x1
+MOVZ: result = 0x1
+Final result: 0x1
+========================
+Unconditional branch detected in DE stage - initiating branch sequence
+Branch instruction: 0x14000002 at PC=0x400004
+FETCH CYCLE 3: PC=0x400008, REFETCH_PC=0x0
+FETCH: Read 0x91019021 from PC=0x400008
+FETCH: Advanced PC to 0x40000c
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 31, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x2
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x2
+B: Branch target = 0x400004 + (0x2 << 2) = 0x40000c
+Final result: 0x0
+========================
+DE stage cleared due to branch
+FETCH CYCLE 4: PC=0x40000c, REFETCH_PC=0x1
+REFETCH - Re-fetching instruction from PC=0x400008 due to load stall
+REFETCH: Read 0x91019021 from PC=0x400008
+BRANCH MISPREDICTION - Redirecting to 0x40000c
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage cleared due to branch
+FETCH CYCLE 5: PC=0x40000c, REFETCH_PC=0x0
+SQUASH: Setting PC to branch target 0x40000c
+FETCH: Read 0x91000c21 from PC=0x40000c (after branch)
+FETCH: Advanced PC to 0x400010
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage decoded instruction: 2
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=1
+Current decode: READS_RN=1 (X1), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 6: PC=0x400010, REFETCH_PC=0x0
+FETCH: Read 0xd2800042 from PC=0x400010
+FETCH: Advanced PC to 0x400014
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 2, RD=1, RN=1(0x1), RM=0(0x0), IMM=0x3
+Instruction needs RN (reg 1 = 0x1)
+Before calc: RN_VAL=0x1, RM_VAL=0x0, IMM=0x3
+ADD_IMM: 0x1 + 0x3 = 0x4
+Final result: 0x4
+========================
+DE stage decoded instruction: 17
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 7: PC=0x400014, REFETCH_PC=0x0
+FETCH: Read 0x14000004 from PC=0x400014
+FETCH: Advanced PC to 0x400018
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 17, RD=2, RN=0(0x0), RM=0(0x0), IMM=0x2
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x2
+MOVZ: result = 0x2
+Final result: 0x2
+========================
+Unconditional branch detected in DE stage - initiating branch sequence
+Branch instruction: 0x14000004 at PC=0x400014
+FETCH CYCLE 8: PC=0x400018, REFETCH_PC=0x0
+FETCH: Read 0x91002842 from PC=0x400018
+FETCH: Advanced PC to 0x40001c
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 31, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x4
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x4
+B: Branch target = 0x400014 + (0x4 << 2) = 0x400024
+Final result: 0x0
+========================
+DE stage cleared due to branch
+FETCH CYCLE 9: PC=0x40001c, REFETCH_PC=0x1
+REFETCH - Re-fetching instruction from PC=0x400018 due to load stall
+REFETCH: Read 0x91002842 from PC=0x400018
+BRANCH MISPREDICTION - Redirecting to 0x400024
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage cleared due to branch
+FETCH CYCLE 10: PC=0x400024, REFETCH_PC=0x0
+SQUASH: Setting PC to branch target 0x400024
+FETCH: Read 0x91001442 from PC=0x400024 (after branch)
+FETCH: Advanced PC to 0x400028
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage decoded instruction: 2
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=1
+Current decode: READS_RN=1 (X2), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 11: PC=0x400028, REFETCH_PC=0x0
+FETCH: Read 0xd2800063 from PC=0x400028
+FETCH: Advanced PC to 0x40002c
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 2, RD=2, RN=2(0x2), RM=0(0x0), IMM=0x5
+Instruction needs RN (reg 2 = 0x2)
+Before calc: RN_VAL=0x2, RM_VAL=0x0, IMM=0x5
+ADD_IMM: 0x2 + 0x5 = 0x7
+Final result: 0x7
+========================
+DE stage decoded instruction: 17
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 12: PC=0x40002c, REFETCH_PC=0x0
+FETCH: Read 0x14000001 from PC=0x40002c
+FETCH: Advanced PC to 0x400030
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 17, RD=3, RN=0(0x0), RM=0(0x0), IMM=0x3
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
+MOVZ: result = 0x3
+Final result: 0x3
+========================
+Unconditional branch detected in DE stage - initiating branch sequence
+Branch instruction: 0x14000001 at PC=0x40002c
+FETCH CYCLE 13: PC=0x400030, REFETCH_PC=0x0
+FETCH: Read 0x91001c63 from PC=0x400030
+FETCH: Advanced PC to 0x400034
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 31, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x1
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x1
+B: Branch target = 0x40002c + (0x1 << 2) = 0x400030
+Final result: 0x0
+========================
+DE stage cleared due to branch
+FETCH CYCLE 14: PC=0x400034, REFETCH_PC=0x1
+REFETCH - Re-fetching instruction from PC=0x400030 due to load stall
+REFETCH: Read 0x91001c63 from PC=0x400030
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage decoded instruction: 2
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=1
+Current decode: READS_RN=1 (X3), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 15: PC=0x400034, REFETCH_PC=0x0
+FETCH: Read 0xd2800084 from PC=0x400034
+FETCH: Advanced PC to 0x400038
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 2, RD=3, RN=3(0x3), RM=0(0x0), IMM=0x7
+Instruction needs RN (reg 3 = 0x3)
+Before calc: RN_VAL=0x3, RM_VAL=0x0, IMM=0x7
+ADD_IMM: 0x3 + 0x7 = 0xa
+Final result: 0xa
+========================
+DE stage decoded instruction: 17
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 16: PC=0x400038, REFETCH_PC=0x0
+FETCH: Read 0x14000002 from PC=0x400038
+FETCH: Advanced PC to 0x40003c
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 17, RD=4, RN=0(0x0), RM=0(0x0), IMM=0x4
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x4
+MOVZ: result = 0x4
+Final result: 0x4
+========================
+Unconditional branch detected in DE stage - initiating branch sequence
+Branch instruction: 0x14000002 at PC=0x400038
+FETCH CYCLE 17: PC=0x40003c, REFETCH_PC=0x0
+FETCH: Read 0x9101bc84 from PC=0x40003c
+FETCH: Advanced PC to 0x400040
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 31, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x2
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x2
+B: Branch target = 0x400038 + (0x2 << 2) = 0x400040
+Final result: 0x0
+========================
+DE stage cleared due to branch
+FETCH CYCLE 18: PC=0x400040, REFETCH_PC=0x1
+REFETCH - Re-fetching instruction from PC=0x40003c due to load stall
+REFETCH: Read 0x9101bc84 from PC=0x40003c
+BRANCH MISPREDICTION - Redirecting to 0x400040
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage cleared due to branch
+FETCH CYCLE 19: PC=0x400040, REFETCH_PC=0x0
+SQUASH: Setting PC to branch target 0x400040
+FETCH: Read 0x14000002 from PC=0x400040 (after branch)
+FETCH: Advanced PC to 0x400044
+=== EXECUTE STAGE ===
+NOP in execute stage 
+Unconditional branch detected in DE stage - initiating branch sequence
+Branch instruction: 0x14000002 at PC=0x400040
+FETCH CYCLE 20: PC=0x400044, REFETCH_PC=0x0
+FETCH: Read 0x91037884 from PC=0x400044
+FETCH: Advanced PC to 0x400048
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 31, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x2
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x2
+B: Branch target = 0x400040 + (0x2 << 2) = 0x400048
+Final result: 0x0
+========================
+DE stage cleared due to branch
+FETCH CYCLE 21: PC=0x400048, REFETCH_PC=0x1
+REFETCH - Re-fetching instruction from PC=0x400044 due to load stall
+REFETCH: Read 0x91037884 from PC=0x400044
+BRANCH MISPREDICTION - Redirecting to 0x400048
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage cleared due to branch
+FETCH CYCLE 22: PC=0x400048, REFETCH_PC=0x0
+SQUASH: Setting PC to branch target 0x400048
+FETCH: Read 0x91001884 from PC=0x400048 (after branch)
+FETCH: Advanced PC to 0x40004c
+=== EXECUTE STAGE ===
+NOP in execute stage 
+DE stage decoded instruction: 2
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=0, LOAD=0, RT_REG=0, NOP=1
+Current decode: READS_RN=1 (X4), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 23: PC=0x40004c, REFETCH_PC=0x0
+FETCH: Read 0x910fa0a5 from PC=0x40004c
+FETCH: Advanced PC to 0x400050
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 2, RD=4, RN=4(0x4), RM=0(0x0), IMM=0x6
+Instruction needs RN (reg 4 = 0x4)
+Before calc: RN_VAL=0x4, RM_VAL=0x0, IMM=0x6
+ADD_IMM: 0x4 + 0x6 = 0xa
+Final result: 0xa
+========================
+DE stage decoded instruction: 2
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=1 (X5), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 24: PC=0x400050, REFETCH_PC=0x0
+FETCH: Read 0x910014a5 from PC=0x400050
+FETCH: Advanced PC to 0x400054
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 2, RD=5, RN=5(0x0), RM=0(0x0), IMM=0x3e8
+Instruction needs RN (reg 5 = 0x0)
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3e8
+ADD_IMM: 0x0 + 0x3e8 = 0x3e8
+Final result: 0x3e8
+========================
+DE stage decoded instruction: 2
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=1 (X5), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 25: PC=0x400054, REFETCH_PC=0x0
+FETCH: Read 0xd4400000 from PC=0x400054
+FETCH: Advanced PC to 0x400058
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 2, RD=5, RN=5(0x0), RM=0(0x0), IMM=0x5
+Instruction needs RN (reg 5 = 0x0)
+EX->EX Forward: RN reg 5 gets 0x3e8 (was 0x0)
+Before calc: RN_VAL=0x3e8, RM_VAL=0x0, IMM=0x5
+ADD_IMM: 0x3e8 + 0x5 = 0x3ed
+Final result: 0x3ed
+========================
+DE stage decoded instruction: 27
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=2, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 26: PC=0x400058, REFETCH_PC=0x0
+FETCH: Read 0x00000000 from PC=0x400058
+FETCH: Advanced PC to 0x40005c
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 27, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
+HLT instruction
+Final result: 0x0
+========================
+DE stage decoded instruction: 0
+=== HAZARD CHECK DEBUG ===
+DE_to_EX_PREV (currently in EX): inst=27, LOAD=0, RT_REG=0, NOP=0
+Current decode: READS_RN=0 (X0), READS_RM=0 (X0), STORE=0 (X0)
+FETCH CYCLE 27: PC=0x40005c, REFETCH_PC=0x0
+HLT_FLAG set - inserting NOP
+=== EXECUTE STAGE ===
+=== EXECUTE STAGE ===
+Instruction: 0, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x0
+Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x0
+UNKNOWN INSTRUCTION: 0
+Final result: 0x0
+========================
+FETCH CYCLE 28: PC=0x40005c, REFETCH_PC=0x0
+HLT_FLAG set - inserting NOP
+=== EXECUTE STAGE ===
+NOP in execute stage 
+FETCH CYCLE 29: PC=0x40005c, REFETCH_PC=0x0
+HLT_FLAG set - inserting NOP
+Simulator halted
+
+ARM-SIM> 
+Invalid Command
+ARM-SIM> 
+
+Current register/bus values :
+-------------------------------------
+Instruction Retired : 16
+PC                : 0x40005c
+Registers:
+X0: 0x0
+X1: 0x4
+X2: 0x7
+X3: 0xa
+X4: 0xa
+X5: 0x3ed
+X6: 0x0
+X7: 0x0
+X8: 0x0
+X9: 0x0
+X10: 0x0
+X11: 0x0
+X12: 0x0
+X13: 0x0
+X14: 0x0
+X15: 0x0
+X16: 0x0
+X17: 0x0
+X18: 0x0
+X19: 0x0
+X20: 0x0
+X21: 0x0
+X22: 0x0
+X23: 0x0
+X24: 0x0
+X25: 0x0
+X26: 0x0
+X27: 0x0
+X28: 0x0
+X29: 0x0
+X30: 0x0
+X31: 0x0
+FLAG_N: 0
+FLAG_Z: 0
+No. of Cycles: 29
+
+ARM-SIM> 
+
+Memory content [0x10000000..0x100000ff] :
+-------------------------------------
+  0x10000000 (268435456) : 0x0
+  0x10000004 (268435460) : 0x0
+  0x10000008 (268435464) : 0x0
+  0x1000000c (268435468) : 0x0
+  0x10000010 (268435472) : 0x0
+  0x10000014 (268435476) : 0x0
+  0x10000018 (268435480) : 0x0
+  0x1000001c (268435484) : 0x0
+  0x10000020 (268435488) : 0x0
+  0x10000024 (268435492) : 0x0
+  0x10000028 (268435496) : 0x0
+  0x1000002c (268435500) : 0x0
+  0x10000030 (268435504) : 0x0
+  0x10000034 (268435508) : 0x0
+  0x10000038 (268435512) : 0x0
+  0x1000003c (268435516) : 0x0
+  0x10000040 (268435520) : 0x0
+  0x10000044 (268435524) : 0x0
+  0x10000048 (268435528) : 0x0
+  0x1000004c (268435532) : 0x0
+  0x10000050 (268435536) : 0x0
+  0x10000054 (268435540) : 0x0
+  0x10000058 (268435544) : 0x0
+  0x1000005c (268435548) : 0x0
+  0x10000060 (268435552) : 0x0
+  0x10000064 (268435556) : 0x0
+  0x10000068 (268435560) : 0x0
+  0x1000006c (268435564) : 0x0
+  0x10000070 (268435568) : 0x0
+  0x10000074 (268435572) : 0x0
+  0x10000078 (268435576) : 0x0
+  0x1000007c (268435580) : 0x0
+  0x10000080 (268435584) : 0x0
+  0x10000084 (268435588) : 0x0
+  0x10000088 (268435592) : 0x0
+  0x1000008c (268435596) : 0x0
+  0x10000090 (268435600) : 0x0
+  0x10000094 (268435604) : 0x0
+  0x10000098 (268435608) : 0x0
+  0x1000009c (268435612) : 0x0
+  0x100000a0 (268435616) : 0x0
+  0x100000a4 (268435620) : 0x0
+  0x100000a8 (268435624) : 0x0
+  0x100000ac (268435628) : 0x0
+  0x100000b0 (268435632) : 0x0
+  0x100000b4 (268435636) : 0x0
+  0x100000b8 (268435640) : 0x0
+  0x100000bc (268435644) : 0x0
+  0x100000c0 (268435648) : 0x0
+  0x100000c4 (268435652) : 0x0
+  0x100000c8 (268435656) : 0x0
+  0x100000cc (268435660) : 0x0
+  0x100000d0 (268435664) : 0x0
+  0x100000d4 (268435668) : 0x0
+  0x100000d8 (268435672) : 0x0
+  0x100000dc (268435676) : 0x0
+  0x100000e0 (268435680) : 0x0
+  0x100000e4 (268435684) : 0x0
+  0x100000e8 (268435688) : 0x0
+  0x100000ec (268435692) : 0x0
+  0x100000f0 (268435696) : 0x0
+  0x100000f4 (268435700) : 0x0
+  0x100000f8 (268435704) : 0x0
+  0x100000fc (268435708) : 0x0
+
+ARM-SIM> 

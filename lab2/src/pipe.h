@@ -94,6 +94,7 @@ typedef struct Pipe_Op {
     int READS_RN;
     int READS_RM;
     int READS_RT;
+    int BR_TAKEN; 
 
     int64_t result;
     int64_t MEM_ADDRESS;
