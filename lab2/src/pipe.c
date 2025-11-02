@@ -249,6 +249,24 @@ void pipe_stage_wb()
         case B:
             stat_inst_retire++;
             break;
+        case BEQ:
+            stat_inst_retire++;
+            break;
+        case BNE:
+            stat_inst_retire++;
+            break;
+        case BLT:
+            stat_inst_retire++;
+            break;
+        case BLE:
+            stat_inst_retire++;
+            break;
+        case BGT:
+            stat_inst_retire++;
+            break;
+        case BGE:
+            stat_inst_retire++;
+            break;
     }
 }
 
@@ -353,7 +371,41 @@ void pipe_stage_mem()
                 printf("BEQ: Branch not taken, continuing sequentially.\n");
             }
             break;
+        case BNE:
+            if (MEM_to_WB_CURRENT.BR_TAKEN) {
+                unconditional_branching();
+            } else {
+                printf("BNE: Branch not taken, continuing sequentially.\n");
+    }        break;
+        case BLT:
+            if (MEM_to_WB_CURRENT.BR_TAKEN) {
+                unconditional_branching();
+            } else {
+                printf("BLT: Branch not taken, continuing sequentially.\n");
+            }
+            break;
+        case BLE:
+            if (MEM_to_WB_CURRENT.BR_TAKEN) {
+                unconditional_branching();
+            } else {
+                printf("BLE: Branch not taken, continuing sequentially.\n");
+            }
+            break;
+        case BGT:
+            if (MEM_to_WB_CURRENT.BR_TAKEN) {
+                unconditional_branching();
+            } else {
+                printf("BGT: Branch not taken, continuing sequentially.\n");
+            }
+            break;
+        case BGE:
+            if (MEM_to_WB_CURRENT.BR_TAKEN) {
+                unconditional_branching();
+            } else {
+                printf("BGE: Branch not taken, continuing sequentially.\n");    
     }
+            break;
+}
 }
 
 void pipe_stage_execute()
@@ -627,6 +679,36 @@ void pipe_stage_execute()
         case BEQ:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_Z;
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            break;
+        case BNE:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_Z;
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            break;
+        case BLT:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_N;
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            break;
+        case BLE:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_N || EX_to_MEM_PREV.FLAG_Z;
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            break;
+        case BGT:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_N && !EX_to_MEM_PREV.FLAG_Z;
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            break;
+        case BGE:
+            EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
+            EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_N;
             printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
                 in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
             break;
@@ -1002,12 +1084,41 @@ void pipe_stage_decode()
     }
 
 
-
     //BNE, BLT, BLE - F
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54)){
+        unsigned int cond_code = extract_bits(current_instruction, 0, 3);
+        uint32_t immediate = extract_bits(current_instruction, 5, 23);
+        DE_to_EX_CURRENT.IMM  = bit_extension(immediate, 5, 23);
+        DE_to_EX_CURRENT.CBRANCH = 1;
+
+        switch (cond_code){
+            case 0x1:
+                DE_to_EX_CURRENT.INSTRUCTION = BNE;
+                break;
+            case 0xB:
+                DE_to_EX_CURRENT.INSTRUCTION = BLT;
+                break;
+            case 0xD:
+                DE_to_EX_CURRENT.INSTRUCTION = BLE;
+                break;
+        }
+    }
 
     //BGT - K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && !(extract_bits(current_instruction, 0, 3) == 0xC)){
+        DE_to_EX_CURRENT.INSTRUCTION = BGT;
+        uint32_t immediate = extract_bits(current_instruction, 5, 23);
+        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
+        DE_to_EX_CURRENT.CBRANCH = 1;
+    }
 
     //BGE K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && !(extract_bits(current_instruction, 0, 3) == 0xA)){
+        DE_to_EX_CURRENT.INSTRUCTION = BGE;
+        uint32_t immediate = extract_bits(current_instruction, 5, 23);
+        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
+        DE_to_EX_CURRENT.CBRANCH = 1;
+    }
 
     if (DE_to_EX_CURRENT.UBRANCH) {
         printf("Unconditional branch detected in DE stage - initiating branch sequence\n");

@@ -1,176 +1,116 @@
-4c4
-< Instruction Retired : 8
----
-> Instruction Retired : 7
-4c4
-< Instruction Retired : 8
----
-> Instruction Retired : 7
-4c4
-< Instruction Retired : 9
----
-> Instruction Retired : 8
-4c4
-< Instruction Retired : 10
----
-> Instruction Retired : 9
-4c4
-< Instruction Retired : 11
----
-> Instruction Retired : 10
-4,5c4,5
-< Instruction Retired : 12
+5c5
 < PC                : 0x400044
 ---
-> Instruction Retired : 11
 > PC                : 0x400040
-4c4
-< Instruction Retired : 13
+5c5
+< PC                : 0x40005c
 ---
-> Instruction Retired : 12
-4c4
-< Instruction Retired : 14
+> PC                : 0x400058
+5c5
+< PC                : 0x400060
 ---
-> Instruction Retired : 12
-4c4
-< Instruction Retired : 14
+> PC                : 0x40005c
+5c5
+< PC                : 0x400064
 ---
-> Instruction Retired : 12
-4c4
-< Instruction Retired : 14
+> PC                : 0x400060
+5c5
+< PC                : 0x400068
 ---
-> Instruction Retired : 12
-4c4
-< Instruction Retired : 15
----
-> Instruction Retired : 13
-4c4
-< Instruction Retired : 16
----
-> Instruction Retired : 14
-4c4
-< Instruction Retired : 17
----
-> Instruction Retired : 15
-4c4
+> PC                : 0x400064
+4,5c4,5
 < Instruction Retired : 18
+< PC                : 0x40006c
 ---
-> Instruction Retired : 15
-4c4
-< Instruction Retired : 18
----
-> Instruction Retired : 16
+> Instruction Retired : 19
+> PC                : 0x400068
 25c25
 < X18: 0x0
 ---
 > X18: 0x1
-4c4
-< Instruction Retired : 18
----
-> Instruction Retired : 17
-25c25
-< X18: 0x0
----
-> X18: 0x3
-4c4
-< Instruction Retired : 19
----
-> Instruction Retired : 18
-25c25
-< X18: 0x3
----
-> X18: 0x6
 4,5c4,5
-< Instruction Retired : 20
+< Instruction Retired : 19
 < PC                : 0x400070
 ---
-> Instruction Retired : 19
-> PC                : 0x400074
+> Instruction Retired : 20
+> PC                : 0x40006c
+4c4
+< Instruction Retired : 20
+---
+> Instruction Retired : 21
 25c25
 < X18: 0x7
 ---
-> X18: 0xa
+> X18: 0x6
 4,5c4,5
 < Instruction Retired : 21
 < PC                : 0x400074
 ---
-> Instruction Retired : 20
-> PC                : 0x400078
-25c25
-< X18: 0x7
----
-> X18: 0xa
-4,5c4,5
-< Instruction Retired : 22
-< PC                : 0x400078
----
-> Instruction Retired : 20
-> PC                : 0x40007c
-25c25
-< X18: 0x7
----
-> X18: 0xa
-4,5c4,5
-< Instruction Retired : 22
-< PC                : 0x40007c
----
-> Instruction Retired : 21
-> PC                : 0x400080
-25,26c25,26
-< X18: 0x7
-< X19: 0x0
----
-> X18: 0xa
-> X19: 0x1
-4,5c4,5
-< Instruction Retired : 23
-< PC                : 0x400080
----
 > Instruction Retired : 22
-> PC                : 0x400084
+> PC                : 0x400070
+25c25
+< X18: 0x7
+---
+> X18: 0xa
+39,40c39,40
+< FLAG_N: 0
+< FLAG_Z: 1
+---
+> FLAG_N: 1
+> FLAG_Z: 0
+4c4
+< Instruction Retired : 22
+---
+> Instruction Retired : 23
+25c25
+< X18: 0x7
+---
+> X18: 0xa
+4c4
+< Instruction Retired : 22
+---
+> Instruction Retired : 24
+25c25
+< X18: 0x7
+---
+> X18: 0xa
+4c4
+< Instruction Retired : 23
+---
+> Instruction Retired : 24
 25,26c25,26
 < X18: 0x7
 < X19: 0x1
 ---
 > X18: 0xa
-> X19: 0x3
-4c4
-< Instruction Retired : 24
----
-> Instruction Retired : 23
+> X19: 0x0
 25,26c25,26
 < X18: 0x7
 < X19: 0x3
 ---
 > X18: 0xa
-> X19: 0x6
-4c4
-< Instruction Retired : 25
----
-> Instruction Retired : 24
+> X19: 0x0
 25,26c25,26
 < X18: 0x7
 < X19: 0x6
 ---
 > X18: 0xa
-> X19: 0xa
-4c4
-< Instruction Retired : 26
----
-> Instruction Retired : 25
-25c25
+> X19: 0x3
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-4c4
-< Instruction Retired : 27
----
-> Instruction Retired : 25
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-41c41
-< No. of Cycles: 40
+> X19: 0x7
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
 ---
-> No. of Cycles: 39
+> X18: 0xa
+> X19: 0x7

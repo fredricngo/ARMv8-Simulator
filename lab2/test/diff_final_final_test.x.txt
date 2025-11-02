@@ -1,1160 +1,888 @@
-4c4
-< Instruction Retired : 18
----
-> Instruction Retired : 17
-4c4
-< Instruction Retired : 18
----
-> Instruction Retired : 17
-4c4
-< Instruction Retired : 19
----
-> Instruction Retired : 18
-4c4
-< Instruction Retired : 20
----
-> Instruction Retired : 19
-4c4
-< Instruction Retired : 21
----
-> Instruction Retired : 20
-4,5c4,5
-< Instruction Retired : 22
+5c5
 < PC                : 0x40006c
 ---
-> Instruction Retired : 21
 > PC                : 0x400068
-4c4
-< Instruction Retired : 23
+5c5
+< PC                : 0x400084
 ---
-> Instruction Retired : 22
-4c4
-< Instruction Retired : 24
+> PC                : 0x400080
+5c5
+< PC                : 0x400088
 ---
-> Instruction Retired : 22
-4c4
-< Instruction Retired : 24
+> PC                : 0x400084
+5c5
+< PC                : 0x40008c
 ---
-> Instruction Retired : 22
-4c4
-< Instruction Retired : 24
+> PC                : 0x400088
+5c5
+< PC                : 0x400090
 ---
-> Instruction Retired : 22
-4c4
-< Instruction Retired : 25
----
-> Instruction Retired : 23
-4c4
-< Instruction Retired : 26
----
-> Instruction Retired : 24
-4c4
-< Instruction Retired : 27
----
-> Instruction Retired : 25
-4c4
+> PC                : 0x40008c
+4,5c4,5
 < Instruction Retired : 28
+< PC                : 0x400094
 ---
-> Instruction Retired : 25
-4c4
-< Instruction Retired : 28
----
-> Instruction Retired : 26
+> Instruction Retired : 29
+> PC                : 0x400090
 25c25
 < X18: 0x0
 ---
 > X18: 0x1
-4c4
-< Instruction Retired : 28
----
-> Instruction Retired : 27
-25c25
-< X18: 0x0
----
-> X18: 0x3
-4c4
-< Instruction Retired : 29
----
-> Instruction Retired : 28
-25c25
-< X18: 0x3
----
-> X18: 0x6
 4,5c4,5
-< Instruction Retired : 30
+< Instruction Retired : 29
 < PC                : 0x400098
 ---
-> Instruction Retired : 29
-> PC                : 0x40009c
+> Instruction Retired : 30
+> PC                : 0x400094
+4c4
+< Instruction Retired : 30
+---
+> Instruction Retired : 31
 25c25
 < X18: 0x7
 ---
-> X18: 0xa
+> X18: 0x6
 4,5c4,5
 < Instruction Retired : 31
 < PC                : 0x40009c
 ---
-> Instruction Retired : 30
-> PC                : 0x4000a0
-25c25
-< X18: 0x7
----
-> X18: 0xa
-4,5c4,5
-< Instruction Retired : 32
-< PC                : 0x4000a0
----
-> Instruction Retired : 30
-> PC                : 0x4000a4
-25c25
-< X18: 0x7
----
-> X18: 0xa
-4,5c4,5
-< Instruction Retired : 32
-< PC                : 0x4000a4
----
-> Instruction Retired : 31
-> PC                : 0x4000a8
-25,26c25,26
-< X18: 0x7
-< X19: 0x0
----
-> X18: 0xa
-> X19: 0x1
-4,5c4,5
-< Instruction Retired : 33
-< PC                : 0x4000a8
----
 > Instruction Retired : 32
-> PC                : 0x4000ac
+> PC                : 0x400098
+25c25
+< X18: 0x7
+---
+> X18: 0xa
+39,40c39,40
+< FLAG_N: 0
+< FLAG_Z: 1
+---
+> FLAG_N: 1
+> FLAG_Z: 0
+4c4
+< Instruction Retired : 32
+---
+> Instruction Retired : 33
+25c25
+< X18: 0x7
+---
+> X18: 0xa
+4c4
+< Instruction Retired : 32
+---
+> Instruction Retired : 34
+25c25
+< X18: 0x7
+---
+> X18: 0xa
+4c4
+< Instruction Retired : 33
+---
+> Instruction Retired : 34
 25,26c25,26
 < X18: 0x7
 < X19: 0x1
 ---
 > X18: 0xa
-> X19: 0x3
-4,5c4,5
-< Instruction Retired : 34
-< PC                : 0x4000ac
----
-> Instruction Retired : 33
-> PC                : 0x4000b0
+> X19: 0x0
 25,26c25,26
 < X18: 0x7
 < X19: 0x3
 ---
 > X18: 0xa
-> X19: 0x6
-4,5c4,5
-< Instruction Retired : 35
-< PC                : 0x4000b0
----
-> Instruction Retired : 34
-> PC                : 0x4000b4
+> X19: 0x0
 25,26c25,26
 < X18: 0x7
 < X19: 0x6
 ---
 > X18: 0xa
-> X19: 0xa
-4,5c4,5
-< Instruction Retired : 36
-< PC                : 0x4000b0
----
-> Instruction Retired : 35
-> PC                : 0x4000b8
-25c25
+> X19: 0x3
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-39,40c39,40
-< FLAG_N: 0
-< FLAG_Z: 1
----
-> FLAG_N: 1
-> FLAG_Z: 0
-4,5c4,5
-< Instruction Retired : 37
-< PC                : 0x4000b4
----
-> Instruction Retired : 35
-> PC                : 0x4000bc
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-4,5c4,5
-< Instruction Retired : 38
-< PC                : 0x4000b8
----
-> Instruction Retired : 36
-> PC                : 0x4000c0
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-27c27
-< X20: 0x0
----
-> X20: 0x1
-4,5c4,5
-< Instruction Retired : 38
-< PC                : 0x4000bc
----
-> Instruction Retired : 37
-> PC                : 0x4000c4
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-27c27
-< X20: 0x0
----
-> X20: 0x3
-4,5c4,5
-< Instruction Retired : 39
-< PC                : 0x4000c0
----
-> Instruction Retired : 38
-> PC                : 0x4000c8
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-27c27
-< X20: 0x1
----
-> X20: 0x6
-4,5c4,5
-< Instruction Retired : 40
-< PC                : 0x4000c4
----
-> Instruction Retired : 39
-> PC                : 0x4000cc
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-27c27
-< X20: 0x3
----
-> X20: 0xa
-4,5c4,5
-< Instruction Retired : 41
-< PC                : 0x4000c8
----
-> Instruction Retired : 40
-> PC                : 0x4000d0
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-27c27
-< X20: 0x6
----
-> X20: 0xa
-39c39
-< FLAG_N: 1
----
-> FLAG_N: 0
-4,5c4,5
-< Instruction Retired : 42
+> X19: 0x7
+5c5
 < PC                : 0x4000cc
 ---
-> Instruction Retired : 40
-> PC                : 0x4000d4
-25c25
+> PC                : 0x4000c8
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-39c39
-< FLAG_N: 1
----
-> FLAG_N: 0
-4,5c4,5
-< Instruction Retired : 43
-< PC                : 0x4000d0
----
-> Instruction Retired : 41
-> PC                : 0x4000d8
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x0
----
-> X21: 0x1
-4,5c4,5
-< Instruction Retired : 44
-< PC                : 0x4000d4
----
-> Instruction Retired : 42
-> PC                : 0x4000dc
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x0
----
-> X21: 0x3
-4,5c4,5
-< Instruction Retired : 44
-< PC                : 0x4000d8
----
-> Instruction Retired : 43
-> PC                : 0x4000e0
-25c25
+> X19: 0x7
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x0
+> X19: 0x7
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
 ---
-> X21: 0x6
+> X18: 0xa
+> X19: 0x7
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
 5c5
-< PC                : 0x4000dc
----
-> PC                : 0x4000e4
-25c25
-< X18: 0x7
----
-> X18: 0xa
-28c28
-< X21: 0x0
----
-> X21: 0xa
-5c5
-< PC                : 0x4000e0
----
-> PC                : 0x4000e8
-25c25
-< X18: 0x7
----
-> X18: 0xa
-28c28
-< X21: 0x3
----
-> X21: 0xa
-4,5c4,5
-< Instruction Retired : 46
-< PC                : 0x4000e0
----
-> Instruction Retired : 45
-> PC                : 0x4000ec
-25c25
-< X18: 0x7
----
-> X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-4,5c4,5
-< Instruction Retired : 47
 < PC                : 0x4000e4
 ---
-> Instruction Retired : 46
-> PC                : 0x4000f0
-25c25
+> PC                : 0x4000e8
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28,29c28,29
-< X21: 0x7
-< X22: 0x0
----
-> X21: 0xa
-> X22: 0x1
-4,5c4,5
-< Instruction Retired : 48
+> X19: 0x7
+5c5
 < PC                : 0x4000e8
 ---
-> Instruction Retired : 47
-> PC                : 0x4000f4
-25c25
+> PC                : 0x4000ec
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28,29c28,29
-< X21: 0x7
-< X22: 0x0
----
-> X21: 0xa
-> X22: 0x3
+> X19: 0x7
 5c5
 < PC                : 0x4000ec
 ---
-> PC                : 0x4000f8
-25c25
+> PC                : 0x4000f0
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28,29c28,29
-< X21: 0x7
-< X22: 0x0
----
-> X21: 0xa
-> X22: 0x6
-5c5
+> X19: 0x7
+4,5c4,5
+< Instruction Retired : 49
 < PC                : 0x4000f0
 ---
-> PC                : 0x4000fc
-25c25
+> Instruction Retired : 48
+> PC                : 0x4000f4
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28,29c28,29
-< X21: 0x7
+> X19: 0x7
+29c29
 < X22: 0x1
 ---
-> X21: 0xa
-> X22: 0xa
-5c5
+> X22: 0x0
+4,5c4,5
+< Instruction Retired : 50
 < PC                : 0x4000f4
 ---
-> PC                : 0x400100
-25c25
+> Instruction Retired : 49
+> PC                : 0x4000f8
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28,29c28,29
-< X21: 0x7
-< X22: 0x3
----
-> X21: 0xa
-> X22: 0xa
-39c39
-< FLAG_N: 0
----
-> FLAG_N: 1
-4,5c4,5
+> X19: 0x7
+4c4
 < Instruction Retired : 51
-< PC                : 0x4000f8
 ---
 > Instruction Retired : 50
-> PC                : 0x400104
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28,29c28,29
-< X21: 0x7
+> X19: 0x7
+29c29
 < X22: 0x6
 ---
-> X21: 0xa
-> X22: 0xa
-39c39
-< FLAG_N: 0
----
-> FLAG_N: 1
-4,5c4,5
+> X22: 0x7
+4c4
 < Instruction Retired : 52
-< PC                : 0x4000fc
 ---
 > Instruction Retired : 51
-> PC                : 0x400108
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
+> X19: 0x7
+29c29
+< X22: 0xa
 ---
-> X21: 0xa
-30c30
-< X23: 0x0
----
-> X23: 0x1
+> X22: 0x7
 39c39
 < FLAG_N: 0
 ---
 > FLAG_N: 1
-4,5c4,5
+4c4
 < Instruction Retired : 53
-< PC                : 0x400100
 ---
 > Instruction Retired : 52
-> PC                : 0x40010c
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
+> X19: 0x7
+29c29
+< X22: 0xa
 ---
-> X21: 0xa
-30c30
-< X23: 0x0
----
-> X23: 0x3
-4,5c4,5
+> X22: 0x7
+4c4
 < Instruction Retired : 54
-< PC                : 0x400104
+---
+> Instruction Retired : 52
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+29c29
+< X22: 0xa
+---
+> X22: 0x7
+4c4
+< Instruction Retired : 54
 ---
 > Instruction Retired : 53
-> PC                : 0x400110
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x0
 ---
-> X23: 0x6
-5c5
-< PC                : 0x400108
----
-> PC                : 0x400114
-25c25
+> X22: 0x7
+> X23: 0x1
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x0
 ---
-> X23: 0xa
-4,5c4,5
-< Instruction Retired : 54
-< PC                : 0x40010c
----
-> Instruction Retired : 55
-> PC                : 0x400118
-25c25
+> X22: 0x7
+> X23: 0x3
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
-< X23: 0x0
----
-> X23: 0xa
-5c5
-< PC                : 0x400110
----
-> PC                : 0x40011c
-25c25
-< X18: 0x7
----
-> X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x3
 ---
-> X23: 0xa
-5c5
-< PC                : 0x400110
----
-> PC                : 0x400120
-25c25
+> X22: 0x7
+> X23: 0x6
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30,31c30,31
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
-< X24: 0x0
 ---
+> X22: 0x7
 > X23: 0xa
-> X24: 0x1
-5c5
-< PC                : 0x400114
----
-> PC                : 0x400124
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30,31c30,31
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
-< X24: 0x0
 ---
+> X22: 0x7
 > X23: 0xa
-> X24: 0x3
-5c5
-< PC                : 0x400118
----
-> PC                : 0x400128
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30,31c30,31
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
-< X24: 0x0
 ---
+> X22: 0x7
 > X23: 0xa
-> X24: 0x6
-4,5c4,5
-< Instruction Retired : 58
-< PC                : 0x40011c
----
-> Instruction Retired : 59
-> PC                : 0x40012c
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30,31c30,31
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
-< X24: 0x0
 ---
+> X22: 0x7
 > X23: 0xa
-> X24: 0xa
-4,5c4,5
-< Instruction Retired : 59
-< PC                : 0x400120
----
-> Instruction Retired : 60
-> PC                : 0x400130
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30,31c30,31
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
-< X24: 0x1
 ---
+> X22: 0x7
 > X23: 0xa
-> X24: 0xa
-39,40c39,40
-< FLAG_N: 1
-< FLAG_Z: 0
----
-> FLAG_N: 0
-> FLAG_Z: 1
-5c5
-< PC                : 0x400124
----
-> PC                : 0x400134
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30,31c30,31
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
-< X24: 0x3
 ---
+> X22: 0x7
 > X23: 0xa
-> X24: 0xa
-39,40c39,40
-< FLAG_N: 1
-< FLAG_Z: 0
----
-> FLAG_N: 0
-> FLAG_Z: 1
-5c5
-< PC                : 0x400128
----
-> PC                : 0x400138
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30,32c30,32
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
-< X24: 0x6
-< X25: 0x0
 ---
+> X22: 0x7
 > X23: 0xa
-> X24: 0xa
-> X25: 0x1
-39,40c39,40
-< FLAG_N: 1
-< FLAG_Z: 0
----
-> FLAG_N: 0
-> FLAG_Z: 1
 5c5
 < PC                : 0x40012c
 ---
-> PC                : 0x40013c
-25c25
+> PC                : 0x400128
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32c32
-< X25: 0x0
----
-> X25: 0x3
-39,40c39,40
-< FLAG_N: 1
-< FLAG_Z: 0
----
-> FLAG_N: 0
-> FLAG_Z: 1
 5c5
 < PC                : 0x400130
 ---
-> PC                : 0x400140
-25c25
+> PC                : 0x40012c
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32c32
-< X25: 0x0
----
-> X25: 0x6
 5c5
 < PC                : 0x400134
 ---
-> PC                : 0x400144
-25c25
+> PC                : 0x400130
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32c32
-< X25: 0x0
----
-> X25: 0xa
-4,5c4,5
-< Instruction Retired : 64
+5c5
 < PC                : 0x400138
 ---
-> Instruction Retired : 65
-> PC                : 0x400148
-25c25
+> PC                : 0x400134
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32c32
-< X25: 0x0
----
-> X25: 0xa
-40c40
-< FLAG_Z: 1
----
-> FLAG_Z: 0
 4,5c4,5
 < Instruction Retired : 64
 < PC                : 0x40013c
 ---
 > Instruction Retired : 65
-> PC                : 0x40014c
-25c25
+> PC                : 0x400138
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
 32c32
 < X25: 0x0
 ---
-> X25: 0xa
-40c40
-< FLAG_Z: 1
----
-> FLAG_Z: 0
+> X25: 0x1
 4,5c4,5
 < Instruction Retired : 65
 < PC                : 0x400140
 ---
 > Instruction Retired : 66
-> PC                : 0x400150
-25c25
+> PC                : 0x40013c
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32,33c32,33
-< X25: 0x3
-< X26: 0x0
----
-> X25: 0xa
-> X26: 0x1
-40c40
-< FLAG_Z: 1
----
-> FLAG_Z: 0
-4,5c4,5
+4c4
 < Instruction Retired : 66
-< PC                : 0x400140
 ---
 > Instruction Retired : 67
-> PC                : 0x400154
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32,33c32,33
+32c32
 < X25: 0x7
-< X26: 0x0
 ---
-> X25: 0xa
-> X26: 0x3
-40c40
-< FLAG_Z: 1
----
-> FLAG_Z: 0
+> X25: 0x6
 4,5c4,5
 < Instruction Retired : 67
 < PC                : 0x400144
 ---
 > Instruction Retired : 68
-> PC                : 0x400158
-25c25
+> PC                : 0x400140
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32,33c32,33
+32c32
 < X25: 0x7
-< X26: 0x0
 ---
 > X25: 0xa
-> X26: 0x6
-4,5c4,5
+40c40
+< FLAG_Z: 0
+---
+> FLAG_Z: 1
+4c4
 < Instruction Retired : 68
-< PC                : 0x400148
 ---
 > Instruction Retired : 69
-> PC                : 0x40015c
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32,33c32,33
+32c32
 < X25: 0x7
-< X26: 0x0
 ---
 > X25: 0xa
-> X26: 0xa
-4,5c4,5
+4c4
 < Instruction Retired : 68
-< PC                : 0x40014c
 ---
 > Instruction Retired : 70
-> PC                : 0x400160
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32,33c32,33
+32c32
 < X25: 0x7
-< X26: 0x0
 ---
 > X25: 0xa
-> X26: 0xa
-39c39
-< FLAG_N: 0
----
-> FLAG_N: 1
-4,5c4,5
+4c4
 < Instruction Retired : 69
-< PC                : 0x400150
 ---
 > Instruction Retired : 70
-> PC                : 0x400164
-25c25
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
 32,33c32,33
 < X25: 0x7
 < X26: 0x1
 ---
 > X25: 0xa
-> X26: 0xa
-39c39
-< FLAG_N: 0
----
-> FLAG_N: 1
-4,5c4,5
-< Instruction Retired : 70
-< PC                : 0x400154
----
-> Instruction Retired : 71
-> PC                : 0x400168
-25c25
+> X26: 0x0
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32,34c32,34
+32,33c32,33
 < X25: 0x7
 < X26: 0x3
-< X27: 0x0
 ---
 > X25: 0xa
-> X26: 0xa
-> X27: 0x1
-39c39
-< FLAG_N: 0
----
-> FLAG_N: 1
-4,5c4,5
-< Instruction Retired : 71
-< PC                : 0x400158
----
-> Instruction Retired : 72
-> PC                : 0x40016c
-25c25
+> X26: 0x0
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
+> X23: 0xa
+32,33c32,33
+< X25: 0x7
+< X26: 0x6
+---
+> X25: 0xa
+> X26: 0x3
+5c5
+< PC                : 0x40015c
+---
+> PC                : 0x400158
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
+< X23: 0x7
+---
+> X22: 0x7
+> X23: 0xa
+32,33c32,33
+< X25: 0x7
+< X26: 0xa
+---
+> X25: 0xa
+> X26: 0x7
+5c5
+< PC                : 0x400160
+---
+> PC                : 0x40015c
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
+< X23: 0x7
+---
+> X22: 0x7
+> X23: 0xa
+32,33c32,33
+< X25: 0x7
+< X26: 0xa
+---
+> X25: 0xa
+> X26: 0x7
+5c5
+< PC                : 0x400164
+---
+> PC                : 0x400160
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
+< X23: 0x7
+---
+> X22: 0x7
+> X23: 0xa
+32,33c32,33
+< X25: 0x7
+< X26: 0xa
+---
+> X25: 0xa
+> X26: 0x7
+5c5
+< PC                : 0x400168
+---
+> PC                : 0x400164
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
+< X23: 0x7
+---
+> X22: 0x7
+> X23: 0xa
+32,33c32,33
+< X25: 0x7
+< X26: 0xa
+---
+> X25: 0xa
+> X26: 0x7
+4,5c4,5
+< Instruction Retired : 74
+< PC                : 0x40016c
+---
+> Instruction Retired : 75
+> PC                : 0x400168
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
+< X23: 0x7
+---
+> X22: 0x7
 > X23: 0xa
 32,34c32,34
 < X25: 0x7
-< X26: 0x6
+< X26: 0xa
 < X27: 0x0
 ---
 > X25: 0xa
-> X26: 0xa
-> X27: 0x3
-39c39
-< FLAG_N: 0
+> X26: 0x7
+> X27: 0x1
+4c4
+< Instruction Retired : 75
 ---
-> FLAG_N: 1
-4,5c4,5
-< Instruction Retired : 72
-< PC                : 0x40015c
----
-> Instruction Retired : 73
-> PC                : 0x40016c
-25c25
+> Instruction Retired : 76
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32c32
+32,33c32,33
 < X25: 0x7
+< X26: 0xa
 ---
 > X25: 0xa
-34c34
-< X27: 0x0
+> X26: 0x7
+4c4
+< Instruction Retired : 76
 ---
+> Instruction Retired : 77
+25,26c25,26
+< X18: 0x7
+< X19: 0xa
+---
+> X18: 0xa
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
+< X23: 0x7
+---
+> X22: 0x7
+> X23: 0xa
+32,34c32,34
+< X25: 0x7
+< X26: 0xa
+< X27: 0x7
+---
+> X25: 0xa
+> X26: 0x7
 > X27: 0x6
-39c39
-< FLAG_N: 0
+4c4
+< Instruction Retired : 77
 ---
-> FLAG_N: 1
-4,5c4,5
-< Instruction Retired : 73
-< PC                : 0x400160
----
-> Instruction Retired : 74
-> PC                : 0x40016c
-25c25
+> Instruction Retired : 78
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32c32
+32,34c32,34
 < X25: 0x7
+< X26: 0xa
+< X27: 0x7
 ---
 > X25: 0xa
-34c34
-< X27: 0x0
----
+> X26: 0x7
 > X27: 0xa
-4,5c4,5
-< Instruction Retired : 74
-< PC                : 0x400164
+4c4
+< Instruction Retired : 77
 ---
-> Instruction Retired : 75
-> PC                : 0x40016c
-25c25
+> Instruction Retired : 79
+25,26c25,26
 < X18: 0x7
+< X19: 0xa
 ---
 > X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
+> X19: 0x7
+29,30c29,30
+< X22: 0xa
 < X23: 0x7
 ---
+> X22: 0x7
 > X23: 0xa
-32c32
+32,34c32,34
 < X25: 0x7
+< X26: 0xa
+< X27: 0x7
 ---
 > X25: 0xa
-34c34
-< X27: 0x0
----
-> X27: 0xa
-4,5c4,5
-< Instruction Retired : 74
-< PC                : 0x400168
----
-> Instruction Retired : 75
-> PC                : 0x40016c
-25c25
-< X18: 0x7
----
-> X18: 0xa
-28c28
-< X21: 0x7
----
-> X21: 0xa
-30c30
-< X23: 0x7
----
-> X23: 0xa
-32c32
-< X25: 0x7
----
-> X25: 0xa
-34c34
-< X27: 0x0
----
+> X26: 0x7
 > X27: 0xa
 41c41
-< No. of Cycles: 98
+< No. of Cycles: 102
 ---
-> No. of Cycles: 97
+> No. of Cycles: 103
