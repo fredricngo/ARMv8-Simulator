@@ -1105,7 +1105,7 @@ void pipe_stage_decode()
     }
 
     //BGT - K
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && !(extract_bits(current_instruction, 0, 3) == 0xC)){
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0xC)){
         DE_to_EX_CURRENT.INSTRUCTION = BGT;
         uint32_t immediate = extract_bits(current_instruction, 5, 23);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
@@ -1113,7 +1113,7 @@ void pipe_stage_decode()
     }
 
     //BGE K
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && !(extract_bits(current_instruction, 0, 3) == 0xA)){
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0xA)){
         DE_to_EX_CURRENT.INSTRUCTION = BGE;
         uint32_t immediate = extract_bits(current_instruction, 5, 23);
         DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
