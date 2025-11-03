@@ -281,6 +281,16 @@ void pipe_stage_wb()
         case BGE:
             stat_inst_retire++;
             break;
+        case CBNZ:
+            stat_inst_retire++;
+            break;
+        case CBZ:
+            stat_inst_retire++;
+            break; 
+        case ORR_SHIFTR:
+            write_register(in.RD_REG, in.result);
+            stat_inst_retire++;
+            break;
     }
 }
 
@@ -419,6 +429,12 @@ void pipe_stage_mem()
     //             printf("BGE: Branch not taken, continuing sequentially.\n");    
     // }
             break;
+        case CBNZ:
+            break;
+        case CBZ:
+            break;
+        case ORR_SHIFTR:
+            break;
 }
 }
 
@@ -516,6 +532,30 @@ void pipe_stage_execute()
         EX_to_MEM_CURRENT.RT_VAL = MEM_to_WB_PREV.MEM_DATA;
     }
 }
+
+    if (in.INSTRUCTION == CBNZ || in.INSTRUCTION == CBZ) {
+        if (EX_to_MEM_PREV.WRITES_REG &&
+            EX_to_MEM_PREV.RD_REG == in.RT_REG &&
+            in.RT_REG != 31) {
+            printf("EX->EX Forward: RT reg %d gets 0x%lx (was 0x%lx)\n", 
+                in.RT_REG, EX_to_MEM_PREV.result, in.RT_VAL);
+            EX_to_MEM_CURRENT.RT_VAL = EX_to_MEM_PREV.result;
+        }
+        else if (MEM_to_WB_PREV.WRITES_REG &&
+                MEM_to_WB_PREV.RD_REG == in.RT_REG &&
+                in.RT_REG != 31) {
+            printf("MEM->EX Forward: RT reg %d gets 0x%lx (was 0x%lx)\n", 
+                in.RT_REG, MEM_to_WB_PREV.result, in.RT_VAL);
+            EX_to_MEM_CURRENT.RT_VAL = MEM_to_WB_PREV.result;
+        }
+        else if (MEM_to_WB_PREV.LOAD &&
+                MEM_to_WB_PREV.RT_REG == in.RT_REG &&
+                in.RT_REG != 31) {
+            printf("MEM->EX Forward (LOAD): RT reg %d gets 0x%lx (was 0x%lx)\n", 
+                in.RT_REG, MEM_to_WB_PREV.MEM_DATA, in.RT_VAL);
+            EX_to_MEM_CURRENT.RT_VAL = MEM_to_WB_PREV.MEM_DATA;
+        }
+    }
 
     // Debug: Print values before calculation
     printf("Before calc: RN_VAL=0x%lx, RM_VAL=0x%lx, IMM=0x%lx\n", 
@@ -822,7 +862,61 @@ void pipe_stage_execute()
                 printf("BEQ: Branch not taken\n");
             }
             break;
-            
+        case CBNZ:
+            EX_to_MEM_CURRENT.BR_TARGET = in.PC + (in.IMM << 2);
+            // Branch taken if register is NOT zero
+            EX_to_MEM_CURRENT.BR_TAKEN = (EX_to_MEM_CURRENT.RT_VAL != 0);
+            printf("CBNZ: reg X%d = 0x%lx, target = 0x%lx, taken = %d\n", 
+                in.RT_REG, EX_to_MEM_CURRENT.RT_VAL, EX_to_MEM_CURRENT.BR_TARGET, EX_to_MEM_CURRENT.BR_TAKEN);
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            if (EX_to_MEM_CURRENT.BR_TAKEN) {
+                printf("BEQ: Branch taken\n");
+                if (!(EX_to_MEM_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
+                    printf("BRANCH MISPREDICTION - Redirecting to 0x%lx\n", 
+                    EX_to_MEM_CURRENT.BR_TARGET);
+                    pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+                    // SQUASH = 1;
+                    stat_squash ++;
+                    CLEAR_DE = 1;
+
+                    memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+                    IF_to_DE_CURRENT.NOP = 1;
+                }
+            } else {
+                printf("BEQ: Branch not taken\n");
+            }
+            break;
+        
+        case CBZ:
+            EX_to_MEM_CURRENT.BR_TARGET = in.PC + (in.IMM << 2);
+            // Branch taken if register IS zero
+            EX_to_MEM_CURRENT.BR_TAKEN = (EX_to_MEM_CURRENT.RT_VAL == 0);
+            printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
+                in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            if (EX_to_MEM_CURRENT.BR_TAKEN) {
+                printf("BEQ: Branch taken\n");
+                if (!(EX_to_MEM_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
+                    printf("BRANCH MISPREDICTION - Redirecting to 0x%lx\n", 
+                    EX_to_MEM_CURRENT.BR_TARGET);
+                    pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+                    // SQUASH = 1;
+                    stat_squash ++;
+                    CLEAR_DE = 1;
+
+                    memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+                    IF_to_DE_CURRENT.NOP = 1;
+                }
+            } else {
+                printf("BEQ: Branch not taken\n");
+            }
+            break; 
+
+        case ORR_SHIFTR:
+            EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL | EX_to_MEM_CURRENT.RM_VAL);
+            printf("ORR_SHIFTR: 0x%lx | 0x%lx = 0x%lx\n", 
+                EX_to_MEM_CURRENT.RN_VAL, EX_to_MEM_CURRENT.RM_VAL, EX_to_MEM_CURRENT.result);
+            break;
         default:
             printf("UNKNOWN INSTRUCTION: %d\n", EX_to_MEM_CURRENT.INSTRUCTION);
             break;
@@ -899,8 +993,26 @@ void pipe_stage_decode()
     }
 
     //CBNZ - K
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0xB5)) {
+        DE_to_EX_CURRENT.INSTRUCTION = CBNZ;
+        DE_to_EX_CURRENT.RT_REG = extract_bits(current_instruction, 0, 4);
+        DE_to_EX_CURRENT.RT_VAL = read_register(DE_to_EX_CURRENT.RT_REG);
+        DE_to_EX_CURRENT.READS_RN = 1;
+        uint32_t immediate = extract_bits(current_instruction, 5, 23);
+        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
+        DE_to_EX_CURRENT.CBRANCH = 1;
+    }
 
     //CBZ - F
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0xB4)){
+    DE_to_EX_CURRENT.INSTRUCTION = CBZ;
+    DE_to_EX_CURRENT.RT_REG = extract_bits(current_instruction, 0, 4);
+    DE_to_EX_CURRENT.RT_VAL = read_register(DE_to_EX_CURRENT.RT_REG);
+    uint32_t immediate = extract_bits(current_instruction, 5, 23);
+    DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);  // Use consistent range
+    DE_to_EX_CURRENT.CBRANCH = 1;  // This is a conditional branch
+}
+
 
     //AND(SHIFTED REG) - F
     if (!(extract_bits(current_instruction, 24, 31) ^ 0x8A)){
@@ -943,6 +1055,17 @@ void pipe_stage_decode()
     }
 
     //ORR (SHIFTED REG) - F - orr.s
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0xAA)){
+    DE_to_EX_CURRENT.INSTRUCTION = ORR_SHIFTR;
+    DE_to_EX_CURRENT.RD_REG = extract_bits(current_instruction, 0, 4);
+    DE_to_EX_CURRENT.WRITES_REG = 1;
+    DE_to_EX_CURRENT.RN_REG = extract_bits(current_instruction, 5, 9);
+    DE_to_EX_CURRENT.RN_VAL = read_register(DE_to_EX_CURRENT.RN_REG);
+    DE_to_EX_CURRENT.READS_RN = 1;
+    DE_to_EX_CURRENT.RM_REG = extract_bits(current_instruction, 16, 20);
+    DE_to_EX_CURRENT.RM_VAL = read_register(DE_to_EX_CURRENT.RM_REG);
+    DE_to_EX_CURRENT.READS_RM = 1;
+}
 
     //LDUR (32-AND 64-BIT) - K
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x5C2)) {
