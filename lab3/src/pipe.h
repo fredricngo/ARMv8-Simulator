@@ -1,21 +1,19 @@
-/*
- * CMSC 22200
- *
- * ARM pipeline timing simulator
- */
+/***************************************************************/
+/*                                                             */
+/*   ARM Instruction Level Simulator                           */
+/*                                                             */
+/*   CMSC-22200 Computer Architecture                          */
+/*   University of Chicago                                     */
+/*                                                             */
+/***************************************************************/
 
 #ifndef _PIPE_H_
 #define _PIPE_H_
 
+#include "bp.h"
 #include "shell.h"
 #include "stdbool.h"
 #include <limits.h>
-
-/* Represents an operation travelling through the pipeline. */
-typedef struct Pipe_Op {
-
-	/* place other information here as necessary */
-} Pipe_Op;
 
 /* Represents the current state of the pipeline. */
 typedef struct Pipe_State {
@@ -28,21 +26,10 @@ typedef struct Pipe_State {
 	uint64_t PC;
 
 	/* place other information here as necessary */
+
+	/* branch predictor */
+    bp_t *bp;
 } Pipe_State;
-
-typedef struct Pipe_Reg{
-    uint32_t opcode;
-    uint64_t rn;
-    uint64_t rm; 
-    uint64_t rd;
-    uint64_t imm;
-    uint32_t sham;
-
-} Pipe_Reg;
-
-Pipe_Reg Pipe_Reg_IFtoDE, Pipe_Reg_DEtoEX, Pipe_Reg_EXtoMEM, Pipe_Reg_MEMtoWB;
-
-
 
 extern int RUN_BIT;
 

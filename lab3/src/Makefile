@@ -1,4 +1,4 @@
-sim: shell.c pipe.c
+sim: shell.c pipe.c bp.c
 	@gcc -g -O2 $^ -o $@
 
 .PHONY: clean

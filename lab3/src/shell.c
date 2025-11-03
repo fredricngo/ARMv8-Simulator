@@ -117,6 +117,7 @@ void help() {
   printf("run n                  -  execute program for n instructions\n");
   printf("mdump low high         -  dump memory from low to high      \n");
   printf("rdump                  -  dump the register & bus values    \n");
+  printf("bpdump phtlow phthigh btblow btbhigh - check bp status   \n");
   printf("input reg_no reg_value - set GPR reg_no to reg_value  \n");
   printf("?                      -  display this help menu            \n");
   printf("quit                   -  exit the program                  \n\n");
@@ -145,14 +146,14 @@ void cycle() {
 void run(int num_cycles) {                                      
   int i;
 
-  if (RUN_BIT == FALSE) {
+  if (RUN_BIT == false) {
     printf("Can't simulate, Simulator is halted\n\n");
     return;
   }
 
   printf("Simulating for %d cycles...\n\n", num_cycles);
   for (i = 0; i < num_cycles; i++) {
-    if (RUN_BIT == FALSE) {
+    if (RUN_BIT == false) {
 	    printf("Simulator halted\n\n");
 	    break;
     }
@@ -168,13 +169,13 @@ void run(int num_cycles) {
 /*                                                             */
 /***************************************************************/
 void go() {                                                     
-  if (RUN_BIT == FALSE) {
+  if (RUN_BIT == false) {
     printf("Can't simulate, Simulator is halted\n\n");
     return;
   }
 
   printf("Simulating...\n\n");
-  while (RUN_BIT)
+  while (!RUN_BIT == false)
     cycle();
   printf("Simulator halted\n\n");
 }
@@ -239,6 +240,58 @@ void rdump(FILE * dumpsim_file) {
   fprintf(dumpsim_file, "No. of Cycles: %d\n", stat_cycles);
   fprintf(dumpsim_file, "\n");
 }
+/***************************************************************/
+/*                                                             */
+/* Procedure : bpdump                                           */
+/*                                                             */
+/* Purpose   : Dump current data in branch predictor to the    */   
+/*             output file.                                    */
+/*                                                             */
+/***************************************************************/
+void bpdump(FILE * dumpsim_file, int pht_start, int pht_end, int btb_start, int btb_end)
+{
+  int i;
+  int pht_size = 1;
+  int ghr_s = 0;
+  int ghr_mask = 0;
+  printf("\nCurrent Branch Predictor State :\n");
+  printf("-----------------------------------\n");
+  printf("Next PC in fetch stage : 0x%" PRIx64 "\n", pipe.PC);
+  printf("GHR state :\n");
+  printf("GHR size: %d\n", pipe.bp->ghr_bits);
+  printf("GHR state: ");
+  for (i = 0; i < pipe.bp->ghr_bits; ++i)
+  {
+    ghr_mask = 1 << i;
+    ghr_s = (pipe.bp->ghr & ghr_mask) | ghr_s;
+    pht_size *= 2;
+  }
+  printf("0x%x\n", ghr_s);
+  printf("PHT state :\n");
+  printf("PHT size: %d\n", pht_size);
+
+  if (pht_start < 0 || pht_start >= pht_size || pht_end < 0 || pht_end >= pht_size 
+      || btb_start < 0 || btb_start >= pipe.bp->btb_size || btb_end < 0 || btb_end >= pipe.bp->btb_size) 
+    {
+      printf("Invalid range. \n");
+      return;
+    }
+
+  for (i = pht_start; i <= pht_end; ++i)
+  {
+    printf("Index: %d, State: %d\n", i, pipe.bp->pht[i]);
+  }
+
+  printf("BTB state :\n");
+  printf("BTB size: %d\n", pipe.bp->btb_size);
+  for (i = btb_start; i <= btb_end; ++ i)
+  {
+    printf("Index: %d, PC: 0x%lx, Dest: 0x%lx, Valid: %d, Iscond: %d\n", i,
+      pipe.bp->btb_tag[i], pipe.bp->btb_dest[i], pipe.bp->btb_valid[i], pipe.bp->btb_cond[i]);
+  }
+
+
+}
 
 /***************************************************************/
 /*                                                             */
@@ -252,6 +305,7 @@ void get_command(FILE * dumpsim_file) {
   int start, stop, cycles;
   int register_no;
   int64_t register_value;
+  int pht_start, pht_end, btb_start, btb_end;
 
   printf("ARM-SIM> ");
 
@@ -299,6 +353,13 @@ void get_command(FILE * dumpsim_file) {
       break;
    pipe.REGS[register_no] = register_value;
    break;
+
+  case 'B':
+  case 'b':
+      if (scanf("%i %i %i %i", &pht_start, &pht_end, &btb_start, &btb_end) != 4)
+        break;
+    bpdump(dumpsim_file, pht_start, pht_end, btb_start, btb_end);
+    break;
 
   default:
     printf("Invalid Command\n");

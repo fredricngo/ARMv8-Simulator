@@ -1,8 +1,11 @@
-/*
- * CMSC 22200
- *
- * ARM pipeline timing simulator
- */
+/***************************************************************/
+/*                                                             */
+/*   ARM Instruction Level Simulator                           */
+/*                                                             */
+/*   CMSC-22200 Computer Architecture                          */
+/*   University of Chicago                                     */
+/*                                                             */
+/***************************************************************/
 
 #include "pipe.h"
 #include "shell.h"
