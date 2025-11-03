@@ -54,9 +54,8 @@ B: Branch target = 0x400004 + (0x2 << 2) = 0x40000c
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 4: PC=0x40000c, REFETCH_PC=0x1
-REFETCH - Re-fetching instruction from PC=0x400008 due to load stall
-REFETCH: Read 0x91019021 from PC=0x400008
+FETCH CYCLE 4: PC=0x40000c, REFETCH_PC=0x0
+BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
 BRANCH MISPREDICTION - Redirecting to 0x40000c
 === EXECUTE STAGE ===
 NOP in execute stage 
@@ -109,9 +108,8 @@ B: Branch target = 0x400014 + (0x4 << 2) = 0x400024
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 9: PC=0x40001c, REFETCH_PC=0x1
-REFETCH - Re-fetching instruction from PC=0x400018 due to load stall
-REFETCH: Read 0x91002842 from PC=0x400018
+FETCH CYCLE 9: PC=0x40001c, REFETCH_PC=0x0
+BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
 BRANCH MISPREDICTION - Redirecting to 0x400024
 === EXECUTE STAGE ===
 NOP in execute stage 
@@ -164,9 +162,8 @@ B: Branch target = 0x40002c + (0x1 << 2) = 0x400030
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 14: PC=0x400034, REFETCH_PC=0x1
-REFETCH - Re-fetching instruction from PC=0x400030 due to load stall
-REFETCH: Read 0x91001c63 from PC=0x400030
+FETCH CYCLE 14: PC=0x400034, REFETCH_PC=0x0
+BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
 === EXECUTE STAGE ===
 NOP in execute stage 
 DE stage decoded instruction: 2
@@ -211,9 +208,8 @@ B: Branch target = 0x400038 + (0x2 << 2) = 0x400040
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 18: PC=0x400040, REFETCH_PC=0x1
-REFETCH - Re-fetching instruction from PC=0x40003c due to load stall
-REFETCH: Read 0x9101bc84 from PC=0x40003c
+FETCH CYCLE 18: PC=0x400040, REFETCH_PC=0x0
+BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
 BRANCH MISPREDICTION - Redirecting to 0x400040
 === EXECUTE STAGE ===
 NOP in execute stage 
@@ -237,9 +233,8 @@ B: Branch target = 0x400040 + (0x2 << 2) = 0x400048
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 21: PC=0x400048, REFETCH_PC=0x1
-REFETCH - Re-fetching instruction from PC=0x400044 due to load stall
-REFETCH: Read 0x91037884 from PC=0x400044
+FETCH CYCLE 21: PC=0x400048, REFETCH_PC=0x0
+BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
 BRANCH MISPREDICTION - Redirecting to 0x400048
 === EXECUTE STAGE ===
 NOP in execute stage 

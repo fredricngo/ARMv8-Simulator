@@ -99,9 +99,8 @@ B: Branch target = 0x400010 + (0x1 << 2) = 0x400014
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 7: PC=0x400018, REFETCH_PC=0x1
-REFETCH - Re-fetching instruction from PC=0x400014 due to load stall
-REFETCH: Read 0x8b08004a from PC=0x400014
+FETCH CYCLE 7: PC=0x400018, REFETCH_PC=0x0
+BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
 === EXECUTE STAGE ===
 NOP in execute stage 
 DE stage decoded instruction: 1
@@ -221,9 +220,8 @@ B: Branch target = 0x400030 + (0x1 << 2) = 0x400034
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 16: PC=0x400038, REFETCH_PC=0x1
-REFETCH - Re-fetching instruction from PC=0x400034 due to load stall
-REFETCH: Read 0x8b08004a from PC=0x400034
+FETCH CYCLE 16: PC=0x400038, REFETCH_PC=0x0
+BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
 === EXECUTE STAGE ===
 NOP in execute stage 
 DE stage decoded instruction: 1
