@@ -665,12 +665,12 @@ FETCH: Advanced PC to 0x4000b0
 Instruction: 34, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x4000a8 + (0x3 << 2) = 0x4000b4
+BEQ: Branch not taken
 Final result: 0x0
 ========================
 DE stage cleared due to branch
 FETCH CYCLE 49: PC=0x4000b0, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BGT: Branch not taken, continuing sequentially.
 === EXECUTE STAGE ===
 NOP in execute stage 
 DE stage decoded instruction: 2
@@ -762,18 +762,17 @@ FETCH: Advanced PC to 0x4000c8
 Instruction: 34, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x4000c0 + (0x3 << 2) = 0x4000cc
+BEQ: Branch taken
+BRANCH MISPREDICTION - Redirecting to 0x4000cc
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 56: PC=0x4000c8, REFETCH_PC=0x0
+FETCH CYCLE 56: PC=0x4000cc, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BRANCH MISPREDICTION - Redirecting to 0x4000cc
 === EXECUTE STAGE ===
 NOP in execute stage 
-DE stage cleared due to branch
 FETCH CYCLE 57: PC=0x4000cc, REFETCH_PC=0x0
-SQUASH: Setting PC to branch target 0x4000cc
-FETCH: Read 0x91000eb5 from PC=0x4000cc (after branch)
+FETCH: Read 0x91000eb5 from PC=0x4000cc
 FETCH: Advanced PC to 0x4000d0
 === EXECUTE STAGE ===
 NOP in execute stage 
@@ -834,12 +833,12 @@ FETCH: Advanced PC to 0x4000e0
 Instruction: 35, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x4000d8 + (0x3 << 2) = 0x4000e4
+BEQ: Branch not taken
 Final result: 0x0
 ========================
 DE stage cleared due to branch
 FETCH CYCLE 62: PC=0x4000e0, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BLT: Branch not taken, continuing sequentially.
 === EXECUTE STAGE ===
 NOP in execute stage 
 DE stage decoded instruction: 2
@@ -931,18 +930,17 @@ FETCH: Advanced PC to 0x4000f8
 Instruction: 35, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x4000f0 + (0x3 << 2) = 0x4000fc
+BEQ: Branch taken
+BRANCH MISPREDICTION - Redirecting to 0x4000fc
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 69: PC=0x4000f8, REFETCH_PC=0x0
+FETCH CYCLE 69: PC=0x4000fc, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BRANCH MISPREDICTION - Redirecting to 0x4000fc
 === EXECUTE STAGE ===
 NOP in execute stage 
-DE stage cleared due to branch
 FETCH CYCLE 70: PC=0x4000fc, REFETCH_PC=0x0
-SQUASH: Setting PC to branch target 0x4000fc
-FETCH: Read 0x91000ef7 from PC=0x4000fc (after branch)
+FETCH: Read 0x91000ef7 from PC=0x4000fc
 FETCH: Advanced PC to 0x400100
 === EXECUTE STAGE ===
 NOP in execute stage 
@@ -1003,12 +1001,12 @@ FETCH: Advanced PC to 0x400110
 Instruction: 36, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x400108 + (0x3 << 2) = 0x400114
+BEQ: Branch not taken
 Final result: 0x0
 ========================
 DE stage cleared due to branch
 FETCH CYCLE 75: PC=0x400110, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BGE: Branch not taken, continuing sequentially.
 === EXECUTE STAGE ===
 NOP in execute stage 
 DE stage decoded instruction: 2
@@ -1100,18 +1098,17 @@ FETCH: Advanced PC to 0x400128
 Instruction: 36, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x400120 + (0x3 << 2) = 0x40012c
+BEQ: Branch taken
+BRANCH MISPREDICTION - Redirecting to 0x40012c
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 82: PC=0x400128, REFETCH_PC=0x0
+FETCH CYCLE 82: PC=0x40012c, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BRANCH MISPREDICTION - Redirecting to 0x40012c
 === EXECUTE STAGE ===
 NOP in execute stage 
-DE stage cleared due to branch
 FETCH CYCLE 83: PC=0x40012c, REFETCH_PC=0x0
-SQUASH: Setting PC to branch target 0x40012c
-FETCH: Read 0x91000f39 from PC=0x40012c (after branch)
+FETCH: Read 0x91000f39 from PC=0x40012c
 FETCH: Advanced PC to 0x400130
 === EXECUTE STAGE ===
 NOP in execute stage 
@@ -1172,12 +1169,12 @@ FETCH: Advanced PC to 0x400140
 Instruction: 37, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x400138 + (0x3 << 2) = 0x400144
+BEQ: Branch not taken
 Final result: 0x0
 ========================
 DE stage cleared due to branch
 FETCH CYCLE 88: PC=0x400140, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BLE: Branch not taken, continuing sequentially.
 === EXECUTE STAGE ===
 NOP in execute stage 
 DE stage decoded instruction: 2
@@ -1269,18 +1266,17 @@ FETCH: Advanced PC to 0x400158
 Instruction: 37, RD=0, RN=0(0x0), RM=0(0x0), IMM=0x3
 Before calc: RN_VAL=0x0, RM_VAL=0x0, IMM=0x3
 B: Branch target = 0x400150 + (0x3 << 2) = 0x40015c
+BEQ: Branch taken
+BRANCH MISPREDICTION - Redirecting to 0x40015c
 Final result: 0x0
 ========================
 DE stage cleared due to branch
-FETCH CYCLE 95: PC=0x400158, REFETCH_PC=0x0
+FETCH CYCLE 95: PC=0x40015c, REFETCH_PC=0x0
 BRANCH STALL- HOLDING CURRENT INSTRUCITON IN FETCH STAGE
-BRANCH MISPREDICTION - Redirecting to 0x40015c
 === EXECUTE STAGE ===
 NOP in execute stage 
-DE stage cleared due to branch
 FETCH CYCLE 96: PC=0x40015c, REFETCH_PC=0x0
-SQUASH: Setting PC to branch target 0x40015c
-FETCH: Read 0x91000f7b from PC=0x40015c (after branch)
+FETCH: Read 0x91000f7b from PC=0x40015c
 FETCH: Advanced PC to 0x400160
 === EXECUTE STAGE ===
 NOP in execute stage 

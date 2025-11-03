@@ -392,32 +392,32 @@ void pipe_stage_mem()
             //     printf("BNE: Branch not taken, continuing sequentially.\n")
             break;
         case BLT:
-            if (MEM_to_WB_CURRENT.BR_TAKEN) {
-                unconditional_branching();
-            } else {
-                printf("BLT: Branch not taken, continuing sequentially.\n");
-            }
+            // if (MEM_to_WB_CURRENT.BR_TAKEN) {
+            //     unconditional_branching();
+            // } else {
+            //     printf("BLT: Branch not taken, continuing sequentially.\n");
+            // }
             break;
         case BLE:
-            if (MEM_to_WB_CURRENT.BR_TAKEN) {
-                unconditional_branching();
-            } else {
-                printf("BLE: Branch not taken, continuing sequentially.\n");
-            }
+            // if (MEM_to_WB_CURRENT.BR_TAKEN) {
+            //     unconditional_branching();
+            // } else {
+            //     printf("BLE: Branch not taken, continuing sequentially.\n");
+            // }
             break;
         case BGT:
-            if (MEM_to_WB_CURRENT.BR_TAKEN) {
-                unconditional_branching();
-            } else {
-                printf("BGT: Branch not taken, continuing sequentially.\n");
-            }
+            // if (MEM_to_WB_CURRENT.BR_TAKEN) {
+            //     unconditional_branching();
+            // } else {
+            //     printf("BGT: Branch not taken, continuing sequentially.\n");
+            // }
             break;
         case BGE:
-            if (MEM_to_WB_CURRENT.BR_TAKEN) {
-                unconditional_branching();
-            } else {
-                printf("BGE: Branch not taken, continuing sequentially.\n");    
-    }
+    //         if (MEM_to_WB_CURRENT.BR_TAKEN) {
+    //             unconditional_branching();
+    //         } else {
+    //             printf("BGE: Branch not taken, continuing sequentially.\n");    
+    // }
             break;
 }
 }
@@ -739,24 +739,88 @@ void pipe_stage_execute()
             EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_N;
             printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
                 in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            if (EX_to_MEM_CURRENT.BR_TAKEN) {
+                printf("BEQ: Branch taken\n");
+                if (!(EX_to_MEM_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
+                    printf("BRANCH MISPREDICTION - Redirecting to 0x%lx\n", 
+                    EX_to_MEM_CURRENT.BR_TARGET);
+                    pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+                    // SQUASH = 1;
+                    stat_squash ++;
+                    CLEAR_DE = 1;
+
+                    memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+                    IF_to_DE_CURRENT.NOP = 1;
+                }
+            } else {
+                printf("BEQ: Branch not taken\n");
+            }
             break;
         case BLE:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_N || EX_to_MEM_PREV.FLAG_Z;
             printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
                 in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            if (EX_to_MEM_CURRENT.BR_TAKEN) {
+                printf("BEQ: Branch taken\n");
+                if (!(EX_to_MEM_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
+                    printf("BRANCH MISPREDICTION - Redirecting to 0x%lx\n", 
+                    EX_to_MEM_CURRENT.BR_TARGET);
+                    pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+                    // SQUASH = 1;
+                    stat_squash ++;
+                    CLEAR_DE = 1;
+
+                    memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+                    IF_to_DE_CURRENT.NOP = 1;
+                }
+            } else {
+                printf("BEQ: Branch not taken\n");
+            }
             break;
         case BGT:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_N && !EX_to_MEM_PREV.FLAG_Z;
             printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
                 in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            if (EX_to_MEM_CURRENT.BR_TAKEN) {
+                printf("BEQ: Branch taken\n");
+                if (!(EX_to_MEM_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
+                    printf("BRANCH MISPREDICTION - Redirecting to 0x%lx\n", 
+                    EX_to_MEM_CURRENT.BR_TARGET);
+                    pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+                    // SQUASH = 1;
+                    stat_squash ++;
+                    CLEAR_DE = 1;
+
+                    memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+                    IF_to_DE_CURRENT.NOP = 1;
+                }
+            } else {
+                printf("BEQ: Branch not taken\n");
+            }
             break;
         case BGE:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_N;
             printf("B: Branch target = 0x%lx + (0x%lx << 2) = 0x%lx\n", 
                 in.PC, in.IMM, EX_to_MEM_CURRENT.BR_TARGET);
+            if (EX_to_MEM_CURRENT.BR_TAKEN) {
+                printf("BEQ: Branch taken\n");
+                if (!(EX_to_MEM_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
+                    printf("BRANCH MISPREDICTION - Redirecting to 0x%lx\n", 
+                    EX_to_MEM_CURRENT.BR_TARGET);
+                    pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+                    // SQUASH = 1;
+                    stat_squash ++;
+                    CLEAR_DE = 1;
+
+                    memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+                    IF_to_DE_CURRENT.NOP = 1;
+                }
+            } else {
+                printf("BEQ: Branch not taken\n");
+            }
             break;
             
         default:
