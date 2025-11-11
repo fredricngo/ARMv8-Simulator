@@ -36,6 +36,7 @@ int UPDATE_EX_NEXT = 0;
 int HLT_FLAG = 0;
 int HLT_NEXT = 0;
 int RUN_BIT;
+uint64_t NEXT_PC;
 
 int CLEAR_DE = 0;
 int SQUASH = 0;
@@ -81,6 +82,7 @@ void pipe_init()
     memset(&pipe, 0, sizeof(Pipe_State));
     pipe.PC = 0x00400000;
     RUN_BIT = TRUE;
+    NEXT_PC = pipe.PC;
 	bp_t_init();
 	pipe.bp = &bp;
 }
@@ -93,6 +95,8 @@ void pipe_cycle()
 	pipe_stage_execute();
 	pipe_stage_decode();
     pipe_stage_fetch();
+
+    pipe.PC = NEXT_PC;
 
     REFETCH_PC = REFETCH_PC_NEXT;
     REFETCH_PC_NEXT = 0;
@@ -713,21 +717,33 @@ void pipe_stage_execute()
             break;
 		}
 		if (EX_to_MEM_CURRENT.UBRANCH || EX_to_MEM_CURRENT.CBRANCH) {
-			bp_update(&EX_to_MEM_CURRENT);
-			if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET) {
-				pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
-				stat_squash++;
-				CLEAR_DE = 1;
-				memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
-				IF_to_DE_CURRENT.NOP = 1;
-			} else if (EX_to_MEM_CURRENT.BTB_MISS) {
-				pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
-				stat_squash++;
-				CLEAR_DE = 1;
-				memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
-				IF_to_DE_CURRENT.NOP = 1;
-			}
-	}
+    printf("BRANCH_EXECUTE: PC=0x%lx, PREDICTED=0x%lx, ACTUAL=0x%lx, TAKEN=%d, BTB_MISS=%d\n",
+           EX_to_MEM_CURRENT.PC, EX_to_MEM_CURRENT.PREDICTED_PC, 
+           EX_to_MEM_CURRENT.BR_TARGET, EX_to_MEM_CURRENT.BR_TAKEN, EX_to_MEM_CURRENT.BTB_MISS);
+    
+    bp_update(&EX_to_MEM_CURRENT);
+    
+    if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET) {
+        printf("MISPREDICTION: correcting PC from 0x%lx to 0x%lx\n", 
+               pipe.PC, EX_to_MEM_CURRENT.BR_TARGET);
+        NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
+        //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
+        stat_squash++;
+        CLEAR_DE = 1;
+        memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+        IF_to_DE_CURRENT.NOP = 1;
+    } else if (EX_to_MEM_CURRENT.BTB_MISS) {
+        printf("BTB_MISS_CORRECTION: PC to 0x%lx\n", EX_to_MEM_CURRENT.BR_TARGET);
+        NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
+        //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
+        stat_squash++;
+        CLEAR_DE = 1;
+        memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+        IF_to_DE_CURRENT.NOP = 1;
+    } else {
+        printf("PREDICTION_CORRECT\n");
+    }
+}
 } 
 
 void pipe_stage_decode()
@@ -745,6 +761,9 @@ void pipe_stage_decode()
     uint64_t current_instruction = in.raw_instruction;
 
     DE_to_EX_CURRENT.PC = in.PC; 
+    DE_to_EX_CURRENT.PREDICTED_PC = in.PREDICTED_PC;
+    DE_to_EX_CURRENT.BTB_MISS     = in.BTB_MISS;
+    DE_to_EX_CURRENT.GHR_XOR_PC   = in.GHR_XOR_PC;
 
     //ADD(EXTENDED) - K
     if (!(extract_bits(current_instruction, 21, 31) ^ 0x458)) {
@@ -1204,41 +1223,42 @@ void pipe_stage_fetch()
     static Pipe_Op fetched_instruction;
     static int cycle_count = 0;
     cycle_count++;
+    printf("FETCH: PC=0x%lx, HLT=%d\n", pipe.PC, HLT_FLAG);
 
-    if (BRANCH){
-        return;
-    }
+    // if (BRANCH){
+    //     return;
+    // }
     
-    if (REFETCH_PC) {
-        memset(&fetched_instruction, 0, sizeof(Pipe_Op));
-        fetched_instruction.raw_instruction = mem_read_32(REFETCH_ADDR);
-        fetched_instruction.PC = REFETCH_ADDR;
-        fetched_instruction.NOP = 0;
-        fetched_instruction.INSTRUCTION = UNKNOWN;
-        REFETCH_PC = 0;
-        IF_to_DE_CURRENT = fetched_instruction;
-        if (!BRANCH) {
-            UPDATE_EX_NEXT = 1;
-        }
-        return;
-    }
-    if (SQUASH) {
-        if (HLT_FLAG){
-            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
-            fetched_instruction.NOP = 1;
-            fetched_instruction.INSTRUCTION = UNKNOWN;
-        } else {
-            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
-            fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
-            fetched_instruction.PC = pipe.PC;
-            fetched_instruction.NOP = 0;
-            fetched_instruction.INSTRUCTION = UNKNOWN;
-            pipe.PC = pipe.PC + 4;
-        }
-        SQUASH = 0;
-        IF_to_DE_CURRENT = fetched_instruction;
-        return; 
-    }
+    // if (REFETCH_PC) {
+    //     memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+    //     fetched_instruction.raw_instruction = mem_read_32(REFETCH_ADDR);
+    //     fetched_instruction.PC = REFETCH_ADDR;
+    //     fetched_instruction.NOP = 0;
+    //     fetched_instruction.INSTRUCTION = UNKNOWN;
+    //     REFETCH_PC = 0;
+    //     IF_to_DE_CURRENT = fetched_instruction;
+    //     if (!BRANCH) {
+    //         UPDATE_EX_NEXT = 1;
+    //     }
+    //     return;
+    // }
+    // if (SQUASH) {
+    //     if (HLT_FLAG){
+    //         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+    //         fetched_instruction.NOP = 1;
+    //         fetched_instruction.INSTRUCTION = UNKNOWN;
+    //     } else {
+    //         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+    //         fetched_instruction.raw_instruction = mem_read_32(pipe.PC);
+    //         fetched_instruction.PC = pipe.PC;
+    //         fetched_instruction.NOP = 0;
+    //         fetched_instruction.INSTRUCTION = UNKNOWN;
+    //         pipe.PC = pipe.PC + 4;
+    //     }
+    //     SQUASH = 0;
+    //     IF_to_DE_CURRENT = fetched_instruction;
+    //     return; 
+    // }
 
     if (!HLT_FLAG) {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
@@ -1248,11 +1268,17 @@ void pipe_stage_fetch()
 		bp_predict(&fetched_instruction);
         fetched_instruction.NOP = 0;
         fetched_instruction.INSTRUCTION = UNKNOWN;
-		pipe.PC = fetched_instruction.PREDICTED_PC;
+		fetched_instruction.INSTRUCTION = UNKNOWN;
+        printf("FETCHED: PC=0x%lx, inst=0x%x, predicted_pc=0x%lx\n",
+           fetched_instruction.PC, raw_inst, fetched_instruction.PREDICTED_PC);
+        if (!CLEAR_DE && !SQUASH) {
+            NEXT_PC = fetched_instruction.PREDICTED_PC;
+        }
     } else {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
         fetched_instruction.NOP = 1;
         fetched_instruction.INSTRUCTION = UNKNOWN;
+        printf("FETCH_NOP: HLT active\n");
     }
 
     IF_to_DE_CURRENT = fetched_instruction;
