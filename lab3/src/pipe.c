@@ -612,7 +612,7 @@ void pipe_stage_execute()
             //         memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
             //         IF_to_DE_CURRENT.NOP = 1;
             //     }
-            // break;
+            break;
         case BNE:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_Z;
@@ -625,7 +625,7 @@ void pipe_stage_execute()
             //         IF_to_DE_CURRENT.NOP = 1;
             //     }
             // }
-            // break;
+            break;
         case BLT:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_N;
@@ -638,7 +638,7 @@ void pipe_stage_execute()
             //         IF_to_DE_CURRENT.NOP = 1;
             //     }
             // } 
-            // break;
+            break;
         case BLE:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = EX_to_MEM_PREV.FLAG_N || EX_to_MEM_PREV.FLAG_Z;
@@ -651,7 +651,7 @@ void pipe_stage_execute()
             //         IF_to_DE_CURRENT.NOP = 1;
             //     }
             // }
-            // break;
+            break;
         case BGT:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_N && !EX_to_MEM_PREV.FLAG_Z;
@@ -664,7 +664,7 @@ void pipe_stage_execute()
             //         IF_to_DE_CURRENT.NOP = 1;
             //     }
             // }
-            // break;
+            break;
         case BGE:
             EX_to_MEM_CURRENT.BR_TARGET = EX_to_MEM_CURRENT.PC + (in.IMM << 2);
             EX_to_MEM_CURRENT.BR_TAKEN = !EX_to_MEM_PREV.FLAG_N;
@@ -690,7 +690,7 @@ void pipe_stage_execute()
             //         IF_to_DE_CURRENT.NOP = 1;
             //     }
             // }
-            // break;
+            break;
         
         case CBZ:
             EX_to_MEM_CURRENT.BR_TARGET = in.PC + (in.IMM << 2);
@@ -704,17 +704,17 @@ void pipe_stage_execute()
             //         IF_to_DE_CURRENT.NOP = 1;
             //     }
             // }
-            // break; 
+            break; 
 
         case ORR_SHIFTR:
             EX_to_MEM_CURRENT.result = (EX_to_MEM_CURRENT.RN_VAL | EX_to_MEM_CURRENT.RM_VAL);
-            //break;
+            break;
         default:
             break;
 		}
 		if (EX_to_MEM_CURRENT.UBRANCH || EX_to_MEM_CURRENT.CBRANCH) {
 			bp_update(&EX_to_MEM_CURRENT);
-			if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET && EX_to_MEM_CURRENT.BR_TAKEN) {
+			if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET) {
 				pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
 				stat_squash++;
 				CLEAR_DE = 1;
@@ -1156,17 +1156,17 @@ void pipe_stage_decode()
         DE_to_EX_CURRENT.CBRANCH = 1;
     }
 
-    if (DE_to_EX_CURRENT.UBRANCH) {
-        CLEAR_DE = 1;
-        BRANCH_NEXT = 1;
-        return;
-    }
+    // if (DE_to_EX_CURRENT.UBRANCH) {
+    //     CLEAR_DE = 1;
+    //     BRANCH_NEXT = 1;
+    //     return;
+    // }
 
-    if (DE_to_EX_CURRENT.CBRANCH) {
-        CLEAR_DE = 1;
-        BRANCH_NEXT = 1;
-        return;
-    }
+    // if (DE_to_EX_CURRENT.CBRANCH) {
+    //     CLEAR_DE = 1;
+    //     BRANCH_NEXT = 1;
+    //     return;
+    // }
 
     if (DE_to_EX_PREV.LOAD && !DE_to_EX_PREV.NOP) {
         int load_target = DE_to_EX_PREV.RT_REG;
