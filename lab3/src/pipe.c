@@ -81,6 +81,8 @@ void pipe_init()
     memset(&pipe, 0, sizeof(Pipe_State));
     pipe.PC = 0x00400000;
     RUN_BIT = TRUE;
+	bp_t_init();
+	pipe.bp = &bp;
 }
 
 
@@ -711,7 +713,20 @@ void pipe_stage_execute()
             break;
 		}
 		if (EX_to_MEM_CURRENT.UBRANCH || EX_to_MEM_CURRENT.CBRANCH) {
-		bp_update();
+			bp_update(&EX_to_MEM_CURRENT);
+			if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET && EX_to_MEM_CURRENT.BR_TAKEN) {
+				pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+				stat_squash++;
+				CLEAR_DE = 1;
+				memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+				IF_to_DE_CURRENT.NOP = 1;
+			} else if (EX_to_MEM_CURRENT.BTB_MISS) {
+				pipe.PC = EX_to_MEM_CURRENT.BR_TARGET;
+				stat_squash++;
+				CLEAR_DE = 1;
+				memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+				IF_to_DE_CURRENT.NOP = 1;
+			}
 	}
 } 
 
@@ -722,7 +737,7 @@ void pipe_stage_decode()
     Pipe_Op in = IF_to_DE_PREV;
     if (in.NOP) { DE_to_EX_CURRENT.NOP = 1; return; }
 
-    if (CLEAR_DE) {
+    if (CLEAR_DE || HLT_FLAG) {
         DE_to_EX_CURRENT.NOP = 1;
         CLEAR_DE = 0;
         return;
@@ -1230,10 +1245,10 @@ void pipe_stage_fetch()
         uint32_t raw_inst = mem_read_32(pipe.PC);
         fetched_instruction.raw_instruction = raw_inst;
         fetched_instruction.PC = pipe.PC;
-		bp_predict();
+		bp_predict(&fetched_instruction);
         fetched_instruction.NOP = 0;
         fetched_instruction.INSTRUCTION = UNKNOWN;
-        pipe.PC = pipe.PC + 4; 
+		pipe.PC = fetched_instruction.PREDICTED_PC;
     } else {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
         fetched_instruction.NOP = 1;

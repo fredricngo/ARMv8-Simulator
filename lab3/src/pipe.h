@@ -7,16 +7,19 @@
 #ifndef _PIPE_H_
 #define _PIPE_H_
 
+#include "bp.h"
 #include "shell.h"
 #include "stdbool.h"
 #include <limits.h>
 
+// struct bp_t;
 /* Represents the current state of the pipeline. */
 typedef struct Pipe_State {
 	/* register file state */
 	int64_t REGS[ARM_REGS];
 	int FLAG_N;        /* flag N */
 	int FLAG_Z;        /* flag Z */
+	bp_t *bp;
 
 	/* program counter in fetch stage */
 	uint64_t PC;
@@ -104,7 +107,7 @@ typedef struct Pipe_Op {
     int FLAG_Z;
 
 	int GHR_XOR_PC;
-	uint64_t = PREDICTED_PC;
+	uint64_t PREDICTED_PC;
 	int BTB_MISS;
 
 } Pipe_Op;
