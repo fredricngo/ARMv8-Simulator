@@ -107,6 +107,8 @@ void pipe_cycle()
 
     HLT_FLAG = HLT_NEXT;
 
+    CLEAR_DE = 0;
+
     IF_to_DE_PREV = IF_to_DE_CURRENT;
     DE_to_EX_PREV = DE_to_EX_CURRENT;
     EX_to_MEM_PREV = EX_to_MEM_CURRENT;
@@ -753,9 +755,9 @@ void pipe_stage_decode()
     Pipe_Op in = IF_to_DE_PREV;
     if (in.NOP) { DE_to_EX_CURRENT.NOP = 1; return; }
 
-    if (CLEAR_DE || HLT_FLAG) {
+    if (CLEAR_DE || HLT_FLAG || HLT_NEXT) {
         DE_to_EX_CURRENT.NOP = 1;
-        CLEAR_DE = 0;
+        // CLEAR_DE = 0;
         return;
     }
     uint64_t current_instruction = in.raw_instruction;
@@ -1260,17 +1262,27 @@ void pipe_stage_fetch()
     //     return; 
     // }
 
-    if (!HLT_FLAG) {
+    if (!HLT_FLAG && !HLT_NEXT) {
         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
-        uint32_t raw_inst = mem_read_32(pipe.PC);
+
+        // pick the right PC to fetch from
+        uint64_t fetch_pc = pipe.PC;
+        if (CLEAR_DE) {
+            // execute just told us to go somewhere else
+            fetch_pc = NEXT_PC;
+        }
+
+        uint32_t raw_inst = mem_read_32(fetch_pc);
         fetched_instruction.raw_instruction = raw_inst;
-        fetched_instruction.PC = pipe.PC;
-		bp_predict(&fetched_instruction);
+        fetched_instruction.PC = fetch_pc;
+        bp_predict(&fetched_instruction);
         fetched_instruction.NOP = 0;
         fetched_instruction.INSTRUCTION = UNKNOWN;
-		fetched_instruction.INSTRUCTION = UNKNOWN;
+
         printf("FETCHED: PC=0x%lx, inst=0x%x, predicted_pc=0x%lx\n",
-           fetched_instruction.PC, raw_inst, fetched_instruction.PREDICTED_PC);
+               fetched_instruction.PC, raw_inst, fetched_instruction.PREDICTED_PC);
+
+        // only let fetch advance PC if we are NOT in the middle of a squash
         if (!CLEAR_DE && !SQUASH) {
             NEXT_PC = fetched_instruction.PREDICTED_PC;
         }
