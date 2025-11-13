@@ -124,48 +124,39 @@ BP_UPDATE: PC=0x40001c, BR_TAKEN=0, BR_TARGET=0x400008, PREDICTED_PC=0x400020
 PHT_UPDATE: idx=4, old_counter=0, new_counter=0
 GHR_UPDATE: old=0x3, new=0x6
 BTB_UPDATE: idx=7, PC=0x40001c, target=0x400008, cond=1
-MISPREDICTION: correcting PC from 0x400024 to 0x400008
+PREDICTION_CORRECT
 FETCH: PC=0x400024, HLT=0
-BP_PREDICT: PC=0x400008, GHR=0x6, PHT_idx=4, counter=0, BTB_idx=2
-BTB_MISS: predicted_pc=0x40000c
-FETCHED: PC=0x400008, inst=0xd2800023, predicted_pc=0x40000c
-FETCH: PC=0x400008, HLT=0
-BP_PREDICT: PC=0x400008, GHR=0x6, PHT_idx=4, counter=0, BTB_idx=2
-BTB_MISS: predicted_pc=0x40000c
-FETCHED: PC=0x400008, inst=0xd2800023, predicted_pc=0x40000c
-FETCH: PC=0x40000c, HLT=0
-BP_PREDICT: PC=0x40000c, GHR=0x6, PHT_idx=5, counter=0, BTB_idx=3
-BTB_MISS: predicted_pc=0x400010
-FETCHED: PC=0x40000c, inst=0xd2800023, predicted_pc=0x400010
-FETCH: PC=0x400010, HLT=0
-BP_PREDICT: PC=0x400010, GHR=0x6, PHT_idx=2, counter=0, BTB_idx=4
-BTB_MISS: predicted_pc=0x400014
-FETCHED: PC=0x400010, inst=0xd2800023, predicted_pc=0x400014
-FETCH: PC=0x400014, HLT=0
-BP_PREDICT: PC=0x400014, GHR=0x6, PHT_idx=3, counter=0, BTB_idx=5
-BTB_MISS: predicted_pc=0x400018
-FETCHED: PC=0x400014, inst=0x91000442, predicted_pc=0x400018
-FETCH: PC=0x400018, HLT=0
-BP_PREDICT: PC=0x400018, GHR=0x6, PHT_idx=0, counter=0, BTB_idx=6
-BTB_MISS: predicted_pc=0x40001c
-FETCHED: PC=0x400018, inst=0xeb02003f, predicted_pc=0x40001c
-FETCH: PC=0x40001c, HLT=0
-BP_PREDICT: PC=0x40001c, GHR=0x6, PHT_idx=1, counter=0, BTB_idx=7
-BTB_HIT: tag=0x40001c, dest=0x400008, cond=1
-PREDICT_NOT_TAKEN: counter=0, predicted_pc=0x400020
-FETCHED: PC=0x40001c, inst=0x54ffff6c, predicted_pc=0x400020
+BP_PREDICT: PC=0x400024, GHR=0x6, PHT_idx=15, counter=0, BTB_idx=9
+BTB_MISS: predicted_pc=0x400028
+FETCHED: PC=0x400024, inst=0xd2800002, predicted_pc=0x400028
+FETCH: PC=0x400028, HLT=0
+BP_PREDICT: PC=0x400028, GHR=0x6, PHT_idx=12, counter=0, BTB_idx=10
+BTB_MISS: predicted_pc=0x40002c
+FETCHED: PC=0x400028, inst=0xd4400000, predicted_pc=0x40002c
+FETCH: PC=0x40002c, HLT=0
+BP_PREDICT: PC=0x40002c, GHR=0x6, PHT_idx=13, counter=0, BTB_idx=11
+BTB_MISS: predicted_pc=0x400030
+FETCHED: PC=0x40002c, inst=0x17fffff7, predicted_pc=0x400030
+FETCH: PC=0x400030, HLT=1
+FETCH_NOP: HLT active
+FETCH: PC=0x400030, HLT=1
+FETCH_NOP: HLT active
+FETCH: PC=0x400030, HLT=1
+FETCH_NOP: HLT active
+Simulator halted
+
 ARM-SIM> 
 Invalid Command
 ARM-SIM> 
 
 Current register/bus values :
 -------------------------------------
-Instruction Retired : 25
-PC                : 0x400020
+Instruction Retired : 23
+PC                : 0x400030
 Registers:
 X0: 0x0
-X1: 0x3
-X2: 0x3
+X1: 0x4
+X2: 0x0
 X3: 0x1
 X4: 0x0
 X5: 0x0
@@ -197,7 +188,7 @@ X30: 0x0
 X31: 0x0
 FLAG_N: 0
 FLAG_Z: 1
-No. of Cycles: 32
+No. of Cycles: 31
 
 ARM-SIM> 
 

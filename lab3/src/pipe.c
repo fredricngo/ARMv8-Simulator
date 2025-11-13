@@ -677,33 +677,52 @@ void pipe_stage_execute()
             break;
 		}
 		if (EX_to_MEM_CURRENT.UBRANCH || EX_to_MEM_CURRENT.CBRANCH) {
-    printf("BRANCH_EXECUTE: PC=0x%lx, PREDICTED=0x%lx, ACTUAL=0x%lx, TAKEN=%d, BTB_MISS=%d\n",
-           EX_to_MEM_CURRENT.PC, EX_to_MEM_CURRENT.PREDICTED_PC, 
-           EX_to_MEM_CURRENT.BR_TARGET, EX_to_MEM_CURRENT.BR_TAKEN, EX_to_MEM_CURRENT.BTB_MISS);
-    
-    bp_update(&EX_to_MEM_CURRENT);
-    
-    if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET) {
-        printf("MISPREDICTION: correcting PC from 0x%lx to 0x%lx\n", 
-               pipe.PC, EX_to_MEM_CURRENT.BR_TARGET);
-        NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
-        //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
-        stat_squash++;
-        CLEAR_DE = 1;
-        memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
-        IF_to_DE_CURRENT.NOP = 1;
-    } else if (EX_to_MEM_CURRENT.BTB_MISS) {
-        printf("BTB_MISS_CORRECTION: PC to 0x%lx\n", EX_to_MEM_CURRENT.BR_TARGET);
-        NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
-        //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
-        stat_squash++;
-        CLEAR_DE = 1;
-        memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
-        IF_to_DE_CURRENT.NOP = 1;
-    } else {
-        printf("PREDICTION_CORRECT\n");
-    }
-}
+            printf("BRANCH_EXECUTE: PC=0x%lx, PREDICTED=0x%lx, ACTUAL=0x%lx, TAKEN=%d, BTB_MISS=%d\n",
+                EX_to_MEM_CURRENT.PC, EX_to_MEM_CURRENT.PREDICTED_PC, 
+                EX_to_MEM_CURRENT.BR_TARGET, EX_to_MEM_CURRENT.BR_TAKEN, EX_to_MEM_CURRENT.BTB_MISS);
+            
+            bp_update(&EX_to_MEM_CURRENT);
+
+            uint64_t correct_pc;
+            if (EX_to_MEM_CURRENT.UBRANCH){
+                correct_pc = EX_to_MEM_CURRENT.BR_TARGET;
+            } else {
+                correct_pc = EX_to_MEM_CURRENT.BR_TAKEN ? EX_to_MEM_CURRENT.BR_TARGET : EX_to_MEM_CURRENT.PC + 4;
+            }
+
+            if (EX_to_MEM_CURRENT.PREDICTED_PC != correct_pc) {
+                printf("MISPREDICTION: correcting PC from 0x%lx to 0x%lx\n", 
+                    pipe.PC, correct_pc);
+                NEXT_PC = correct_pc;
+                stat_squash++;
+                CLEAR_DE = 1;
+                memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+                IF_to_DE_CURRENT.NOP = 1;
+            } else {
+                printf("PREDICTION_CORRECT\n");
+            }
+            
+            // if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET) {
+            //     printf("MISPREDICTION: correcting PC from 0x%lx to 0x%lx\n", 
+            //         pipe.PC, EX_to_MEM_CURRENT.BR_TARGET);
+            //     NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
+            //     //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
+            //     stat_squash++;
+            //     CLEAR_DE = 1;
+            //     memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+            //     IF_to_DE_CURRENT.NOP = 1;
+            // } else if (EX_to_MEM_CURRENT.BTB_MISS) {
+            //     printf("BTB_MISS_CORRECTION: PC to 0x%lx\n", EX_to_MEM_CURRENT.BR_TARGET);
+            //     NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
+            //     //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
+            //     stat_squash++;
+            //     CLEAR_DE = 1;
+            //     memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
+            //     IF_to_DE_CURRENT.NOP = 1;
+            // } else {
+            //     printf("PREDICTION_CORRECT\n");
+            // }
+        }
 } 
 
 void pipe_stage_decode()
@@ -1202,5 +1221,9 @@ void pipe_stage_fetch()
         printf("FETCH_NOP: HLT active\n");
     }
 
-    IF_to_DE_CURRENT = fetched_instruction;
+    if (!CLEAR_DE){
+        IF_to_DE_CURRENT = fetched_instruction;
+    }
+
+    
 }

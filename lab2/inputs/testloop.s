@@ -1,5 +1,5 @@
 .text
-mov X1, 1000
+mov X1, 3
 mov X2, 0
 
 foo:
@@ -17,4 +17,3 @@ mov X2, 0
 
 HLT 0
 b foo
-

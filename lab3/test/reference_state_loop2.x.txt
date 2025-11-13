@@ -1,9 +1,9 @@
 ARM Simulator
 
-Read 11 words from program into memory.
+Read 18 words from program into memory.
 
 ARM-SIM> 
-Simulating for 6032 cycles...
+Simulating for 11034 cycles...
 
 Simulator halted
 
@@ -13,8 +13,8 @@ ARM-SIM>
 
 Current register/bus values :
 -------------------------------------
-Instruction Retired : 6005
-PC                : 0x400030
+Instruction Retired : 11007
+PC                : 0x40004c
 Registers:
 X0: 0x0
 X1: 0x4
@@ -22,8 +22,8 @@ X2: 0x0
 X3: 0x1
 X4: 0x0
 X5: 0x0
-X6: 0x0
-X7: 0x0
+X6: 0x9c42
+X7: 0x28
 X8: 0x0
 X9: 0x0
 X10: 0x0
@@ -50,7 +50,7 @@ X30: 0x0
 X31: 0x0
 FLAG_N: 0
 FLAG_Z: 1
-No. of Cycles: 6031
+No. of Cycles: 11033
 
 ARM-SIM> 
 
