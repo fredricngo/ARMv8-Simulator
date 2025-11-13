@@ -488,6 +488,37 @@ void pipe_stage_execute()
         }
     }
 
+    // Add this before your switch statement in pipe_stage_execute()
+
+    // Forward flags if needed
+    int use_forwarded_flags = 0;
+    int forwarded_flag_n = 0;
+    int forwarded_flag_z = 0;
+
+    // Check if we need flags and if there's a flag-setting instruction to forward from
+    if (in.INSTRUCTION == BGT || in.INSTRUCTION == BLT || in.INSTRUCTION == BLE || 
+        in.INSTRUCTION == BGE || in.INSTRUCTION == BEQ || in.INSTRUCTION == BNE) {
+        
+        // Check if EX stage has a flag-setting instruction
+        if (EX_to_MEM_CURRENT.INSTRUCTION == CMP_EXT || EX_to_MEM_CURRENT.INSTRUCTION == CMP_IMM ||
+            EX_to_MEM_CURRENT.INSTRUCTION == SUBS_EXT || EX_to_MEM_CURRENT.INSTRUCTION == SUBS_IMM ||
+            EX_to_MEM_CURRENT.INSTRUCTION == ADDS_EXT || EX_to_MEM_CURRENT.INSTRUCTION == ADDS_IMM ||
+            EX_to_MEM_CURRENT.INSTRUCTION == ANDS_SHIFTR) {
+            use_forwarded_flags = 1;
+            forwarded_flag_n = EX_to_MEM_CURRENT.FLAG_N;
+            forwarded_flag_z = EX_to_MEM_CURRENT.FLAG_Z;
+        }
+        // Check if MEM stage has a flag-setting instruction
+        else if (EX_to_MEM_PREV.INSTRUCTION == CMP_EXT || EX_to_MEM_PREV.INSTRUCTION == CMP_IMM ||
+                EX_to_MEM_PREV.INSTRUCTION == SUBS_EXT || EX_to_MEM_PREV.INSTRUCTION == SUBS_IMM ||
+                EX_to_MEM_PREV.INSTRUCTION == ADDS_EXT || EX_to_MEM_PREV.INSTRUCTION == ADDS_IMM ||
+                EX_to_MEM_PREV.INSTRUCTION == ANDS_SHIFTR) {
+            use_forwarded_flags = 1;
+            forwarded_flag_n = EX_to_MEM_PREV.FLAG_N;
+            forwarded_flag_z = EX_to_MEM_PREV.FLAG_Z;
+        }
+    }
+
     switch (in.INSTRUCTION) {
         case ADD_EXT:
             EX_to_MEM_CURRENT.result = EX_to_MEM_CURRENT.RN_VAL + EX_to_MEM_CURRENT.RM_VAL;

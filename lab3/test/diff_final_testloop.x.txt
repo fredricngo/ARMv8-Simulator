@@ -1,0 +1,116 @@
+4c4
+< Instruction Retired : 8
+---
+> Instruction Retired : 9
+4c4
+< Instruction Retired : 9
+---
+> Instruction Retired : 10
+4c4
+< Instruction Retired : 10
+---
+> Instruction Retired : 11
+4c4
+< Instruction Retired : 11
+---
+> Instruction Retired : 12
+4c4
+< Instruction Retired : 12
+---
+> Instruction Retired : 13
+4c4
+< Instruction Retired : 13
+---
+> Instruction Retired : 14
+4c4
+< Instruction Retired : 14
+---
+> Instruction Retired : 15
+4c4
+< Instruction Retired : 14
+---
+> Instruction Retired : 15
+4c4
+< Instruction Retired : 14
+---
+> Instruction Retired : 16
+4c4
+< Instruction Retired : 15
+---
+> Instruction Retired : 17
+4c4
+< Instruction Retired : 16
+---
+> Instruction Retired : 18
+4c4
+< Instruction Retired : 17
+---
+> Instruction Retired : 19
+4,5c4,5
+< Instruction Retired : 18
+< PC                : 0x400028
+---
+> Instruction Retired : 20
+> PC                : 0x400008
+4,5c4,5
+< Instruction Retired : 19
+< PC                : 0x40002c
+---
+> Instruction Retired : 21
+> PC                : 0x40000c
+4,5c4,5
+< Instruction Retired : 20
+< PC                : 0x400030
+---
+> Instruction Retired : 22
+> PC                : 0x400010
+4,5c4,5
+< Instruction Retired : 21
+< PC                : 0x400030
+---
+> Instruction Retired : 22
+> PC                : 0x400014
+8c8
+< X1: 0x4
+---
+> X1: 0x3
+4,5c4,5
+< Instruction Retired : 22
+< PC                : 0x400030
+---
+> Instruction Retired : 23
+> PC                : 0x400018
+8,9c8,9
+< X1: 0x4
+< X2: 0x0
+---
+> X1: 0x3
+> X2: 0x3
+4,5c4,5
+< Instruction Retired : 23
+< PC                : 0x400030
+---
+> Instruction Retired : 24
+> PC                : 0x40001c
+8,9c8,9
+< X1: 0x4
+< X2: 0x0
+---
+> X1: 0x3
+> X2: 0x3
+4,5c4,5
+< Instruction Retired : 23
+< PC                : 0x400030
+---
+> Instruction Retired : 25
+> PC                : 0x400020
+8,9c8,9
+< X1: 0x4
+< X2: 0x0
+---
+> X1: 0x3
+> X2: 0x3
+41c41
+< No. of Cycles: 31
+---
+> No. of Cycles: 32

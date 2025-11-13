@@ -8,7 +8,7 @@ CORRECT_TESTS=0
 cd src && make
 cd ..
 
-declare -a file_list=("loop1.x" "loop2.x" "loop3.x")
+declare -a file_list=("testloop.x" "loop1.x" "loop2.x" "loop3.x")
 
 mkdir -p test
 ./cleaning.sh
