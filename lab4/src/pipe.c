@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+# include "cache.h"
 
 /* global pipeline state */
 Pipe_State pipe;
@@ -43,6 +44,13 @@ int SQUASH = 0;
 int BRANCH = 0;
 int BRANCH_NEXT = 0;
 
+cache_t *instruction_cache = NULL;
+cache_t *data_cache = NULL;
+
+int ICACHE_MISS = 0;
+int ICACHE_MISS_CYCLES_REMAINING = 0;
+uint64_t ICACHE_MISS_PC = 0;
+int ICACHE_MISS_CANCELLED = 0;
 
 int64_t bit_extension(int32_t immediate, int start, int end){
     /*
@@ -85,6 +93,8 @@ void pipe_init()
     NEXT_PC = pipe.PC;
 	bp_t_init();
 	pipe.bp = &bp;
+    icache = cache_new(64, 4, 32);
+    dcache = cache_new(128, 4, 32);
 }
 
 
@@ -1188,6 +1198,30 @@ void pipe_stage_fetch()
     static Pipe_Op fetched_instruction;
     static int cycle_count = 0;
     cycle_count++;
+    if (ICACHE_MISS) {
+        ICACHE_MISS_CYCLES_REMAINING--;
+        if (ICACHE_MISS_CYCLES_REMAINING > 0) {
+            // Still waiting for cache miss to complete
+            printf("ICACHE_MISS: PC=0x%lx, cycles_remaining=%d\n", 
+                   ICACHE_MISS_PC, ICACHE_MISS_CYCLES_REMAINING);
+            
+            // Insert NOP in pipeline
+            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+            fetched_instruction.NOP = 1;
+            fetched_instruction.INSTRUCTION = UNKNOWN;
+            
+            if (!CLEAR_DE) {
+                IF_to_DE_CURRENT = fetched_instruction;
+            }
+            return;
+        } else {
+            // Cache miss complete on 50th cycle - block is now loaded
+            printf("ICACHE_MISS_COMPLETE: PC=0x%lx, block loaded\n", ICACHE_MISS_PC);
+            ICACHE_MISS = 0;
+            ICACHE_MISS_CYCLES_REMAINING = 0;
+            // Continue with normal fetch below
+        }
+    }
     // printf("FETCH: PC=0x%lx, HLT=%d\n", pipe.PC, HLT_FLAG);
 
     if (!HLT_FLAG) {
@@ -1199,6 +1233,19 @@ void pipe_stage_fetch()
             // execute just told us to go somewhere else
             fetch_pc = NEXT_PC;
         }
+        int icache_hit = cache_update(icache, fetch_pc);
+        if (!icache_hit) {
+            ICACHE_MISS = 1;
+            ICACHE_MISS_PC = fetch_pc;
+            ICACHE_MISS_CYCLES_REMAINING = 50;
+            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+            fetched_instruction.NOP = 1;
+            fetched_instruction.INSTRUCTION = UNKNOWN;
+            
+            if (!CLEAR_DE) {
+                IF_to_DE_CURRENT = fetched_instruction;
+            }
+            return;
 
         uint32_t raw_inst = mem_read_32(fetch_pc);
         fetched_instruction.raw_instruction = raw_inst;
@@ -1224,6 +1271,5 @@ void pipe_stage_fetch()
     if (!CLEAR_DE){
         IF_to_DE_CURRENT = fetched_instruction;
     }
-
-    
+}
 }
