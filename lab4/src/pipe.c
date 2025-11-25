@@ -40,7 +40,6 @@ int RUN_BIT;
 uint64_t NEXT_PC;
 
 int CLEAR_DE = 0;
-int SQUASH = 0;
 int BRANCH = 0;
 int BRANCH_NEXT = 0;
 
@@ -51,6 +50,13 @@ int ICACHE_MISS = 0;
 int ICACHE_MISS_CYCLES_REMAINING = 0;
 uint64_t ICACHE_MISS_PC = 0;
 int ICACHE_MISS_CANCELLED = 0;
+
+static void set_nop(Pipe_Op *op)
+{
+    memset(op, 0, sizeof(Pipe_Op));
+    op->NOP = 1;
+    op->INSTRUCTION = UNKNOWN;
+}
 
 int64_t bit_extension(int32_t immediate, int start, int end){
     /*
@@ -76,26 +82,50 @@ uint32_t extract_bits(uint32_t instruction, int start, int end){
     return (instruction >> start) & mask;
 }
 
-void unconditional_branching(void) {
-    if (!(MEM_to_WB_CURRENT.BR_TARGET == IF_to_DE_CURRENT.PC)) {
-        // || !(MEM_to_WB_CURRENT.BR_TARGET == pipe.PC)
-        SQUASH = 1;
-        stat_squash ++;
-        CLEAR_DE = 1;
-    }
-}
 
+// void pipe_init()
+// {
+//     memset(&pipe, 0, sizeof(Pipe_State));
+//     pipe.PC = 0x00400000;
+//     RUN_BIT = TRUE;
+//     NEXT_PC = pipe.PC;
+// 	bp_t_init();
+// 	pipe.bp = &bp;
+//     instruction_cache = cache_new(64, 4, 32);
+//     data_cache = cache_new(256, 8, 32);
+// }
 void pipe_init()
 {
     memset(&pipe, 0, sizeof(Pipe_State));
     pipe.PC = 0x00400000;
     RUN_BIT = TRUE;
     NEXT_PC = pipe.PC;
-	bp_t_init();
-	pipe.bp = &bp;
-    icache = cache_new(64, 4, 32);
-    dcache = cache_new(128, 4, 32);
+
+    // init branch predictor
+    bp_t_init();
+    pipe.bp = &bp;
+
+    // init caches
+    instruction_cache = cache_new(64, 4, 32);
+    data_cache        = cache_new(256, 8, 32);
+
+    // **** NEW: initialize pipeline registers to NOP ****
+    set_nop(&IF_to_DE_CURRENT);
+    set_nop(&DE_to_EX_CURRENT);
+    set_nop(&EX_to_MEM_CURRENT);
+    set_nop(&MEM_to_WB_CURRENT);
+
+    set_nop(&IF_to_DE_PREV);
+    set_nop(&DE_to_EX_PREV);
+    set_nop(&EX_to_MEM_PREV);
+    set_nop(&MEM_to_WB_PREV);
+
+    // any other flags
+    HLT_FLAG = 0;
+    HLT_NEXT = 0;
+    CLEAR_DE = 0;
 }
+
 
 
 void pipe_cycle()
@@ -498,8 +528,6 @@ void pipe_stage_execute()
         }
     }
 
-    // Add this before your switch statement in pipe_stage_execute()
-
     // Forward flags if needed
     int use_forwarded_flags = 0;
     int forwarded_flag_n = 0;
@@ -687,10 +715,6 @@ void pipe_stage_execute()
             break;
 		}
 		if (EX_to_MEM_CURRENT.UBRANCH || EX_to_MEM_CURRENT.CBRANCH) {
-            // printf("BRANCH_EXECUTE: PC=0x%lx, PREDICTED=0x%lx, ACTUAL=0x%lx, TAKEN=%d, BTB_MISS=%d\n",
-                // EX_to_MEM_CURRENT.PC, EX_to_MEM_CURRENT.PREDICTED_PC, 
-                // EX_to_MEM_CURRENT.BR_TARGET, EX_to_MEM_CURRENT.BR_TAKEN, EX_to_MEM_CURRENT.BTB_MISS);
-            
             bp_update(&EX_to_MEM_CURRENT);
 
             uint64_t correct_pc;
@@ -701,37 +725,14 @@ void pipe_stage_execute()
             }
 
             if (EX_to_MEM_CURRENT.PREDICTED_PC != correct_pc) {
-                // ("MISPREDICTION: correcting PC from 0x%lx to 0x%lx\n", 
-                    // pipe.PC, correct_pc);
+
                 NEXT_PC = correct_pc;
                 stat_squash++;
                 CLEAR_DE = 1;
                 memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
                 IF_to_DE_CURRENT.NOP = 1;
             } else {
-                // printf("PREDICTION_CORRECT\n");
             }
-            
-            // if (EX_to_MEM_CURRENT.PREDICTED_PC != EX_to_MEM_CURRENT.BR_TARGET) {
-            //     printf("MISPREDICTION: correcting PC from 0x%lx to 0x%lx\n", 
-            //         pipe.PC, EX_to_MEM_CURRENT.BR_TARGET);
-            //     NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
-            //     //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
-            //     stat_squash++;
-            //     CLEAR_DE = 1;
-            //     memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
-            //     IF_to_DE_CURRENT.NOP = 1;
-            // } else if (EX_to_MEM_CURRENT.BTB_MISS) {
-            //     printf("BTB_MISS_CORRECTION: PC to 0x%lx\n", EX_to_MEM_CURRENT.BR_TARGET);
-            //     NEXT_PC = EX_to_MEM_CURRENT.BR_TARGET;
-            //     //pipe_pc = EX_to_MEM_CURRENT.BR_TARGET;
-            //     stat_squash++;
-            //     CLEAR_DE = 1;
-            //     memset(&IF_to_DE_CURRENT, 0, sizeof(IF_to_DE_CURRENT));
-            //     IF_to_DE_CURRENT.NOP = 1;
-            // } else {
-            //     printf("PREDICTION_CORRECT\n");
-            // }
         }
 } 
 
@@ -744,7 +745,6 @@ void pipe_stage_decode()
 
     if (CLEAR_DE || HLT_FLAG) {
         DE_to_EX_CURRENT.NOP = 1;
-        // CLEAR_DE = 0;
         return;
     }
     uint64_t current_instruction = in.raw_instruction;
@@ -1193,35 +1193,170 @@ void pipe_stage_decode()
     }
 }
 
+// void pipe_stage_fetch()
+// {  
+//     static Pipe_Op fetched_instruction;
+//     static int cycle_count = 0;
+//     cycle_count++;
+//     uint64_t desired_pc = pipe.PC;
+//     if (CLEAR_DE) {
+//         desired_pc = NEXT_PC;
+//     }
+//     if (ICACHE_MISS) {
+//         ICACHE_MISS_CYCLES_REMAINING--;
+//         if (ICACHE_MISS_CYCLES_REMAINING > 0) {
+//             // Still waiting for cache miss to complete
+//             printf("ICACHE_MISS: PC=0x%lx, cycles_remaining=%d\n", 
+//                    ICACHE_MISS_PC, ICACHE_MISS_CYCLES_REMAINING);
+            
+//             // Insert NOP in pipeline
+//             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+//             fetched_instruction.NOP = 1;
+//             fetched_instruction.INSTRUCTION = UNKNOWN;
+            
+//             if (!CLEAR_DE) {
+//                 IF_to_DE_CURRENT = fetched_instruction;
+//             }
+//             return;
+//         } else {
+//             // Cache miss complete on 50th cycle - block is now loaded
+//             printf("ICACHE_MISS_COMPLETE: PC=0x%lx, block loaded\n", ICACHE_MISS_PC);
+//             ICACHE_MISS = 0;
+//             ICACHE_MISS_CYCLES_REMAINING = 0;
+//             // Continue with normal fetch below
+//         }
+//     }
+//     // printf("FETCH: PC=0x%lx, HLT=%d\n", pipe.PC, HLT_FLAG);
+
+//     if (!HLT_FLAG) {
+//         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+
+//         // pick the right PC to fetch from
+//         uint64_t fetch_pc = pipe.PC;
+//         if (CLEAR_DE) {
+//             // execute just told us to go somewhere else
+//             fetch_pc = NEXT_PC;
+//         }
+//         int icache_hit = cache_update(icache, fetch_pc);
+//         if (!icache_hit) {
+//             ICACHE_MISS = 1;
+//             ICACHE_MISS_PC = fetch_pc;
+//             ICACHE_MISS_CYCLES_REMAINING = 50;
+//             memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+//             fetched_instruction.NOP = 1;
+//             fetched_instruction.INSTRUCTION = UNKNOWN;
+            
+//             if (!CLEAR_DE) {
+//                 IF_to_DE_CURRENT = fetched_instruction;
+//             }
+//             return;
+//         }
+
+//         uint32_t raw_inst = mem_read_32(fetch_pc);
+//         fetched_instruction.raw_instruction = raw_inst;
+//         fetched_instruction.PC = fetch_pc;
+//         bp_predict(&fetched_instruction);
+//         fetched_instruction.NOP = 0;
+//         fetched_instruction.INSTRUCTION = UNKNOWN;
+
+//         // printf("FETCHED: PC=0x%lx, inst=0x%x, predicted_pc=0x%lx\n",
+//             //    fetched_instruction.PC, raw_inst, fetched_instruction.PREDICTED_PC);
+
+//         // only let fetch advance PC if we are NOT in the middle of a squash
+//         if (!CLEAR_DE) {
+//             NEXT_PC = fetched_instruction.PREDICTED_PC;
+//         }
+//     } else {
+//         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+//         fetched_instruction.NOP = 1;
+//         fetched_instruction.INSTRUCTION = UNKNOWN;
+//         // printf("FETCH_NOP: HLT active\n");
+//     }
+
+//     if (!CLEAR_DE){
+//         IF_to_DE_CURRENT = fetched_instruction;
+//     }
+// }
+
+// void pipe_stage_fetch(void)
+// {
+//     static Pipe_Op fetched_instruction;
+
+//     // 1. Decide which PC we actually want this cycle
+//     uint64_t desired_pc = pipe.PC;
+//     if (CLEAR_DE) {
+//         desired_pc = NEXT_PC;
+//     }
+
+//     // Optional but nice: if HLT_FLAG, just feed NOPs while draining
+//     if (HLT_FLAG) {
+//         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+//         fetched_instruction.NOP = 1;
+//         fetched_instruction.INSTRUCTION = UNKNOWN;
+//         IF_to_DE_CURRENT = fetched_instruction;
+//         return;
+//     }
+
+//     // 2. Handle in-flight icache miss
+//     if (ICACHE_MISS) {
+//         if (desired_pc != ICACHE_MISS_PC) {
+//             // Branch redirect during a miss: cancel old miss
+//             ICACHE_MISS = 0;
+//             ICACHE_MISS_CYCLES_REMAINING = 0;
+//             // fall through, we will start a new access for desired_pc
+//         } else {
+//             // Still want the same block: just wait
+//             if (ICACHE_MISS_CYCLES_REMAINING > 0) {
+//                 // consume one wait cycle
+//                 ICACHE_MISS_CYCLES_REMAINING--;
+
+//                 // Stall pipeline with a NOP
+//                 memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+//                 fetched_instruction.NOP = 1;
+//                 fetched_instruction.INSTRUCTION = UNKNOWN;
+//                 IF_to_DE_CURRENT = fetched_instruction;
+//                 return;
+//             }
+//             // Here: ICACHE_MISS_CYCLES_REMAINING == 0
+//             // The 50 wait cycles are done; clear the miss and proceed
+//             ICACHE_MISS = 0;
+//         }
+//     }
+
+//     // 3. Normal icache access
+//     int icache_hit = cache_update(instruction_cache, desired_pc);
+//     if (!icache_hit) {
+//         // Start a new miss for desired_pc: 50 full stall cycles coming
+//         ICACHE_MISS = 1;
+//         ICACHE_MISS_PC = desired_pc;
+//         ICACHE_MISS_CYCLES_REMAINING = 50;
+
+//         memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+//         fetched_instruction.NOP = 1;
+//         fetched_instruction.INSTRUCTION = UNKNOWN;
+//         IF_to_DE_CURRENT = fetched_instruction;
+//         return;
+//     }
+
+//     // 4. Hit: actually fetch the instruction
+//     uint32_t raw_inst = mem_read_32(desired_pc);
+//     memset(&fetched_instruction, 0, sizeof(Pipe_Op));
+//     fetched_instruction.raw_instruction = raw_inst;
+//     fetched_instruction.PC = desired_pc;
+//     fetched_instruction.NOP = 0;
+//     fetched_instruction.INSTRUCTION = UNKNOWN;
+
+//     bp_predict(&fetched_instruction);
+
+//     NEXT_PC = fetched_instruction.PREDICTED_PC;
+//     IF_to_DE_CURRENT = fetched_instruction;
+// }
+
 void pipe_stage_fetch()
 {  
     static Pipe_Op fetched_instruction;
     static int cycle_count = 0;
     cycle_count++;
-    if (ICACHE_MISS) {
-        ICACHE_MISS_CYCLES_REMAINING--;
-        if (ICACHE_MISS_CYCLES_REMAINING > 0) {
-            // Still waiting for cache miss to complete
-            printf("ICACHE_MISS: PC=0x%lx, cycles_remaining=%d\n", 
-                   ICACHE_MISS_PC, ICACHE_MISS_CYCLES_REMAINING);
-            
-            // Insert NOP in pipeline
-            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
-            fetched_instruction.NOP = 1;
-            fetched_instruction.INSTRUCTION = UNKNOWN;
-            
-            if (!CLEAR_DE) {
-                IF_to_DE_CURRENT = fetched_instruction;
-            }
-            return;
-        } else {
-            // Cache miss complete on 50th cycle - block is now loaded
-            printf("ICACHE_MISS_COMPLETE: PC=0x%lx, block loaded\n", ICACHE_MISS_PC);
-            ICACHE_MISS = 0;
-            ICACHE_MISS_CYCLES_REMAINING = 0;
-            // Continue with normal fetch below
-        }
-    }
     // printf("FETCH: PC=0x%lx, HLT=%d\n", pipe.PC, HLT_FLAG);
 
     if (!HLT_FLAG) {
@@ -1233,19 +1368,55 @@ void pipe_stage_fetch()
             // execute just told us to go somewhere else
             fetch_pc = NEXT_PC;
         }
-        int icache_hit = cache_update(icache, fetch_pc);
-        if (!icache_hit) {
-            ICACHE_MISS = 1;
-            ICACHE_MISS_PC = fetch_pc;
-            ICACHE_MISS_CYCLES_REMAINING = 50;
-            memset(&fetched_instruction, 0, sizeof(Pipe_Op));
-            fetched_instruction.NOP = 1;
-            fetched_instruction.INSTRUCTION = UNKNOWN;
-            
-            if (!CLEAR_DE) {
-                IF_to_DE_CURRENT = fetched_instruction;
+
+        /* ---------------- I-CACHE MISS HANDLING ---------------- */
+
+        if (ICACHE_MISS) {
+            if (fetch_pc != ICACHE_MISS_PC) {
+                // redirecting to a new PC (e.g. branch) → cancel old miss
+                ICACHE_MISS = 0;
+                ICACHE_MISS_CYCLES_REMAINING = 0;
+                // fall through to start a new access for fetch_pc below
+            } else {
+                // still waiting on the same block
+                ICACHE_MISS_CYCLES_REMAINING--;
+                if (ICACHE_MISS_CYCLES_REMAINING > 0) {
+                    // stall: inject NOP, don't advance NEXT_PC
+                    fetched_instruction.NOP = 1;
+                    fetched_instruction.INSTRUCTION = UNKNOWN;
+
+                    if (!CLEAR_DE) {
+                        IF_to_DE_CURRENT = fetched_instruction;
+                    }
+                    return;
+                } else {
+                    // miss just completed this cycle
+                    ICACHE_MISS = 0;
+                    // proceed to actually read the instruction below
+                }
             }
-            return;
+        }
+
+        // If we are not in a miss now, do a cache lookup for fetch_pc
+        if (!ICACHE_MISS) {
+            int icache_hit = cache_update(instruction_cache, fetch_pc);
+            if (!icache_hit) {
+                // start a new miss
+                ICACHE_MISS = 1;
+                ICACHE_MISS_PC = fetch_pc;
+                ICACHE_MISS_CYCLES_REMAINING = 50;
+
+                fetched_instruction.NOP = 1;
+                fetched_instruction.INSTRUCTION = UNKNOWN;
+
+                if (!CLEAR_DE) {
+                    IF_to_DE_CURRENT = fetched_instruction;
+                }
+                return;
+            }
+        }
+
+        /* ---------------- NORMAL FETCH (HIT OR MISS JUST FINISHED) ---------------- */
 
         uint32_t raw_inst = mem_read_32(fetch_pc);
         fetched_instruction.raw_instruction = raw_inst;
@@ -1254,11 +1425,8 @@ void pipe_stage_fetch()
         fetched_instruction.NOP = 0;
         fetched_instruction.INSTRUCTION = UNKNOWN;
 
-        // printf("FETCHED: PC=0x%lx, inst=0x%x, predicted_pc=0x%lx\n",
-            //    fetched_instruction.PC, raw_inst, fetched_instruction.PREDICTED_PC);
-
         // only let fetch advance PC if we are NOT in the middle of a squash
-        if (!CLEAR_DE && !SQUASH) {
+        if (!CLEAR_DE) {
             NEXT_PC = fetched_instruction.PREDICTED_PC;
         }
     } else {
@@ -1272,4 +1440,6 @@ void pipe_stage_fetch()
         IF_to_DE_CURRENT = fetched_instruction;
     }
 }
-}
+
+
+
