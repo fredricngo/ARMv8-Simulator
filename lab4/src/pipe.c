@@ -1440,6 +1440,3 @@ void pipe_stage_fetch()
         IF_to_DE_CURRENT = fetched_instruction;
     }
 }
-
-
-

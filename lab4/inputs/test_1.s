@@ -28,10 +28,10 @@ add X10, X2, X8
 mov X9, #3
 mov X10, #8
 sub X11, X0, #2
-sdiv X13, X10, X11
-udiv X14, X10, X11
-sdiv X15, X10, X9
-udiv X16, X10, X9
+add X13, X10, X11
+sub X14, X10, X11
+add X15, X10, X9
+sub X16, X10, X9
 
 add X9, X8, 10
 add X10, X8, 7
@@ -97,7 +97,7 @@ lsl x28, x28, 16
 mov x0, #0x2174
 mov X10, 10
 stur X10, [X1, 0x0]
-stur W0, [x28, 0xc]
+stur X0, [x28, 0xc]
 stur X12, [X1, 0x10]
 ldur X13, [X1, 0x0]
 ldur X14, [X1, 0x10]
@@ -108,7 +108,7 @@ mov X10, 0x1234
 stur X10, [X1, 0x0]
 sturb W10, [X1, 0x6]
 ldur X13, [X1, 0x0]
-ldur W14, [X1, 0x4]
+ldur X14, [X1, 0x4]
 ldurb W15, [X1, 0x6]
 
 mov X1, 0x1000
@@ -129,4 +129,3 @@ stur x0, [X1, 0x10]
 ldur X13, [X1, 0x0]
 ldur X14, [X1, 0x10]
 HLT 0
-
