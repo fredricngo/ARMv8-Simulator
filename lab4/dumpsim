@@ -1,13 +1,13 @@
 
 Current register/bus values :
 -------------------------------------
-Instruction Retired : 8
-PC                : 0x400028
+Instruction Retired : 305
+PC                : 0x400020
 Registers:
-X0: 0x1
-X1: 0x1
-X2: 0x0
-X3: 0x0
+X0: 0x0
+X1: 0x10000000
+X2: 0x64
+X3: 0x64
 X4: 0x0
 X5: 0x0
 X6: 0x0
@@ -38,7 +38,7 @@ X30: 0x0
 X31: 0x0
 FLAG_N: 0
 FLAG_Z: 1
-No. of Cycles: 68
+No. of Cycles: 384
 
 
 Memory content [0x10000000..0x100000ff] :

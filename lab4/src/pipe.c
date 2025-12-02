@@ -1111,58 +1111,94 @@ void pipe_stage_decode()
     }
 
 
-    //B - F
-    if (!(extract_bits(current_instruction, 26, 31) ^ 0x5)){
-        DE_to_EX_CURRENT.INSTRUCTION = B;
-        uint32_t immediate = extract_bits(current_instruction, 0, 25);
-        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 25);
-        DE_to_EX_CURRENT.UBRANCH = 1;
-    }
+    // //B - F
+    // if (!(extract_bits(current_instruction, 26, 31) ^ 0x5)){
+    //     DE_to_EX_CURRENT.INSTRUCTION = B;
+    //     uint32_t immediate = extract_bits(current_instruction, 0, 25);
+    //     DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 25);
+    //     DE_to_EX_CURRENT.UBRANCH = 1;
+    // }
 
-    //BEQ - K
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0x0)){
-        DE_to_EX_CURRENT.INSTRUCTION = BEQ;
-        uint32_t immediate = extract_bits(current_instruction, 5, 23);
-        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
-        DE_to_EX_CURRENT.CBRANCH = 1;
-    }
+    // //BEQ - K
+    // if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0x0)){
+    //     DE_to_EX_CURRENT.INSTRUCTION = BEQ;
+    //     uint32_t immediate = extract_bits(current_instruction, 5, 23);
+    //     DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
+    //     DE_to_EX_CURRENT.CBRANCH = 1;
+    // }
 
 
-    //BNE, BLT, BLE - F
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54)){
+    // //BNE, BLT, BLE - F
+    // if (!(extract_bits(current_instruction, 24, 31) ^ 0x54)){
+    //     unsigned int cond_code = extract_bits(current_instruction, 0, 3);
+    //     uint32_t immediate = extract_bits(current_instruction, 5, 23);
+    //     DE_to_EX_CURRENT.IMM  = bit_extension(immediate, 5, 23);
+    //     DE_to_EX_CURRENT.CBRANCH = 1;
+
+    //     switch (cond_code){
+    //         case 0x1:
+    //             DE_to_EX_CURRENT.INSTRUCTION = BNE;
+    //             break;
+    //         case 0xB:
+    //             DE_to_EX_CURRENT.INSTRUCTION = BLT;
+    //             break;
+    //         case 0xD:
+    //             DE_to_EX_CURRENT.INSTRUCTION = BLE;
+    //             break;
+    //     }
+    // }
+
+    // //BGT - K
+    // if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0xC)){
+    //     DE_to_EX_CURRENT.INSTRUCTION = BGT;
+    //     uint32_t immediate = extract_bits(current_instruction, 5, 23);
+    //     DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
+    //     DE_to_EX_CURRENT.CBRANCH = 1;
+    // }
+
+    // //BGE K
+    // if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0xA)){
+    //     DE_to_EX_CURRENT.INSTRUCTION = BGE;
+    //     uint32_t immediate = extract_bits(current_instruction, 5, 23);
+    //     DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
+    //     DE_to_EX_CURRENT.CBRANCH = 1;
+    // }
+    // All conditional branches: B.<cond> (BEQ, BNE, BLT, BLE, BGT, BGE)
+    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54)) {
         unsigned int cond_code = extract_bits(current_instruction, 0, 3);
-        uint32_t immediate = extract_bits(current_instruction, 5, 23);
-        DE_to_EX_CURRENT.IMM  = bit_extension(immediate, 5, 23);
-        DE_to_EX_CURRENT.CBRANCH = 1;
+        uint32_t imm19         = extract_bits(current_instruction, 5, 23);
 
-        switch (cond_code){
-            case 0x1:
+        // imm19 is 19 bits (bits [23:5]) → sign-extend from bit 18
+        int64_t imm_signed = bit_extension(imm19, 0, 18);
+
+        DE_to_EX_CURRENT.CBRANCH = 1;
+        DE_to_EX_CURRENT.IMM     = imm_signed;
+
+        switch (cond_code) {
+            case 0x0: // EQ
+                DE_to_EX_CURRENT.INSTRUCTION = BEQ;
+                break;
+            case 0x1: // NE
                 DE_to_EX_CURRENT.INSTRUCTION = BNE;
                 break;
-            case 0xB:
+            case 0xB: // LT
                 DE_to_EX_CURRENT.INSTRUCTION = BLT;
                 break;
-            case 0xD:
+            case 0xD: // LE
                 DE_to_EX_CURRENT.INSTRUCTION = BLE;
+                break;
+            case 0xC: // GT
+                DE_to_EX_CURRENT.INSTRUCTION = BGT;
+                break;
+            case 0xA: // GE
+                DE_to_EX_CURRENT.INSTRUCTION = BGE;
+                break;
+            default:
+                // you can leave UNKNOWN for other conds you don't care about
                 break;
         }
     }
 
-    //BGT - K
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0xC)){
-        DE_to_EX_CURRENT.INSTRUCTION = BGT;
-        uint32_t immediate = extract_bits(current_instruction, 5, 23);
-        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
-        DE_to_EX_CURRENT.CBRANCH = 1;
-    }
-
-    //BGE K
-    if (!(extract_bits(current_instruction, 24, 31) ^ 0x54) && (extract_bits(current_instruction, 0, 3) == 0xA)){
-        DE_to_EX_CURRENT.INSTRUCTION = BGE;
-        uint32_t immediate = extract_bits(current_instruction, 5, 23);
-        DE_to_EX_CURRENT.IMM = bit_extension(immediate, 0, 18);
-        DE_to_EX_CURRENT.CBRANCH = 1;
-    }
 
     if (DE_to_EX_PREV.LOAD && !DE_to_EX_PREV.NOP) {
         int load_target = DE_to_EX_PREV.RT_REG;
@@ -1371,30 +1407,59 @@ void pipe_stage_fetch()
 
         /* ---------------- I-CACHE MISS HANDLING ---------------- */
 
-        if (ICACHE_MISS) {
-            if (fetch_pc != ICACHE_MISS_PC) {
-                // redirecting to a new PC (e.g. branch) → cancel old miss
-                ICACHE_MISS = 0;
-                ICACHE_MISS_CYCLES_REMAINING = 0;
-                // fall through to start a new access for fetch_pc below
-            } else {
-                // still waiting on the same block
-                ICACHE_MISS_CYCLES_REMAINING--;
-                if (ICACHE_MISS_CYCLES_REMAINING > 0) {
-                    // stall: inject NOP, don't advance NEXT_PC
-                    fetched_instruction.NOP = 1;
-                    fetched_instruction.INSTRUCTION = UNKNOWN;
+        // if (ICACHE_MISS) {
+        //     if (fetch_pc != ICACHE_MISS_PC) {
+        //         // redirecting to a new PC (e.g. branch) → cancel old miss
+        //         ICACHE_MISS = 0;
+        //         ICACHE_MISS_CYCLES_REMAINING = 0;
+        //         // fall through to start a new access for fetch_pc below
+        //     } else {
+        //         // still waiting on the same block
+        //         ICACHE_MISS_CYCLES_REMAINING--;
+        //         if (ICACHE_MISS_CYCLES_REMAINING > 0) {
+        //             // stall: inject NOP, don't advance NEXT_PC
+        //             fetched_instruction.NOP = 1;
+        //             fetched_instruction.INSTRUCTION = UNKNOWN;
 
-                    if (!CLEAR_DE) {
-                        IF_to_DE_CURRENT = fetched_instruction;
-                    }
-                    return;
-                } else {
-                    // miss just completed this cycle
-                    ICACHE_MISS = 0;
-                    // proceed to actually read the instruction below
-                }
+        //             if (!CLEAR_DE) {
+        //                 IF_to_DE_CURRENT = fetched_instruction;
+        //             }
+        //             return;
+        //         } else {
+        //             // miss just completed this cycle
+        //             ICACHE_MISS = 0;
+        //             // proceed to actually read the instruction below
+        //         }
+        //     }
+        // }
+        uint64_t block_mask = ~((uint64_t)instruction_cache->block_size - 1);
+        // or for 32B blocks: block_mask = ~((uint64_t)0x1F);
+
+        uint64_t fetch_block = fetch_pc      & block_mask;
+        uint64_t miss_block  = ICACHE_MISS_PC & block_mask;
+
+        if (ICACHE_MISS) {
+        if (fetch_block != miss_block) {
+            // This redirect points to a different block → cancel the old miss
+            ICACHE_MISS = 0;
+            ICACHE_MISS_CYCLES_REMAINING = 0;
+            // fall through to start a new miss on fetch_pc below
+        } else {
+            // Redirect within the same block → DO NOT cancel.
+            // Just keep waiting on the existing miss.
+            ICACHE_MISS_CYCLES_REMAINING--;
+            if (ICACHE_MISS_CYCLES_REMAINING > 0) {
+                fetched_instruction.NOP = 1;
+                fetched_instruction.INSTRUCTION = UNKNOWN;
+                IF_to_DE_CURRENT = fetched_instruction;
+                return;
+            } else {
+                ICACHE_MISS = 0;
+                // (depending on your timing convention, either:
+                //   - still output NOP this cycle and fetch next cycle, or
+                //   - fetch now; whatever matches the lab’s reference)
             }
+        }
         }
 
         // If we are not in a miss now, do a cache lookup for fetch_pc

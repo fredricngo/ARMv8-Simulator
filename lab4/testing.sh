@@ -4,7 +4,7 @@
 CORRECT_TESTS=0
 
 # declare -a file_list=("br_same.x" "cancel_req.x" "difficult.x" "example.x" "ld_1.x" "ld.x" "mem.x" "st_loop.x" "test_1.x")
-declare -a file_list=("the_most_simple.x" "dirt_simple.x" "br_same.x")
+declare -a file_list=("the_most_simple.x" "dirt_simple.x" "br_same.x" "cancel_req.x")
 
 mkdir -p test
 ./cleaning.sh

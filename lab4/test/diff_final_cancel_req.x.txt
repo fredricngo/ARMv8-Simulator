@@ -1,0 +1,74 @@
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x400028
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x40002c
+5c5
+< PC                : 0x400020
+---
+> PC                : 0x40002c
+4,5c4,5
+< Instruction Retired : 305
+< PC                : 0x400020
+---
+> Instruction Retired : 306
+> PC                : 0x40002c
+4,5c4,5
+< Instruction Retired : 305
+< PC                : 0x400020
+---
+> Instruction Retired : 307
+> PC                : 0x40002c
+4,5c4,5
+< Instruction Retired : 305
+< PC                : 0x400020
+---
+> Instruction Retired : 307
+> PC                : 0x40002c
+41c41
+< No. of Cycles: 384
+---
+> No. of Cycles: 383
