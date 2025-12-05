@@ -43,6 +43,10 @@ int CLEAR_DE = 0;
 int BRANCH = 0;
 int BRANCH_NEXT = 0;
 
+int DCACHE_MISS = 0; 
+int DCACHE_MISS_CYCLES_REMAINING = 0;
+uint64_t DCACHE_MISS_ADDR = 0;
+Pipe_Op DCACHE_STALLED_OP;
 cache_t *instruction_cache = NULL;
 cache_t *data_cache = NULL;
 
@@ -52,6 +56,7 @@ uint64_t ICACHE_MISS_PC = 0;
 
 int ICACHE_MISS_CANCELLED = 0;
 int ICACHE_MISS_CANCEL_DELAY = 0;
+int DCACHE_STALLED_THIS_CYCLE = 0;
 
 static void set_nop(Pipe_Op *op)
 {
@@ -113,35 +118,104 @@ void pipe_init()
 
 
 
+// void pipe_cycle()
+// {
+// 	pipe_stage_wb();
+// 	pipe_stage_mem();
+// 	pipe_stage_execute();
+// 	pipe_stage_decode();
+//     pipe_stage_fetch();
+
+
+
+//     pipe.PC = NEXT_PC;
+
+//     REFETCH_PC = REFETCH_PC_NEXT;
+//     REFETCH_PC_NEXT = 0;
+//     UPDATE_EX = UPDATE_EX_NEXT;
+//     UPDATE_EX_NEXT = 0;
+//     BRANCH = BRANCH_NEXT;
+//     BRANCH_NEXT = 0;
+
+//     HLT_FLAG = HLT_NEXT;
+
+//     CLEAR_DE = 0;
+
+//     IF_to_DE_PREV = IF_to_DE_CURRENT;
+//     DE_to_EX_PREV = DE_to_EX_CURRENT;
+//     EX_to_MEM_PREV = EX_to_MEM_CURRENT;
+//     MEM_to_WB_PREV = MEM_to_WB_CURRENT;
+
+
+// }
+
+
+// void pipe_cycle()
+// {
+//     pipe_stage_wb();
+//     pipe_stage_mem();
+//     pipe_stage_execute();
+//     pipe_stage_decode();
+//     pipe_stage_fetch();
+
+//     MEM_to_WB_PREV = MEM_to_WB_CURRENT;
+
+//     // Only update pipeline state if NOT stalled on D-cache
+//     if (!DCACHE_MISS) {
+//         pipe.PC = NEXT_PC;
+
+//         REFETCH_PC = REFETCH_PC_NEXT;
+//         REFETCH_PC_NEXT = 0;
+//         UPDATE_EX = UPDATE_EX_NEXT;
+//         UPDATE_EX_NEXT = 0;
+//         BRANCH = BRANCH_NEXT;
+//         BRANCH_NEXT = 0;
+
+//         HLT_FLAG = HLT_NEXT;
+
+//         CLEAR_DE = 0;
+
+//         IF_to_DE_PREV = IF_to_DE_CURRENT;
+//         DE_to_EX_PREV = DE_to_EX_CURRENT;
+//         EX_to_MEM_PREV = EX_to_MEM_CURRENT;
+//     }
+    
+//     // Always update WB latch (WB can still retire during stall)
+//     MEM_to_WB_PREV = MEM_to_WB_CURRENT;
+// }
+
 void pipe_cycle()
 {
-	pipe_stage_wb();
-	pipe_stage_mem();
-	pipe_stage_execute();
-	pipe_stage_decode();
+    // Save stall state BEFORE any stage runs
+    DCACHE_STALLED_THIS_CYCLE = DCACHE_MISS;
+    
+    pipe_stage_wb();
+    pipe_stage_mem();
+    pipe_stage_execute();
+    pipe_stage_decode();
     pipe_stage_fetch();
 
-    pipe.PC = NEXT_PC;
-
-    REFETCH_PC = REFETCH_PC_NEXT;
-    REFETCH_PC_NEXT = 0;
-    UPDATE_EX = UPDATE_EX_NEXT;
-    UPDATE_EX_NEXT = 0;
-    BRANCH = BRANCH_NEXT;
-    BRANCH_NEXT = 0;
-
-    HLT_FLAG = HLT_NEXT;
-
-    CLEAR_DE = 0;
-
-    IF_to_DE_PREV = IF_to_DE_CURRENT;
-    DE_to_EX_PREV = DE_to_EX_CURRENT;
-    EX_to_MEM_PREV = EX_to_MEM_CURRENT;
+    // Always update MEM->WB
     MEM_to_WB_PREV = MEM_to_WB_CURRENT;
 
-
+    // Freeze latches if:
+    // 1. We were stalled at start of cycle (DCACHE_STALLED_THIS_CYCLE), OR
+    // 2. A new miss was just detected (DCACHE_MISS)
+    if (!DCACHE_STALLED_THIS_CYCLE || !DCACHE_MISS) {
+        pipe.PC = NEXT_PC;
+        REFETCH_PC = REFETCH_PC_NEXT;
+        REFETCH_PC_NEXT = 0;
+        UPDATE_EX = UPDATE_EX_NEXT;
+        UPDATE_EX_NEXT = 0;
+        BRANCH = BRANCH_NEXT;
+        BRANCH_NEXT = 0;
+        HLT_FLAG = HLT_NEXT;
+        CLEAR_DE = 0;
+        IF_to_DE_PREV = IF_to_DE_CURRENT;
+        DE_to_EX_PREV = DE_to_EX_CURRENT;
+        EX_to_MEM_PREV = EX_to_MEM_CURRENT;
+    }
 }
-
 
 void write_register(int reg_num, int64_t value){
     if (reg_num != 31){
@@ -312,59 +386,191 @@ void pipe_stage_wb()
     }
 }
 
+// void pipe_stage_mem()
+// {
+//     memset(&MEM_to_WB_CURRENT, 0, sizeof(MEM_to_WB_CURRENT));
+//     Pipe_Op in = EX_to_MEM_PREV;
+//     if (in.NOP) { MEM_to_WB_CURRENT.NOP = 1; return; }
+
+//     MEM_to_WB_CURRENT = in;
+
+//     switch (in.INSTRUCTION) {
+//         case ADD_EXT:
+//             break;
+//         case ADD_IMM:
+//             break;
+//         case ADDS_IMM:
+//             break; 
+//         case ADDS_EXT:
+//             break;
+//         case AND_SHIFTR:
+//             break; 
+//         case ANDS_SHIFTR:
+//             break;
+//         case EOR_SHIFTR:
+//             break; 
+//         case LDURB:
+//         {
+//             uint32_t word = mem_read_32(MEM_to_WB_CURRENT.MEM_ADDRESS & ~3);
+//             int byte_offset = MEM_to_WB_CURRENT.MEM_ADDRESS & 3;
+//             uint8_t byte_data = (word >> (byte_offset * 8)) & 0xFF;
+//             MEM_to_WB_CURRENT.MEM_DATA = (uint64_t) byte_data;
+//             break;
+//         }
+//         case LSL_IMM:
+//             break;
+//         case LSR_IMM:
+//             break;
+//         case MOVZ:
+//             break;
+//         case MUL:
+//             break; 
+//         case SUB_IMM:
+//             break; 
+//         case SUB_EXT:
+//             break; 
+//         case SUBS_IMM:
+//             break;
+//         case SUBS_EXT:
+//             break;
+//         case HLT:
+//             break;
+//         case STUR_32:
+//             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFFFFFF));
+//             break;
+//         case STUR_64:
+//             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFFFFFF));
+//             mem_write_32(in.MEM_ADDRESS + 4, (uint32_t)(in.RT_VAL >> 32));
+//             break;
+//         case STURB:
+//         {
+//             uint32_t word = mem_read_32(in.MEM_ADDRESS & ~3);
+//             int byte_offset = in.MEM_ADDRESS & 3;
+//             uint32_t mask = 0xFF << (byte_offset * 8);
+//             uint32_t new_word = (word & ~mask) | ((in.RT_VAL & 0xFF) << (byte_offset * 8));
+//             mem_write_32(in.MEM_ADDRESS & ~3, new_word);
+//             break;
+//         }
+//         case STURH:
+//             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFF));
+//             break;
+//         case LDUR_32:
+//             MEM_to_WB_CURRENT.MEM_DATA = (int32_t) mem_read_32(in.MEM_ADDRESS);
+//             break;
+//         case LDUR_64:
+//         {
+//             uint32_t low_word = mem_read_32(in.MEM_ADDRESS);
+//             uint32_t high_word = mem_read_32(in.MEM_ADDRESS + 4);
+//             MEM_to_WB_CURRENT.MEM_DATA = ((uint64_t)high_word << 32) | low_word;
+//             break;
+//         }
+//         case LDURH:
+//             MEM_to_WB_CURRENT.MEM_DATA = (int16_t) mem_read_32(in.MEM_ADDRESS);
+//             break;
+//         case CMP_EXT:
+//             break;
+//         case CMP_IMM:
+//             break;
+//         case BR:
+//             break;
+//         case B:
+//             break;
+//         case BEQ:
+//             break;
+//         case BNE:
+//             break;
+//         case BLT:
+//             break;
+//         case BLE:
+//             break;
+//         case BGT:
+//             break;
+//         case BGE:
+//             break;
+//         case CBNZ:
+//             break;
+//         case CBZ:
+//             break;
+//         case ORR_SHIFTR:
+//             break;
+// }
+// }
+
 void pipe_stage_mem()
 {
-    memset(&MEM_to_WB_CURRENT, 0, sizeof(MEM_to_WB_CURRENT));
-    Pipe_Op in = EX_to_MEM_PREV;
-    if (in.NOP) { MEM_to_WB_CURRENT.NOP = 1; return; }
+    printf("[MEM] DCACHE_MISS=%d, DCACHE_STALLED_THIS_CYCLE=%d, cycles_remaining=%d\n",
+           DCACHE_MISS, DCACHE_STALLED_THIS_CYCLE, DCACHE_MISS_CYCLES_REMAINING);
 
+    memset(&MEM_to_WB_CURRENT, 0, sizeof(MEM_to_WB_CURRENT));
+    
+    // If we're in a D-cache miss, use the stalled op; otherwise use normal input
+    Pipe_Op in;
+    if (DCACHE_MISS) {
+        in = DCACHE_STALLED_OP;
+        printf("[MEM] Using STALLED_OP, PC=0x%lx, LOAD=%d, STORE=%d, addr=0x%lx\n",
+               in.PC, in.LOAD, in.STORE, in.MEM_ADDRESS);
+    } else {
+        in = EX_to_MEM_PREV;
+        printf("[MEM] Using EX_to_MEM_PREV, PC=0x%lx, NOP=%d, LOAD=%d, STORE=%d\n",
+               in.PC, in.NOP, in.LOAD, in.STORE);
+    }
+    
+    if (in.NOP) { 
+        MEM_to_WB_CURRENT.NOP = 1; 
+        return; 
+    }
+
+    // Check if this instruction accesses memory
+    int is_mem_op = in.LOAD || in.STORE;
+    
+    if (is_mem_op) {
+        if (DCACHE_MISS) {
+            // Ongoing miss - decrement counter
+            DCACHE_MISS_CYCLES_REMAINING--;
+            
+            if (DCACHE_MISS_CYCLES_REMAINING > 0) {
+                // Still waiting - output NOP, keep pipeline stalled
+                MEM_to_WB_CURRENT.NOP = 1;
+                return;
+            }
+            
+            // Miss resolved - insert block into cache
+            printf("[MEM] D-cache miss RESOLVED, inserting block for addr 0x%lx\n", DCACHE_MISS_ADDR);
+            DCACHE_MISS = 0;
+            cache_insert(data_cache, DCACHE_MISS_ADDR);
+            // Fall through to complete the memory operation
+            
+        } else {
+            // Check cache for hit
+            int hit = cache_check(data_cache, in.MEM_ADDRESS);
+            
+            if (!hit) {
+                printf("[MEM] D-cache MISS at addr 0x%lx, starting 50 cycle stall\n", in.MEM_ADDRESS);
+                // Start new miss
+                DCACHE_MISS = 1;
+                DCACHE_MISS_ADDR = in.MEM_ADDRESS;
+                DCACHE_MISS_CYCLES_REMAINING = 50;
+                DCACHE_STALLED_OP = in;
+                MEM_to_WB_CURRENT.NOP = 1;
+                return;
+            }
+            // Hit - fall through to normal operation
+        }
+    }
+
+    // Normal memory operation - copy input to output
     MEM_to_WB_CURRENT = in;
 
+    // Perform the actual memory access
     switch (in.INSTRUCTION) {
-        case ADD_EXT:
-            break;
-        case ADD_IMM:
-            break;
-        case ADDS_IMM:
-            break; 
-        case ADDS_EXT:
-            break;
-        case AND_SHIFTR:
-            break; 
-        case ANDS_SHIFTR:
-            break;
-        case EOR_SHIFTR:
-            break; 
-        case LDURB:
-        {
-            uint32_t word = mem_read_32(MEM_to_WB_CURRENT.MEM_ADDRESS & ~3);
-            int byte_offset = MEM_to_WB_CURRENT.MEM_ADDRESS & 3;
-            uint8_t byte_data = (word >> (byte_offset * 8)) & 0xFF;
-            MEM_to_WB_CURRENT.MEM_DATA = (uint64_t) byte_data;
-            break;
-        }
-        case LSL_IMM:
-            break;
-        case LSR_IMM:
-            break;
-        case MOVZ:
-            break;
-        case MUL:
-            break; 
-        case SUB_IMM:
-            break; 
-        case SUB_EXT:
-            break; 
-        case SUBS_IMM:
-            break;
-        case SUBS_EXT:
-            break;
-        case HLT:
-            break;
         case STUR_32:
+            printf("[MEM] STUR_32: writing 0x%x to address 0x%lx\n", 
+               (uint32_t)(in.RT_VAL & 0xFFFFFFFF), in.MEM_ADDRESS);
             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFFFFFF));
             break;
         case STUR_64:
+            printf("[MEM] STUR_64: writing 0x%lx to address 0x%lx\n", 
+               in.RT_VAL, in.MEM_ADDRESS);
             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFFFFFF));
             mem_write_32(in.MEM_ADDRESS + 4, (uint32_t)(in.RT_VAL >> 32));
             break;
@@ -381,51 +587,47 @@ void pipe_stage_mem()
             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFF));
             break;
         case LDUR_32:
+        {
+            printf("[MEM] LDUR_32: reading from address 0x%lx\n", in.MEM_ADDRESS);
             MEM_to_WB_CURRENT.MEM_DATA = (int32_t) mem_read_32(in.MEM_ADDRESS);
+            printf("[MEM] LDUR_32: got value 0x%lx\n", MEM_to_WB_CURRENT.MEM_DATA);
             break;
+        }
         case LDUR_64:
         {
+            printf("[MEM] LDUR_64: reading from address 0x%lx\n", in.MEM_ADDRESS);
             uint32_t low_word = mem_read_32(in.MEM_ADDRESS);
             uint32_t high_word = mem_read_32(in.MEM_ADDRESS + 4);
             MEM_to_WB_CURRENT.MEM_DATA = ((uint64_t)high_word << 32) | low_word;
+            printf("[MEM] LDUR_64: got value 0x%lx\n", MEM_to_WB_CURRENT.MEM_DATA);
             break;
         }
         case LDURH:
             MEM_to_WB_CURRENT.MEM_DATA = (int16_t) mem_read_32(in.MEM_ADDRESS);
             break;
-        case CMP_EXT:
+        case LDURB:
+        {
+            uint32_t word = mem_read_32(in.MEM_ADDRESS & ~3);
+            int byte_offset = in.MEM_ADDRESS & 3;
+            uint8_t byte_data = (word >> (byte_offset * 8)) & 0xFF;
+            MEM_to_WB_CURRENT.MEM_DATA = (uint64_t) byte_data;
             break;
-        case CMP_IMM:
+        }
+        default:
             break;
-        case BR:
-            break;
-        case B:
-            break;
-        case BEQ:
-            break;
-        case BNE:
-            break;
-        case BLT:
-            break;
-        case BLE:
-            break;
-        case BGT:
-            break;
-        case BGE:
-            break;
-        case CBNZ:
-            break;
-        case CBZ:
-            break;
-        case ORR_SHIFTR:
-            break;
-}
+    }
 }
 
 
 void pipe_stage_execute()
 {
+    if (DCACHE_STALLED_THIS_CYCLE) {
+        // During a D-cache miss, stall the EX stage as well
+        return;
+    }
+
     memset(&EX_to_MEM_CURRENT, 0, sizeof(EX_to_MEM_CURRENT));
+
     Pipe_Op in = DE_to_EX_PREV;
 
     if (UPDATE_EX) {
@@ -723,6 +925,10 @@ void pipe_stage_execute()
 
 void pipe_stage_decode()
 {
+    if (DCACHE_STALLED_THIS_CYCLE){
+        return; 
+    }
+
     memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
 
     Pipe_Op in = IF_to_DE_PREV;
@@ -1163,6 +1369,10 @@ void pipe_stage_decode()
 
 void pipe_stage_fetch()
 {
+    if (DCACHE_STALLED_THIS_CYCLE){
+        return;
+    }
+
     Pipe_Op fetched_instruction;
     memset(&fetched_instruction, 0, sizeof(Pipe_Op));
     fetched_instruction.NOP = 1;
