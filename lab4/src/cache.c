@@ -126,45 +126,76 @@ void cache_destroy(cache_t *c)
 
 }
 
+// Check for hit without modifying cache on miss
+int cache_check(cache_t *c, uint64_t addr)
+{
+    if (!c) return 0;
+    
+    uint64_t block_offset_mask = (1ULL << c->block_offset_bits) - 1;
+    uint64_t set_index_mask = (1ULL << c->set_index_bits) - 1;
 
-// int cache_update(cache_t *c, uint64_t addr)
-// {
-//     if (!c) return 0;
-//     uint64_t block_offset_mask = (1ULL << c->block_offset_bits) - 1;
-//     uint64_t set_index_mask = (1ULL << c->set_index_bits) - 1;
+    uint64_t set_index = (addr >> c->block_offset_bits) & set_index_mask;
+    uint64_t tag = addr >> (c->block_offset_bits + c->set_index_bits);
+    
+    cache_set_t *set = &c->sets[set_index];
+    
+    // Check for hit
+    for (int i = 0; i < c->num_ways; i++) {
+        cache_line_t *line = &set->lines[i];
+        if (line->valid && line->tag == tag) {
+            // Cache hit - update LRU
+            line->lru = 0;
+            for (int j = 0; j < c->num_ways; j++) {
+                if (j != i) {
+                    set->lines[j].lru++;
+                }
+            }
+            return 1; // Hit
+        }
+    }
+    
+    return 0; // Miss - but don't insert anything
+}
 
-//     uint64_t block_offset = addr & block_offset_mask;
-//     uint64_t set_index = (addr >> c->block_offset_bits) & set_index_mask;
-//     uint64_t tag = addr >> (c->block_offset_bits + c->set_index_bits);
-//     cache_set_t *set = &c->sets[set_index];
-//     for (int i = 0; i < c->num_ways; i++) {
-//         cache_line_t *line = &set->lines[i];
-//         if (line->valid && line->tag == tag) {
-//             line->lru = 0;
-//             for (int j = 0; j < c->num_ways; j++) {
-//                 if (j != i) {
-//                     set->lines[j].lru++;
-//                 }
-//             }
-//             return 1;
-//         }
-//     }
-//     int replace_index = 0;
-//     uint64_t oldest_lru = set->lines[0].lru;
-//     for (int i = 0; i < c->num_ways; i++) {
-//         if (!set->lines[i].valid) {
-//             replace_index = i;
-//             break;
-//         }
-//         if (set->lines[i].lru < oldest_lru) {
-//             oldest_lru = set->lines[i].lru;
-//             replace_index = i;
-//         }
-//     }
-//     set->lines[replace_index].valid = 1;
-//     set->lines[replace_index].tag = tag;
-//     return 0;
-// }
+// Insert a block into the cache (call only when miss completes)
+void cache_insert(cache_t *c, uint64_t addr)
+{
+    if (!c) return;
+    
+    uint64_t set_index_mask = (1ULL << c->set_index_bits) - 1;
+
+    uint64_t set_index = (addr >> c->block_offset_bits) & set_index_mask;
+    uint64_t tag = addr >> (c->block_offset_bits + c->set_index_bits);
+    
+    cache_set_t *set = &c->sets[set_index];
+    
+    // Find line to replace
+    int replace_index = 0;
+    uint64_t oldest_lru = set->lines[0].lru;
+    
+    for (int i = 0; i < c->num_ways; i++) {
+        if (!set->lines[i].valid) {
+            replace_index = i;
+            break;
+        }
+        if (set->lines[i].lru > oldest_lru) {
+            oldest_lru = set->lines[i].lru;
+            replace_index = i;
+        }
+    }
+    
+    // Replace the selected line
+    set->lines[replace_index].valid = 1;
+    set->lines[replace_index].tag = tag;
+    set->lines[replace_index].lru = 0;
+    
+    // Increment LRU for all other valid lines
+    for (int i = 0; i < c->num_ways; i++) {
+        if (i != replace_index && set->lines[i].valid) {
+            set->lines[i].lru++;
+        }
+    }
+}
 
 
 int cache_update(cache_t *c, uint64_t addr)

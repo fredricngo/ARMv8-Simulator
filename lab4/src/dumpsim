@@ -38,7 +38,7 @@ X30: 0x0
 X31: 0x0
 FLAG_N: 0
 FLAG_Z: 1
-No. of Cycles: 383
+No. of Cycles: 432
 
 
 Memory content [0x10000000..0x100000ff] :

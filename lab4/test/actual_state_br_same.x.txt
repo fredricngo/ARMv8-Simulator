@@ -5,6 +5,371 @@ Read 13 words from program into memory.
 ARM-SIM> 
 Simulating for 116 cycles...
 
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=0, MISS_PC=0x0, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x0, redirect_block=0x400000, blocks_differ=1
+[FETCH] -> cache_check(0x400000) = MISS
+[FETCH] -> starting new miss at 0x400000, 50 cycles
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=50, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 49
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=49, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 48
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=48, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 47
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=47, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 46
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=46, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 45
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=45, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 44
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=44, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 43
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=43, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 42
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=42, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 41
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=41, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 40
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=40, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 39
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=39, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 38
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=38, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 37
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=37, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 36
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=36, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 35
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=35, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 34
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=34, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 33
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=33, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 32
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=32, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 31
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=31, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 30
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=30, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 29
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=29, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 28
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=28, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 27
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=27, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 26
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=26, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 25
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=25, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 24
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=24, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 23
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=23, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 22
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=22, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 21
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=21, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 20
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=20, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 19
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=19, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 18
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=18, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 17
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=17, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 16
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=16, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 15
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=15, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 14
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=14, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 13
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=13, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 12
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=12, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 11
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=11, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 10
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=10, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 9
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=9, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 8
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=8, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 7
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=7, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 6
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=6, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 5
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=5, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 4
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=4, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 3
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=3, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 2
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=2, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 1
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=1, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400000
+[FETCH] -> predicted_pc=0x400004, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400004, fetch_pc=0x400004, NEXT_PC=0x400004, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400004) = HIT
+[FETCH] -> cache HIT, fetched from 0x400004, predicted_pc=0x400008, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400008, fetch_pc=0x400008, NEXT_PC=0x400008, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400008) = HIT
+[FETCH] -> cache HIT, fetched from 0x400008, predicted_pc=0x40000c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x40000c, fetch_pc=0x40000c, NEXT_PC=0x40000c, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x40000c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40000c, predicted_pc=0x400010, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400010, fetch_pc=0x400010, NEXT_PC=0x400010, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400010) = HIT
+[FETCH] -> cache HIT, fetched from 0x400010, predicted_pc=0x400014, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400018, fetch_pc=0x400018, NEXT_PC=0x400018, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400018) = HIT
+[FETCH] -> cache HIT, fetched from 0x400018, predicted_pc=0x40001c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x40001c, fetch_pc=0x40001c, NEXT_PC=0x40001c, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x40001c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40001c, predicted_pc=0x400020, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400020, blocks_differ=1
+[FETCH] -> cache_check(0x400020) = MISS
+[FETCH] -> starting new miss at 0x400020, 50 cycles
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 49
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=49, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 48
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=48, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 47
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=47, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 46
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=46, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 45
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=45, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 44
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=44, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 43
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=43, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 42
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=42, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 41
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=41, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 40
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=40, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 39
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=39, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 38
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=38, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 37
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=37, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 36
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=36, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 35
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=35, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 34
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=34, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 33
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=33, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 32
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=32, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 31
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=31, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 30
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=30, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 29
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=29, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 28
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=28, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 27
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=27, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 26
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=26, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 25
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=25, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 24
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=24, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 23
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=23, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 22
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=22, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 21
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=21, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 20
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=20, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 19
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=19, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 18
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=18, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 17
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=17, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 16
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=16, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 15
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=15, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 14
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=14, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 13
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=13, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 12
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=12, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 11
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=11, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 10
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=10, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 9
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=9, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 8
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=8, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 7
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=7, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 6
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=6, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 5
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=5, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 4
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=4, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 3
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=3, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 2
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=2, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 1
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=1, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400028
+[FETCH] -> predicted_pc=0x40002c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x40002c, fetch_pc=0x40002c, NEXT_PC=0x40002c, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x40002c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40002c, predicted_pc=0x400030, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400030, fetch_pc=0x400030, NEXT_PC=0x400030, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x400030) = HIT
+[FETCH] -> cache HIT, fetched from 0x400030, predicted_pc=0x400034, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] pipe.PC=0x400034, fetch_pc=0x400034, NEXT_PC=0x400034, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x400034) = HIT
+[FETCH] -> cache HIT, fetched from 0x400034, predicted_pc=0x400038, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] HLT_FLAG set, returning NOP
+[FETCH] HLT_FLAG set, returning NOP
+[FETCH] HLT_FLAG set, returning NOP
 Simulator halted
 
 ARM-SIM> 
