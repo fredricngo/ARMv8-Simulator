@@ -3,7 +3,7 @@ ARM Simulator
 Read 10 words from program into memory.
 
 ARM-SIM> 
-Simulating for 433 cycles...
+Simulating for 434 cycles...
 
 [FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=0, MISS_PC=0x0, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
 [FETCH] miss_block=0x0, redirect_block=0x400000, blocks_differ=1
@@ -160,7 +160,7 @@ Simulating for 433 cycles...
 [FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
 [FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400000
 [FETCH] -> predicted_pc=0x400004, CLEAR_DE=0
-[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400004, fetch_pc=0x400004, NEXT_PC=0x400004, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
 [FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
 [FETCH] -> cache_check(0x400004) = HIT
@@ -202,7 +202,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -224,7 +229,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -246,7 +256,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -268,7 +283,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -290,7 +310,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -312,7 +337,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -334,7 +364,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -356,7 +391,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -378,7 +418,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -400,7 +445,12 @@ Simulating for 433 cycles...
 [FETCH] -> starting new miss at 0x400020, 50 cycles
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=1, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
-[FETCH] -> CANCELLING miss (different block), returning NOP
+[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***
+[FETCH] *** miss_block=0x400020, redirect_block=0x400000, same_block=0 ***
+[FETCH] -> CANCELLING miss (different block)
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=1
+[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=1
 [FETCH] miss_block=0x400020, redirect_block=0x400000, blocks_differ=1
 [FETCH] -> cache_check(0x400014) = HIT
@@ -1760,6 +1810,9 @@ Simulating for 433 cycles...
 [FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
 [FETCH] -> cache_check(0x400020) = MISS
 [FETCH] -> starting new miss at 0x400020, 50 cycles
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=51, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 50
 [FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=0, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
 [FETCH] -> MISS stall continuing, cycles remaining: 49
@@ -1911,7 +1964,7 @@ Simulating for 433 cycles...
 [FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
 [FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400020
 [FETCH] -> predicted_pc=0x400024, CLEAR_DE=0
-[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400024, fetch_pc=0x400024, NEXT_PC=0x400024, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
 [FETCH] -> cache_check(0x400024) = HIT
@@ -1970,7 +2023,7 @@ X30: 0x0
 X31: 0x0
 FLAG_N: 0
 FLAG_Z: 1
-No. of Cycles: 432
+No. of Cycles: 433
 
 ARM-SIM> 
 

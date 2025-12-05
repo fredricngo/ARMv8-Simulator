@@ -160,7 +160,7 @@ Simulating for 117 cycles...
 [FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
 [FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400000
 [FETCH] -> predicted_pc=0x400004, CLEAR_DE=0
-[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400004, fetch_pc=0x400004, NEXT_PC=0x400004, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
 [FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
 [FETCH] -> cache_check(0x400004) = HIT
@@ -351,7 +351,7 @@ Simulating for 117 cycles...
 [FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
 [FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400020
 [FETCH] -> predicted_pc=0x400024, CLEAR_DE=0
-[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
 [FETCH] pipe.PC=0x400024, fetch_pc=0x400024, NEXT_PC=0x400024, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
 [FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
 [FETCH] -> cache_check(0x400024) = HIT

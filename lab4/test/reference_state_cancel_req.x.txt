@@ -3,7 +3,9 @@ ARM Simulator
 Read 10 words from program into memory.
 
 ARM-SIM> 
-Simulating for 433 cycles...
+Simulating for 434 cycles...
+
+Simulator halted
 
 ARM-SIM> 
 Invalid Command
