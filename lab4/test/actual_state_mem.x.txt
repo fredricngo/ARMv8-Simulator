@@ -1,0 +1,2535 @@
+ARM Simulator
+
+Read 39 words from program into memory.
+
+ARM-SIM> 
+Simulating for 744 cycles...
+
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=0, MISS_PC=0x0, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x0, redirect_block=0x400000, blocks_differ=1
+[FETCH] -> cache_check(0x400000) = MISS
+[FETCH] -> starting new miss at 0x400000, 50 cycles
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=50, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 49
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=49, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 48
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=48, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 47
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=47, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 46
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=46, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 45
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=45, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 44
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=44, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 43
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=43, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 42
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=42, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 41
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=41, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 40
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=40, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 39
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=39, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 38
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=38, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 37
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=37, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 36
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=36, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 35
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=35, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 34
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=34, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 33
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=33, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 32
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=32, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 31
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=31, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 30
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=30, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 29
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=29, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 28
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=28, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 27
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=27, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 26
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=26, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 25
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=25, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 24
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=24, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 23
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=23, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 22
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=22, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 21
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=21, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 20
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=20, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 19
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=19, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 18
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=18, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 17
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=17, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 16
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=16, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 15
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=15, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 14
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=14, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 13
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=13, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 12
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=12, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 11
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=11, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 10
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=10, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 9
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=9, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 8
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=8, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 7
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=7, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 6
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=6, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 5
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=5, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 4
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=4, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 3
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=3, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 2
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=2, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 1
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400000, fetch_pc=0x400000, NEXT_PC=0x400000, ICACHE_MISS=1, MISS_PC=0x400000, MISS_CYCLES=1, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400000
+[FETCH] -> predicted_pc=0x400004, CLEAR_DE=0
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400004, fetch_pc=0x400004, NEXT_PC=0x400004, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400004) = HIT
+[FETCH] -> cache HIT, fetched from 0x400004, predicted_pc=0x400008, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400008, fetch_pc=0x400008, NEXT_PC=0x400008, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400008) = HIT
+[FETCH] -> cache HIT, fetched from 0x400008, predicted_pc=0x40000c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400000, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x40000c, fetch_pc=0x40000c, NEXT_PC=0x40000c, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x40000c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40000c, predicted_pc=0x400010, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400004, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400010, fetch_pc=0x400010, NEXT_PC=0x400010, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400010) = HIT
+[FETCH] -> cache HIT, fetched from 0x400010, predicted_pc=0x400014, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400008, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400014, fetch_pc=0x400014, NEXT_PC=0x400014, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400014) = HIT
+[FETCH] -> cache HIT, fetched from 0x400014, predicted_pc=0x400018, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40000c, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400018, fetch_pc=0x400018, NEXT_PC=0x400018, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x400018) = HIT
+[FETCH] -> cache HIT, fetched from 0x400018, predicted_pc=0x40001c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400010, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x40001c, fetch_pc=0x40001c, NEXT_PC=0x40001c, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
+[FETCH] -> cache_check(0x40001c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40001c, predicted_pc=0x400020, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400014, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400000, redirect_block=0x400020, blocks_differ=1
+[FETCH] -> cache_check(0x400020) = MISS
+[FETCH] -> starting new miss at 0x400020, 50 cycles
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400018, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=50, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 49
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40001c, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=49, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 48
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=48, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 47
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=47, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 46
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=46, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 45
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=45, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 44
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=44, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 43
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=43, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 42
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=42, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 41
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=41, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 40
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=40, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 39
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=39, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 38
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=38, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 37
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=37, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 36
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=36, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 35
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=35, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 34
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=34, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 33
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=33, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 32
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=32, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 31
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=31, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 30
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=30, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 29
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=29, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 28
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=28, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 27
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=27, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 26
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=26, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 25
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=25, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 24
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=24, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 23
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=23, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 22
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=22, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 21
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=21, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 20
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=20, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 19
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=19, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 18
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=18, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 17
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=17, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 16
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=16, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 15
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=15, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 14
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=14, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 13
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=13, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 12
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=12, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 11
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=11, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 10
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=10, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 9
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=9, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 8
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=8, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 7
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=7, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 6
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=6, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 5
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=5, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 4
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=4, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 3
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=3, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 2
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=2, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 1
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400020, fetch_pc=0x400020, NEXT_PC=0x400020, ICACHE_MISS=1, MISS_PC=0x400020, MISS_CYCLES=1, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400020
+[FETCH] -> predicted_pc=0x400024, CLEAR_DE=0
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400024, fetch_pc=0x400024, NEXT_PC=0x400024, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x400024) = HIT
+[FETCH] -> cache HIT, fetched from 0x400024, predicted_pc=0x400028, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400028, fetch_pc=0x400028, NEXT_PC=0x400028, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x400028) = HIT
+[FETCH] -> cache HIT, fetched from 0x400028, predicted_pc=0x40002c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400020, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x40002c, fetch_pc=0x40002c, NEXT_PC=0x40002c, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x40002c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40002c, predicted_pc=0x400030, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400024, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400030, fetch_pc=0x400030, NEXT_PC=0x400030, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x400030) = HIT
+[FETCH] -> cache HIT, fetched from 0x400030, predicted_pc=0x400034, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400028, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400034, fetch_pc=0x400034, NEXT_PC=0x400034, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x400034) = HIT
+[FETCH] -> cache HIT, fetched from 0x400034, predicted_pc=0x400038, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40002c, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400038, fetch_pc=0x400038, NEXT_PC=0x400038, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x400038) = HIT
+[FETCH] -> cache HIT, fetched from 0x400038, predicted_pc=0x40003c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400030, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x40003c, fetch_pc=0x40003c, NEXT_PC=0x40003c, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400020, blocks_differ=0
+[FETCH] -> cache_check(0x40003c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40003c, predicted_pc=0x400040, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400034, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=0, MISS_PC=0x400020, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400020, redirect_block=0x400040, blocks_differ=1
+[FETCH] -> cache_check(0x400040) = MISS
+[FETCH] -> starting new miss at 0x400040, 50 cycles
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400038, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=50, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 49
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40003c, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=49, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 48
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=48, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 47
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=47, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 46
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=46, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 45
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=45, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 44
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=44, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 43
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=43, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 42
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=42, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 41
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=41, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 40
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=40, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 39
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=39, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 38
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=38, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 37
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=37, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 36
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=36, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 35
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=35, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 34
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=34, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 33
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=33, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 32
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=32, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 31
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=31, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 30
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=30, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 29
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=29, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 28
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=28, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 27
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=27, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 26
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=26, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 25
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=25, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 24
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=24, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 23
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=23, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 22
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=22, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 21
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=21, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 20
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=20, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 19
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=19, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 18
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=18, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 17
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=17, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 16
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=16, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 15
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=15, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 14
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=14, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 13
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=13, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 12
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=12, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 11
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=11, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 10
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=10, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 9
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=9, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 8
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=8, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 7
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=7, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 6
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=6, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 5
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=5, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 4
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=4, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 3
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=3, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 2
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=2, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 1
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400040, fetch_pc=0x400040, NEXT_PC=0x400040, ICACHE_MISS=1, MISS_PC=0x400040, MISS_CYCLES=1, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400040
+[FETCH] -> predicted_pc=0x400044, CLEAR_DE=0
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400044, fetch_pc=0x400044, NEXT_PC=0x400044, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> cache_check(0x400044) = HIT
+[FETCH] -> cache HIT, fetched from 0x400044, predicted_pc=0x400048, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400048, fetch_pc=0x400048, NEXT_PC=0x400048, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> cache_check(0x400048) = HIT
+[FETCH] -> cache HIT, fetched from 0x400048, predicted_pc=0x40004c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400040, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x40004c, fetch_pc=0x40004c, NEXT_PC=0x40004c, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> cache_check(0x40004c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40004c, predicted_pc=0x400050, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400044, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400050, fetch_pc=0x400050, NEXT_PC=0x400050, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> cache_check(0x400050) = HIT
+[FETCH] -> cache HIT, fetched from 0x400050, predicted_pc=0x400054, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400048, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400054, fetch_pc=0x400054, NEXT_PC=0x400054, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> cache_check(0x400054) = HIT
+[FETCH] -> cache HIT, fetched from 0x400054, predicted_pc=0x400058, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40004c, NOP=0, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400058, fetch_pc=0x400058, NEXT_PC=0x400058, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> cache_check(0x400058) = HIT
+[FETCH] -> cache HIT, fetched from 0x400058, predicted_pc=0x40005c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400050, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x10002000, starting 50 cycle stall
+[FETCH] pipe.PC=0x40005c, fetch_pc=0x40005c, NEXT_PC=0x40005c, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400040, blocks_differ=0
+[FETCH] -> cache_check(0x40005c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40005c, predicted_pc=0x400060, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400050, LOAD=0, STORE=1, addr=0x10002000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x10002000
+[MEM] STUR_64: writing 0x10002000 to address 0x10002000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400054, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x10004000, starting 50 cycle stall
+[FETCH] pipe.PC=0x400060, fetch_pc=0x400060, NEXT_PC=0x400060, ICACHE_MISS=0, MISS_PC=0x400040, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400040, redirect_block=0x400060, blocks_differ=1
+[FETCH] -> cache_check(0x400060) = MISS
+[FETCH] -> starting new miss at 0x400060, 50 cycles
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 49 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 48 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 47 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 46 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 45 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 44 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 43 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 42 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 41 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 40 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 39 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 38 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 37 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 36 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 35 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 34 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 33 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 32 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 31 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 30 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 29 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 28 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 27 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 26 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 25 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 24 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 23 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 22 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 21 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 20 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 19 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 18 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 17 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 16 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 15 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 14 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 13 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 12 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 11 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 10 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 9 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 8 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 7 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 6 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 5 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 4 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 3 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 2 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 1 remaining
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400054, LOAD=0, STORE=1, addr=0x10004000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x10004000
+[MEM] STUR_64: writing 0x10004000 to address 0x10004000
+[FETCH] (dcache stall) ICACHE_MISS countdown: 0 remaining
+[FETCH] (dcache stall) ICACHE_MISS resolved, inserting block
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400058, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x10006000, starting 50 cycle stall
+[FETCH] pipe.PC=0x400060, fetch_pc=0x400060, NEXT_PC=0x400060, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x400060) = HIT
+[FETCH] -> cache HIT, fetched from 0x400060, predicted_pc=0x400064, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400058, LOAD=0, STORE=1, addr=0x10006000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x10006000
+[MEM] STUR_64: writing 0x10006000 to address 0x10006000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40005c, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x10008000, starting 50 cycle stall
+[FETCH] pipe.PC=0x400064, fetch_pc=0x400064, NEXT_PC=0x400064, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x400064) = HIT
+[FETCH] -> cache HIT, fetched from 0x400064, predicted_pc=0x400068, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x40005c, LOAD=0, STORE=1, addr=0x10008000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x10008000
+[MEM] STUR_64: writing 0x10008000 to address 0x10008000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400068, fetch_pc=0x400068, NEXT_PC=0x400068, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x400068) = HIT
+[FETCH] -> cache HIT, fetched from 0x400068, predicted_pc=0x40006c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400060, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x1000a000, starting 50 cycle stall
+[FETCH] pipe.PC=0x40006c, fetch_pc=0x40006c, NEXT_PC=0x40006c, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x40006c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40006c, predicted_pc=0x400070, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400060, LOAD=0, STORE=1, addr=0x1000a000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x1000a000
+[MEM] STUR_64: writing 0x1000a000 to address 0x1000a000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400064, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x1000c000, starting 50 cycle stall
+[FETCH] pipe.PC=0x400070, fetch_pc=0x400070, NEXT_PC=0x400070, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x400070) = HIT
+[FETCH] -> cache HIT, fetched from 0x400070, predicted_pc=0x400074, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400064, LOAD=0, STORE=1, addr=0x1000c000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x1000c000
+[MEM] STUR_64: writing 0x1000c000 to address 0x1000c000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400068, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x1000e000, starting 50 cycle stall
+[FETCH] pipe.PC=0x400074, fetch_pc=0x400074, NEXT_PC=0x400074, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x400074) = HIT
+[FETCH] -> cache HIT, fetched from 0x400074, predicted_pc=0x400078, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400068, LOAD=0, STORE=1, addr=0x1000e000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x1000e000
+[MEM] STUR_64: writing 0x1000e000 to address 0x1000e000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40006c, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x10010000, starting 50 cycle stall
+[FETCH] pipe.PC=0x400078, fetch_pc=0x400078, NEXT_PC=0x400078, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x400078) = HIT
+[FETCH] -> cache HIT, fetched from 0x400078, predicted_pc=0x40007c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x40006c, LOAD=0, STORE=1, addr=0x10010000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x10010000
+[MEM] STUR_64: writing 0x10010000 to address 0x10010000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400070, NOP=0, LOAD=0, STORE=1
+[MEM] D-cache MISS at addr 0x10012000, starting 50 cycle stall
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400074, LOAD=1, RT_REG=19
+[DECODE] Current instruction PC=0x400078, RN_REG=8, RM_REG=0
+[FETCH] pipe.PC=0x40007c, fetch_pc=0x40007c, NEXT_PC=0x40007c, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400060, blocks_differ=0
+[FETCH] -> cache_check(0x40007c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40007c, predicted_pc=0x400080, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400070, LOAD=0, STORE=1, addr=0x10012000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x10012000
+[MEM] STUR_64: writing 0x10012000 to address 0x10012000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400074, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x10012000
+[MEM] LDUR_64: got value 0x10012000
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400078, LOAD=1, RT_REG=18
+[DECODE] Current instruction PC=0x40007c, RN_REG=7, RM_REG=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=0, MISS_PC=0x400060, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400060, redirect_block=0x400080, blocks_differ=1
+[FETCH] -> cache_check(0x400080) = MISS
+[FETCH] -> starting new miss at 0x400080, 50 cycles
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400078, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x10010000
+[MEM] LDUR_64: got value 0x10010000
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=50, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 49
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40007c, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x1000e000
+[MEM] LDUR_64: got value 0x1000e000
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=49, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 48
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=48, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 47
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=47, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 46
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=46, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 45
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=45, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 44
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=44, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 43
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=43, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 42
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=42, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 41
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=41, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 40
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=40, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 39
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=39, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 38
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=38, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 37
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=37, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 36
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=36, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 35
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=35, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 34
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=34, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 33
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=33, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 32
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=32, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 31
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=31, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 30
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=30, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 29
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=29, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 28
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=28, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 27
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=27, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 26
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=26, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 25
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=25, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 24
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=24, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 23
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=23, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 22
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=22, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 21
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=21, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 20
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=20, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 19
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=19, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 18
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=18, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 17
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=17, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 16
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=16, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 15
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=15, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 14
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=14, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 13
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=13, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 12
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=12, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 11
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=11, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 10
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=10, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 9
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=9, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 8
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=8, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 7
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=7, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 6
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=6, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 5
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=5, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 4
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=4, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 3
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=3, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 2
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=2, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS stall continuing, cycles remaining: 1
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400080, fetch_pc=0x400080, NEXT_PC=0x400080, ICACHE_MISS=1, MISS_PC=0x400080, MISS_CYCLES=1, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x400080
+[FETCH] -> predicted_pc=0x400084, CLEAR_DE=0
+[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] pipe.PC=0x400084, fetch_pc=0x400084, NEXT_PC=0x400084, ICACHE_MISS=0, MISS_PC=0x400080, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> cache_check(0x400084) = HIT
+[FETCH] -> cache HIT, fetched from 0x400084, predicted_pc=0x400088, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400080, LOAD=1, RT_REG=16
+[DECODE] Current instruction PC=0x400084, RN_REG=5, RM_REG=0
+[FETCH] pipe.PC=0x400088, fetch_pc=0x400088, NEXT_PC=0x400088, ICACHE_MISS=0, MISS_PC=0x400080, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> cache_check(0x400088) = HIT
+[FETCH] -> cache HIT, fetched from 0x400088, predicted_pc=0x40008c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400080, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x1000c000
+[MEM] LDUR_64: got value 0x1000c000
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400084, LOAD=1, RT_REG=15
+[DECODE] Current instruction PC=0x400088, RN_REG=4, RM_REG=0
+[FETCH] pipe.PC=0x40008c, fetch_pc=0x40008c, NEXT_PC=0x40008c, ICACHE_MISS=0, MISS_PC=0x400080, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> cache_check(0x40008c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40008c, predicted_pc=0x400090, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400084, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x1000a000
+[MEM] LDUR_64: got value 0x1000a000
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400088, LOAD=1, RT_REG=14
+[DECODE] Current instruction PC=0x40008c, RN_REG=3, RM_REG=0
+[FETCH] pipe.PC=0x400090, fetch_pc=0x400090, NEXT_PC=0x400090, ICACHE_MISS=0, MISS_PC=0x400080, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> cache_check(0x400090) = HIT
+[FETCH] -> cache HIT, fetched from 0x400090, predicted_pc=0x400094, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400088, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x10008000
+[MEM] LDUR_64: got value 0x10008000
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x40008c, LOAD=1, RT_REG=13
+[DECODE] Current instruction PC=0x400090, RN_REG=2, RM_REG=0
+[FETCH] pipe.PC=0x400094, fetch_pc=0x400094, NEXT_PC=0x400094, ICACHE_MISS=0, MISS_PC=0x400080, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> cache_check(0x400094) = HIT
+[FETCH] -> cache HIT, fetched from 0x400094, predicted_pc=0x400098, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x40008c, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x10006000
+[MEM] LDUR_64: got value 0x10006000
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400090, LOAD=1, RT_REG=12
+[DECODE] Current instruction PC=0x400094, RN_REG=1, RM_REG=0
+[FETCH] pipe.PC=0x400098, fetch_pc=0x400098, NEXT_PC=0x400098, ICACHE_MISS=0, MISS_PC=0x400080, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> cache_check(0x400098) = HIT
+[FETCH] -> cache HIT, fetched from 0x400098, predicted_pc=0x40009c, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400090, NOP=0, LOAD=1, STORE=0
+[MEM] LDUR_64: reading from address 0x10004000
+[MEM] LDUR_64: got value 0x10004000
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400094, LOAD=1, RT_REG=11
+[DECODE] Current instruction PC=0x400098, RN_REG=0, RM_REG=0
+[FETCH] pipe.PC=0x40009c, fetch_pc=0x40009c, NEXT_PC=0x40009c, ICACHE_MISS=0, MISS_PC=0x400080, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
+[FETCH] miss_block=0x400080, redirect_block=0x400080, blocks_differ=0
+[FETCH] -> cache_check(0x40009c) = HIT
+[FETCH] -> cache HIT, fetched from 0x40009c, predicted_pc=0x4000a0, CLEAR_DE=0
+[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400094, NOP=0, LOAD=1, STORE=0
+[MEM] D-cache MISS at addr 0x10002000, starting 50 cycle stall
+[FETCH] HLT_FLAG set, returning NOP
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=50
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=49
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=48
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=47
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=46
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=45
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=44
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=43
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=42
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=41
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=40
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=39
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=38
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=37
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=36
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=35
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=34
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=33
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=32
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=31
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=30
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=29
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=28
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=27
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=26
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=25
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=24
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=23
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=22
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=21
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=20
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=19
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=18
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=17
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=16
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=15
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=14
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=13
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=12
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=11
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=10
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=9
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=8
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=7
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=6
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=5
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=4
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=3
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=2
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] DCACHE_MISS=1, DCACHE_STALLED_THIS_CYCLE=1, cycles_remaining=1
+[MEM] Using STALLED_OP, PC=0x400094, LOAD=1, STORE=0, addr=0x10002000
+[MEM] D-cache miss RESOLVED, inserting block for addr 0x10002000
+[MEM] LDUR_64: reading from address 0x10002000
+[MEM] LDUR_64: got value 0x10002000
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x400098, NOP=0, LOAD=0, STORE=0
+[FETCH] HLT_FLAG set, returning NOP
+[MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
+[MEM] Using EX_to_MEM_PREV, PC=0x0, NOP=1, LOAD=0, STORE=0
+[FETCH] HLT_FLAG set, returning NOP
+ARM-SIM> 
+Invalid Command
+ARM-SIM> 
+
+Current register/bus values :
+-------------------------------------
+Instruction Retired : 39
+PC                : 0x4000a0
+Registers:
+X0: 0x10000
+X1: 0x10002000
+X2: 0x10004000
+X3: 0x10006000
+X4: 0x10008000
+X5: 0x1000a000
+X6: 0x1000c000
+X7: 0x1000e000
+X8: 0x10010000
+X9: 0x10012000
+X10: 0x0
+X11: 0x10002000
+X12: 0x10004000
+X13: 0x10006000
+X14: 0x10008000
+X15: 0x1000a000
+X16: 0x1000c000
+X17: 0x1000e000
+X18: 0x10010000
+X19: 0x10012000
+X20: 0x0
+X21: 0x0
+X22: 0x0
+X23: 0x0
+X24: 0x0
+X25: 0x0
+X26: 0x0
+X27: 0x0
+X28: 0x0
+X29: 0x0
+X30: 0x0
+X31: 0x0
+FLAG_N: 0
+FLAG_Z: 0
+No. of Cycles: 744
+
+ARM-SIM> 
+
+Memory content [0x10000000..0x100000ff] :
+-------------------------------------
+  0x10000000 (268435456) : 0x0
+  0x10000004 (268435460) : 0x0
+  0x10000008 (268435464) : 0x0
+  0x1000000c (268435468) : 0x0
+  0x10000010 (268435472) : 0x0
+  0x10000014 (268435476) : 0x0
+  0x10000018 (268435480) : 0x0
+  0x1000001c (268435484) : 0x0
+  0x10000020 (268435488) : 0x0
+  0x10000024 (268435492) : 0x0
+  0x10000028 (268435496) : 0x0
+  0x1000002c (268435500) : 0x0
+  0x10000030 (268435504) : 0x0
+  0x10000034 (268435508) : 0x0
+  0x10000038 (268435512) : 0x0
+  0x1000003c (268435516) : 0x0
+  0x10000040 (268435520) : 0x0
+  0x10000044 (268435524) : 0x0
+  0x10000048 (268435528) : 0x0
+  0x1000004c (268435532) : 0x0
+  0x10000050 (268435536) : 0x0
+  0x10000054 (268435540) : 0x0
+  0x10000058 (268435544) : 0x0
+  0x1000005c (268435548) : 0x0
+  0x10000060 (268435552) : 0x0
+  0x10000064 (268435556) : 0x0
+  0x10000068 (268435560) : 0x0
+  0x1000006c (268435564) : 0x0
+  0x10000070 (268435568) : 0x0
+  0x10000074 (268435572) : 0x0
+  0x10000078 (268435576) : 0x0
+  0x1000007c (268435580) : 0x0
+  0x10000080 (268435584) : 0x0
+  0x10000084 (268435588) : 0x0
+  0x10000088 (268435592) : 0x0
+  0x1000008c (268435596) : 0x0
+  0x10000090 (268435600) : 0x0
+  0x10000094 (268435604) : 0x0
+  0x10000098 (268435608) : 0x0
+  0x1000009c (268435612) : 0x0
+  0x100000a0 (268435616) : 0x0
+  0x100000a4 (268435620) : 0x0
+  0x100000a8 (268435624) : 0x0
+  0x100000ac (268435628) : 0x0
+  0x100000b0 (268435632) : 0x0
+  0x100000b4 (268435636) : 0x0
+  0x100000b8 (268435640) : 0x0
+  0x100000bc (268435644) : 0x0
+  0x100000c0 (268435648) : 0x0
+  0x100000c4 (268435652) : 0x0
+  0x100000c8 (268435656) : 0x0
+  0x100000cc (268435660) : 0x0
+  0x100000d0 (268435664) : 0x0
+  0x100000d4 (268435668) : 0x0
+  0x100000d8 (268435672) : 0x0
+  0x100000dc (268435676) : 0x0
+  0x100000e0 (268435680) : 0x0
+  0x100000e4 (268435684) : 0x0
+  0x100000e8 (268435688) : 0x0
+  0x100000ec (268435692) : 0x0
+  0x100000f0 (268435696) : 0x0
+  0x100000f4 (268435700) : 0x0
+  0x100000f8 (268435704) : 0x0
+  0x100000fc (268435708) : 0x0
+
+ARM-SIM> 

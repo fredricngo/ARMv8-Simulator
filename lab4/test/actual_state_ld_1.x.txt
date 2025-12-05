@@ -308,6 +308,8 @@ Simulating for 112 cycles...
 [MEM] DCACHE_MISS=0, DCACHE_STALLED_THIS_CYCLE=0, cycles_remaining=0
 [MEM] Using EX_to_MEM_PREV, PC=0x400010, NOP=0, LOAD=0, STORE=1
 [MEM] D-cache MISS at addr 0x10000000, starting 50 cycle stall
+[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x400014, LOAD=1, RT_REG=6
+[DECODE] Current instruction PC=0x400018, RN_REG=0, RM_REG=0
 [FETCH] pipe.PC=0x40001c, fetch_pc=0x40001c, NEXT_PC=0x40001c, ICACHE_MISS=0, MISS_PC=0x400000, MISS_CYCLES=0, CLEAR_DE=0, CANCELLED=0
 [FETCH] miss_block=0x400000, redirect_block=0x400000, blocks_differ=0
 [FETCH] -> cache_check(0x40001c) = HIT

@@ -1,0 +1,52 @@
+5c5
+< PC                : 0x400024
+---
+> PC                : 0x400020
+5c5
+< PC                : 0x400028
+---
+> PC                : 0x400024
+5c5
+< PC                : 0x40002c
+---
+> PC                : 0x400028
+5c5
+< PC                : 0x400030
+---
+> PC                : 0x40002c
+4,5c4,5
+< Instruction Retired : 9
+< PC                : 0x400030
+---
+> Instruction Retired : 8
+> PC                : 0x40002c
+14c14
+< X7: 0x3
+---
+> X7: 0x0
+4,5c4,5
+< Instruction Retired : 10
+< PC                : 0x400034
+---
+> Instruction Retired : 9
+> PC                : 0x400030
+15c15
+< X8: 0x4
+---
+> X8: 0x0
+4c4
+< Instruction Retired : 11
+---
+> Instruction Retired : 10
+16c16
+< X9: 0x7
+---
+> X9: 0x0
+4c4
+< Instruction Retired : 12
+---
+> Instruction Retired : 11
+41c41
+< No. of Cycles: 168
+---
+> No. of Cycles: 169

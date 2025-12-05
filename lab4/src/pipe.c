@@ -118,72 +118,6 @@ void pipe_init()
 
 
 
-// void pipe_cycle()
-// {
-// 	pipe_stage_wb();
-// 	pipe_stage_mem();
-// 	pipe_stage_execute();
-// 	pipe_stage_decode();
-//     pipe_stage_fetch();
-
-
-
-//     pipe.PC = NEXT_PC;
-
-//     REFETCH_PC = REFETCH_PC_NEXT;
-//     REFETCH_PC_NEXT = 0;
-//     UPDATE_EX = UPDATE_EX_NEXT;
-//     UPDATE_EX_NEXT = 0;
-//     BRANCH = BRANCH_NEXT;
-//     BRANCH_NEXT = 0;
-
-//     HLT_FLAG = HLT_NEXT;
-
-//     CLEAR_DE = 0;
-
-//     IF_to_DE_PREV = IF_to_DE_CURRENT;
-//     DE_to_EX_PREV = DE_to_EX_CURRENT;
-//     EX_to_MEM_PREV = EX_to_MEM_CURRENT;
-//     MEM_to_WB_PREV = MEM_to_WB_CURRENT;
-
-
-// }
-
-
-// void pipe_cycle()
-// {
-//     pipe_stage_wb();
-//     pipe_stage_mem();
-//     pipe_stage_execute();
-//     pipe_stage_decode();
-//     pipe_stage_fetch();
-
-//     MEM_to_WB_PREV = MEM_to_WB_CURRENT;
-
-//     // Only update pipeline state if NOT stalled on D-cache
-//     if (!DCACHE_MISS) {
-//         pipe.PC = NEXT_PC;
-
-//         REFETCH_PC = REFETCH_PC_NEXT;
-//         REFETCH_PC_NEXT = 0;
-//         UPDATE_EX = UPDATE_EX_NEXT;
-//         UPDATE_EX_NEXT = 0;
-//         BRANCH = BRANCH_NEXT;
-//         BRANCH_NEXT = 0;
-
-//         HLT_FLAG = HLT_NEXT;
-
-//         CLEAR_DE = 0;
-
-//         IF_to_DE_PREV = IF_to_DE_CURRENT;
-//         DE_to_EX_PREV = DE_to_EX_CURRENT;
-//         EX_to_MEM_PREV = EX_to_MEM_CURRENT;
-//     }
-    
-//     // Always update WB latch (WB can still retire during stall)
-//     MEM_to_WB_PREV = MEM_to_WB_CURRENT;
-// }
-
 void pipe_cycle()
 {
     // Save stall state BEFORE any stage runs
@@ -201,7 +135,7 @@ void pipe_cycle()
     // Freeze latches if:
     // 1. We were stalled at start of cycle (DCACHE_STALLED_THIS_CYCLE), OR
     // 2. A new miss was just detected (DCACHE_MISS)
-    if (!DCACHE_STALLED_THIS_CYCLE || !DCACHE_MISS) {
+    if (!DCACHE_STALLED_THIS_CYCLE) {
         pipe.PC = NEXT_PC;
         REFETCH_PC = REFETCH_PC_NEXT;
         REFETCH_PC_NEXT = 0;
@@ -385,116 +319,6 @@ void pipe_stage_wb()
             break;
     }
 }
-
-// void pipe_stage_mem()
-// {
-//     memset(&MEM_to_WB_CURRENT, 0, sizeof(MEM_to_WB_CURRENT));
-//     Pipe_Op in = EX_to_MEM_PREV;
-//     if (in.NOP) { MEM_to_WB_CURRENT.NOP = 1; return; }
-
-//     MEM_to_WB_CURRENT = in;
-
-//     switch (in.INSTRUCTION) {
-//         case ADD_EXT:
-//             break;
-//         case ADD_IMM:
-//             break;
-//         case ADDS_IMM:
-//             break; 
-//         case ADDS_EXT:
-//             break;
-//         case AND_SHIFTR:
-//             break; 
-//         case ANDS_SHIFTR:
-//             break;
-//         case EOR_SHIFTR:
-//             break; 
-//         case LDURB:
-//         {
-//             uint32_t word = mem_read_32(MEM_to_WB_CURRENT.MEM_ADDRESS & ~3);
-//             int byte_offset = MEM_to_WB_CURRENT.MEM_ADDRESS & 3;
-//             uint8_t byte_data = (word >> (byte_offset * 8)) & 0xFF;
-//             MEM_to_WB_CURRENT.MEM_DATA = (uint64_t) byte_data;
-//             break;
-//         }
-//         case LSL_IMM:
-//             break;
-//         case LSR_IMM:
-//             break;
-//         case MOVZ:
-//             break;
-//         case MUL:
-//             break; 
-//         case SUB_IMM:
-//             break; 
-//         case SUB_EXT:
-//             break; 
-//         case SUBS_IMM:
-//             break;
-//         case SUBS_EXT:
-//             break;
-//         case HLT:
-//             break;
-//         case STUR_32:
-//             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFFFFFF));
-//             break;
-//         case STUR_64:
-//             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFFFFFF));
-//             mem_write_32(in.MEM_ADDRESS + 4, (uint32_t)(in.RT_VAL >> 32));
-//             break;
-//         case STURB:
-//         {
-//             uint32_t word = mem_read_32(in.MEM_ADDRESS & ~3);
-//             int byte_offset = in.MEM_ADDRESS & 3;
-//             uint32_t mask = 0xFF << (byte_offset * 8);
-//             uint32_t new_word = (word & ~mask) | ((in.RT_VAL & 0xFF) << (byte_offset * 8));
-//             mem_write_32(in.MEM_ADDRESS & ~3, new_word);
-//             break;
-//         }
-//         case STURH:
-//             mem_write_32(in.MEM_ADDRESS, (uint32_t)(in.RT_VAL & 0xFFFF));
-//             break;
-//         case LDUR_32:
-//             MEM_to_WB_CURRENT.MEM_DATA = (int32_t) mem_read_32(in.MEM_ADDRESS);
-//             break;
-//         case LDUR_64:
-//         {
-//             uint32_t low_word = mem_read_32(in.MEM_ADDRESS);
-//             uint32_t high_word = mem_read_32(in.MEM_ADDRESS + 4);
-//             MEM_to_WB_CURRENT.MEM_DATA = ((uint64_t)high_word << 32) | low_word;
-//             break;
-//         }
-//         case LDURH:
-//             MEM_to_WB_CURRENT.MEM_DATA = (int16_t) mem_read_32(in.MEM_ADDRESS);
-//             break;
-//         case CMP_EXT:
-//             break;
-//         case CMP_IMM:
-//             break;
-//         case BR:
-//             break;
-//         case B:
-//             break;
-//         case BEQ:
-//             break;
-//         case BNE:
-//             break;
-//         case BLT:
-//             break;
-//         case BLE:
-//             break;
-//         case BGT:
-//             break;
-//         case BGE:
-//             break;
-//         case CBNZ:
-//             break;
-//         case CBZ:
-//             break;
-//         case ORR_SHIFTR:
-//             break;
-// }
-// }
 
 void pipe_stage_mem()
 {
@@ -1342,6 +1166,12 @@ void pipe_stage_decode()
         int load_target = DE_to_EX_PREV.RT_REG;
         int need_stall = 0;
         
+        // Add this debug print
+        printf("[DECODE] Checking hazard: DE_to_EX_PREV.PC=0x%lx, LOAD=%d, RT_REG=%d\n",
+            DE_to_EX_PREV.PC, DE_to_EX_PREV.LOAD, DE_to_EX_PREV.RT_REG);
+        printf("[DECODE] Current instruction PC=0x%lx, RN_REG=%d, RM_REG=%d\n",
+            in.PC, DE_to_EX_CURRENT.RN_REG, DE_to_EX_CURRENT.RM_REG);
+        
         if (DE_to_EX_CURRENT.READS_RN && DE_to_EX_CURRENT.RN_REG == load_target && load_target != 31) {
             need_stall = 1;
         }
@@ -1353,6 +1183,7 @@ void pipe_stage_decode()
         }
         
         if (need_stall) {
+        printf("[DECODE] Load-use hazard detected on R%d, stalling pipeline\n", load_target);
             SAVED_INSTRUCTION = DE_to_EX_CURRENT;
             memset(&DE_to_EX_CURRENT, 0, sizeof(DE_to_EX_CURRENT));
             DE_to_EX_CURRENT.NOP = 1;
@@ -1361,6 +1192,7 @@ void pipe_stage_decode()
             REFETCH_PC_NEXT  = 1;
 
             CLEAR_DE = 1;
+            printf("[DECODE] Load-use hazard detected on R%d, stalling pipeline\n", load_target);
             return;
         }
 
@@ -1369,14 +1201,27 @@ void pipe_stage_decode()
 
 void pipe_stage_fetch()
 {
-    if (DCACHE_STALLED_THIS_CYCLE){
-        return;
-    }
-
     Pipe_Op fetched_instruction;
     memset(&fetched_instruction, 0, sizeof(Pipe_Op));
     fetched_instruction.NOP = 1;
     fetched_instruction.INSTRUCTION = UNKNOWN;
+
+    // During dcache stall, we still need to handle icache miss countdown
+    // but we don't produce new instructions
+    if (DCACHE_STALLED_THIS_CYCLE) {
+        // Continue icache miss countdown even during dcache stall
+        if (ICACHE_MISS && ICACHE_MISS_CYCLES_REMAINING > 0) {
+            ICACHE_MISS_CYCLES_REMAINING--;
+            printf("[FETCH] (dcache stall) ICACHE_MISS countdown: %d remaining\n", 
+                   ICACHE_MISS_CYCLES_REMAINING);
+            if (ICACHE_MISS_CYCLES_REMAINING == 0) {
+                printf("[FETCH] (dcache stall) ICACHE_MISS resolved, inserting block\n");
+                ICACHE_MISS = 0;
+                cache_insert(instruction_cache, ICACHE_MISS_PC);
+            }
+        }
+        return;
+    }
 
     if (HLT_FLAG) {
         printf("[FETCH] HLT_FLAG set, returning NOP\n");
@@ -1505,9 +1350,12 @@ void pipe_stage_fetch()
     }
 }
 
-
 // void pipe_stage_fetch()
 // {
+//     if (DCACHE_STALLED_THIS_CYCLE){
+//         return;
+//     }
+
 //     Pipe_Op fetched_instruction;
 //     memset(&fetched_instruction, 0, sizeof(Pipe_Op));
 //     fetched_instruction.NOP = 1;
@@ -1525,68 +1373,98 @@ void pipe_stage_fetch()
 //         fetch_pc = NEXT_PC;
 //     }
 
-//     uint64_t block_mask = ~((uint64_t)instruction_cache->block_size - 1);
-//     uint64_t miss_block  = ICACHE_MISS_PC & block_mask;
-//     uint64_t redirect_block = NEXT_PC      & block_mask;
+//     uint64_t block_mask    = ~((uint64_t)instruction_cache->block_size - 1);
+//     uint64_t miss_block    = ICACHE_MISS_PC & block_mask;
+//     uint64_t redirect_block = NEXT_PC       & block_mask;   // only meaningful if CLEAR_DE
 
 //     printf("[FETCH] pipe.PC=0x%lx, fetch_pc=0x%lx, NEXT_PC=0x%lx, ICACHE_MISS=%d, MISS_PC=0x%lx, MISS_CYCLES=%d, CLEAR_DE=%d, CANCELLED=%d\n",
-//        pipe.PC, fetch_pc, NEXT_PC, ICACHE_MISS, ICACHE_MISS_PC, ICACHE_MISS_CYCLES_REMAINING, CLEAR_DE, ICACHE_MISS_CANCELLED);
+//            pipe.PC, fetch_pc, NEXT_PC, ICACHE_MISS, ICACHE_MISS_PC,
+//            ICACHE_MISS_CYCLES_REMAINING, CLEAR_DE, ICACHE_MISS_CANCELLED);
 //     printf("[FETCH] miss_block=0x%lx, redirect_block=0x%lx, blocks_differ=%d\n",
-//        miss_block, redirect_block, (miss_block != redirect_block));
+//            miss_block, redirect_block, (miss_block != redirect_block));
+//     if (ICACHE_MISS && CLEAR_DE) {
+//         printf("[FETCH] *** CRITICAL: ICACHE_MISS=1 AND CLEAR_DE=1 simultaneously! ***\n");
+//         printf("[FETCH] *** miss_block=0x%lx, redirect_block=0x%lx, same_block=%d ***\n",
+//             miss_block, redirect_block, (miss_block == redirect_block));
+//     }
+
+//     /* ---------------- I-CACHE MISS HANDLING ---------------- */
 
 //     if (ICACHE_MISS) {
+
+//         /* 1. CANCEL CASE: redirect to a *different* block */
 //         if (CLEAR_DE && (miss_block != redirect_block)) {
-//             printf("[FETCH] -> CANCELLING miss (different block), will check new PC\n");
+//             printf("[FETCH] -> CANCELLING miss (different block)\n");
 //             ICACHE_MISS = 0;
 //             ICACHE_MISS_CYCLES_REMAINING = 0;
 //             ICACHE_MISS_CANCELLED = 1;
-//             // Don't return - fall through to check cache for new fetch_pc
-//         } else if (ICACHE_MISS_CYCLES_REMAINING > 1) {
-//             printf("[FETCH] -> MISS stall continuing, cycles remaining after decrement: %d\n", ICACHE_MISS_CYCLES_REMAINING - 1);
+
+//             /* IMPORTANT:
+//              * Do NOT return here.
+//              * We want to immediately start an access for the *new* fetch_pc
+//              * in this same cycle. So we just fall through to the normal
+//              * cache_check() path below.
+//              */
+//         }
+//         else {
+//             /* 2. NORMAL MISS PROGRESS (no cancel) */
+
+//             // Decrement first, as you had it
 //             ICACHE_MISS_CYCLES_REMAINING--;
-//             IF_to_DE_CURRENT = fetched_instruction;
-//             return;
-//         } else {
-//             printf("[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x%lx\n", fetch_pc);
-//             ICACHE_MISS = 0;
 
-//             cache_insert(instruction_cache, ICACHE_MISS_PC);
-
-//             uint32_t raw_inst = mem_read_32(fetch_pc);
-//             fetched_instruction.raw_instruction = raw_inst;
-//             fetched_instruction.PC = fetch_pc;
-//             fetched_instruction.NOP = 0;
-//             fetched_instruction.INSTRUCTION = UNKNOWN;
-
-//             bp_predict(&fetched_instruction);
-//             printf("[FETCH] -> predicted_pc=0x%lx, CLEAR_DE=%d\n",
-//                    fetched_instruction.PREDICTED_PC, CLEAR_DE);
-
-//             if (!CLEAR_DE) {
-//                 NEXT_PC = fetched_instruction.PREDICTED_PC;
-//                 IF_to_DE_CURRENT = fetched_instruction;
-//                 printf("[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT\n");
+//             if (ICACHE_MISS_CYCLES_REMAINING > 0) {
+//                 printf("[FETCH] -> MISS stall continuing, cycles remaining: %d\n",
+//                        ICACHE_MISS_CYCLES_REMAINING);
+//                 IF_to_DE_CURRENT = fetched_instruction; // NOP
+//                 return;
 //             } else {
-//                 // Branch/redirect this cycle wins. We still "pay" the miss latency and
-//                 // fill the cache, but we don't push this instruction into the pipe.
-//                 printf("[FETCH] -> MISS resolved but CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT\n");
-//                 // Leave IF_to_DE_CURRENT as NOP
+//                 printf("[FETCH] -> MISS resolved, inserting block and fetching from fetch_pc=0x%lx\n",
+//                        fetch_pc);
+//                 ICACHE_MISS = 0;
+
+//                 cache_insert(instruction_cache, ICACHE_MISS_PC);
+
+//                 /* Treat like a cache hit on fetch_pc, but respect CLEAR_DE,
+//                  * just like Fix 1.
+//                  */
+//                 uint32_t raw_inst = mem_read_32(fetch_pc);
+//                 fetched_instruction.raw_instruction = raw_inst;
+//                 fetched_instruction.PC = fetch_pc;
+//                 fetched_instruction.NOP = 0;
+//                 fetched_instruction.INSTRUCTION = UNKNOWN;
+
+//                 bp_predict(&fetched_instruction);
+//                 printf("[FETCH] -> predicted_pc=0x%lx, CLEAR_DE=%d\n",
+//                        fetched_instruction.PREDICTED_PC, CLEAR_DE);
+
+//                 if (!CLEAR_DE) {
+//                     NEXT_PC = fetched_instruction.PREDICTED_PC;
+//                     IF_to_DE_CURRENT = fetched_instruction;
+//                     printf("[FETCH] -> MISS resolved: set NEXT_PC and IF_to_DE_CURRENT\n");
+//                 } else {
+//                     // Execute/branch redirect wins this cycle.
+//                     printf("[FETCH] -> MISS resolved but CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT\n");
+//                     // IF_to_DE_CURRENT stays as NOP
+//                 }
+//                 return;
 //             }
-//             return;
 //         }
 //     }
 
+//     /* ---------------- NORMAL ACCESS (no miss in flight, or miss just cancelled) ---------------- */
+
 //     int icache_hit = cache_check(instruction_cache, fetch_pc);
-//     printf("[FETCH] -> cache_check(0x%lx) = %s\n", fetch_pc, icache_hit ? "HIT" : "MISS");
-    
+//     printf("[FETCH] -> cache_check(0x%lx) = %s\n",
+//            fetch_pc, icache_hit ? "HIT" : "MISS");
+
 //     if (!icache_hit) {
 //         printf("[FETCH] -> starting new miss at 0x%lx, 50 cycles\n", fetch_pc);
 //         ICACHE_MISS = 1;
 //         ICACHE_MISS_PC = fetch_pc;
-//         ICACHE_MISS_CYCLES_REMAINING = 50;
+//         ICACHE_MISS_CYCLES_REMAINING = CLEAR_DE ? 51 : 50;  // Extra cycle if redirect
 //         ICACHE_MISS_CANCELLED = 0;
 
-//         IF_to_DE_CURRENT = fetched_instruction;
+//         IF_to_DE_CURRENT = fetched_instruction; // NOP
 //         return;
 //     }
 
@@ -1597,7 +1475,8 @@ void pipe_stage_fetch()
 //     fetched_instruction.INSTRUCTION = UNKNOWN;
 
 //     bp_predict(&fetched_instruction);
-//     printf("[FETCH] -> cache HIT, fetched from 0x%lx, predicted_pc=0x%lx, CLEAR_DE=%d\n", fetch_pc, fetched_instruction.PREDICTED_PC, CLEAR_DE);
+//     printf("[FETCH] -> cache HIT, fetched from 0x%lx, predicted_pc=0x%lx, CLEAR_DE=%d\n",
+//            fetch_pc, fetched_instruction.PREDICTED_PC, CLEAR_DE);
 
 //     if (!CLEAR_DE) {
 //         NEXT_PC = fetched_instruction.PREDICTED_PC;
@@ -1605,5 +1484,6 @@ void pipe_stage_fetch()
 //         printf("[FETCH] -> set NEXT_PC and IF_to_DE_CURRENT\n");
 //     } else {
 //         printf("[FETCH] -> CLEAR_DE set, NOT setting NEXT_PC or IF_to_DE_CURRENT\n");
+//         // IF_to_DE_CURRENT remains NOP
 //     }
 // }

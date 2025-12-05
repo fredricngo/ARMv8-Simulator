@@ -1,0 +1,790 @@
+5c5
+< PC                : 0x400084
+---
+> PC                : 0x400080
+5c5
+< PC                : 0x400088
+---
+> PC                : 0x400084
+5c5
+< PC                : 0x40008c
+---
+> PC                : 0x400088
+5c5
+< PC                : 0x400090
+---
+> PC                : 0x40008c
+4,5c4,5
+< Instruction Retired : 27
+< PC                : 0x400094
+---
+> Instruction Retired : 26
+> PC                : 0x400090
+20c20
+< X13: 0xa
+---
+> X13: 0x3
+4,5c4,5
+< Instruction Retired : 28
+< PC                : 0x400098
+---
+> Instruction Retired : 27
+> PC                : 0x400094
+21c21
+< X14: 0x2
+---
+> X14: 0xa
+4,5c4,5
+< Instruction Retired : 29
+< PC                : 0x40009c
+---
+> Instruction Retired : 28
+> PC                : 0x400098
+8c8
+< X1: 0x1000
+---
+> X1: 0x10000000
+4,5c4,5
+< Instruction Retired : 30
+< PC                : 0x4000a0
+---
+> Instruction Retired : 29
+> PC                : 0x40009c
+8c8
+< X1: 0x10000000
+---
+> X1: 0x1000
+4c4
+< Instruction Retired : 31
+---
+> Instruction Retired : 30
+17c17
+< X10: 0x1234
+---
+> X10: 0xa
+46c46
+<   0x10000000 (268435456) : 0x1234
+---
+>   0x10000000 (268435456) : 0xa
+4c4
+< Instruction Retired : 32
+---
+> Instruction Retired : 31
+47c47
+<   0x10000004 (268435460) : 0x340000
+---
+>   0x10000004 (268435460) : 0x0
+4c4
+< Instruction Retired : 33
+---
+> Instruction Retired : 32
+4c4
+< Instruction Retired : 34
+---
+> Instruction Retired : 33
+20c20
+< X13: 0x34000000001234
+---
+> X13: 0xa
+5c5
+< PC                : 0x4000a4
+---
+> PC                : 0x4000a0
+5c5
+< PC                : 0x4000a8
+---
+> PC                : 0x4000a4
+5c5
+< PC                : 0x4000ac
+---
+> PC                : 0x4000a8
+5c5
+< PC                : 0x4000b0
+---
+> PC                : 0x4000ac
+4,5c4,5
+< Instruction Retired : 35
+< PC                : 0x4000b4
+---
+> Instruction Retired : 34
+> PC                : 0x4000b0
+21c21
+< X14: 0x34
+---
+> X14: 0x2
+4,5c4,5
+< Instruction Retired : 36
+< PC                : 0x4000b8
+---
+> Instruction Retired : 35
+> PC                : 0x4000b4
+8c8
+< X1: 0x1000
+---
+> X1: 0x10000000
+4,5c4,5
+< Instruction Retired : 37
+< PC                : 0x4000bc
+---
+> Instruction Retired : 36
+> PC                : 0x4000b8
+8c8
+< X1: 0x10000000
+---
+> X1: 0x1000
+4,5c4,5
+< Instruction Retired : 38
+< PC                : 0x4000c0
+---
+> Instruction Retired : 37
+> PC                : 0x4000bc
+47c47
+<   0x10000004 (268435460) : 0x0
+---
+>   0x10000004 (268435460) : 0x340000
+4c4
+< Instruction Retired : 39
+---
+> Instruction Retired : 38
+47c47
+<   0x10000004 (268435460) : 0x12340000
+---
+>   0x10000004 (268435460) : 0x0
+4c4
+< Instruction Retired : 40
+---
+> Instruction Retired : 39
+4c4
+< Instruction Retired : 41
+---
+> Instruction Retired : 40
+20c20
+< X13: 0x1234000000001234
+---
+> X13: 0x34000000001234
+4c4
+< Instruction Retired : 42
+---
+> Instruction Retired : 41
+21c21
+< X14: 0x1234
+---
+> X14: 0x34
+5c5
+< PC                : 0x4000c4
+---
+> PC                : 0x4000c0
+5c5
+< PC                : 0x4000c8
+---
+> PC                : 0x4000c4
+5c5
+< PC                : 0x4000cc
+---
+> PC                : 0x4000c8
+5c5
+< PC                : 0x4000d0
+---
+> PC                : 0x4000cc
+4,5c4,5
+< Instruction Retired : 43
+< PC                : 0x4000d4
+---
+> Instruction Retired : 42
+> PC                : 0x4000d0
+4,5c4,5
+< Instruction Retired : 44
+< PC                : 0x4000d8
+---
+> Instruction Retired : 43
+> PC                : 0x4000d4
+17c17
+< X10: 0x10
+---
+> X10: 0x1234
+4,5c4,5
+< Instruction Retired : 45
+< PC                : 0x4000dc
+---
+> Instruction Retired : 44
+> PC                : 0x4000d8
+19c19
+< X12: 0x20
+---
+> X12: 0x2
+4,5c4,5
+< Instruction Retired : 46
+< PC                : 0x4000e0
+---
+> Instruction Retired : 45
+> PC                : 0x4000dc
+20c20
+< X13: 0x4c
+---
+> X13: 0x1234000000001234
+4c4
+< Instruction Retired : 47
+---
+> Instruction Retired : 46
+21c21
+< X14: 0x13
+---
+> X14: 0x1234
+4c4
+< Instruction Retired : 48
+---
+> Instruction Retired : 47
+16c16
+< X9: 0x109
+---
+> X9: 0x13
+4c4
+< Instruction Retired : 49
+---
+> Instruction Retired : 48
+20c20
+< X13: 0x42
+---
+> X13: 0x4c
+4c4
+< Instruction Retired : 50
+---
+> Instruction Retired : 49
+21c21
+< X14: 0x109
+---
+> X14: 0x13
+5c5
+< PC                : 0x4000e4
+---
+> PC                : 0x4000e0
+5c5
+< PC                : 0x4000e8
+---
+> PC                : 0x4000e4
+5c5
+< PC                : 0x4000ec
+---
+> PC                : 0x4000e8
+5c5
+< PC                : 0x4000f0
+---
+> PC                : 0x4000ec
+4,5c4,5
+< Instruction Retired : 51
+< PC                : 0x4000f4
+---
+> Instruction Retired : 50
+> PC                : 0x4000f0
+22c22
+< X15: 0x84
+---
+> X15: 0xb
+4,5c4,5
+< Instruction Retired : 52
+< PC                : 0x4000f8
+---
+> Instruction Retired : 51
+> PC                : 0x4000f4
+23c23
+< X16: 0x42
+---
+> X16: 0x5
+4,5c4,5
+< Instruction Retired : 53
+< PC                : 0x4000fc
+---
+> Instruction Retired : 52
+> PC                : 0x4000f8
+4,5c4,5
+< Instruction Retired : 54
+< PC                : 0x400100
+---
+> Instruction Retired : 53
+> PC                : 0x4000fc
+4c4
+< Instruction Retired : 55
+---
+> Instruction Retired : 54
+17c17
+< X10: 0x8
+---
+> X10: 0x10
+4c4
+< Instruction Retired : 56
+---
+> Instruction Retired : 55
+18c18
+< X11: 0x9
+---
+> X11: 0x20
+4c4
+< Instruction Retired : 57
+---
+> Instruction Retired : 56
+19c19
+< X12: 0x48
+---
+> X12: 0x20
+4c4
+< Instruction Retired : 58
+---
+> Instruction Retired : 57
+20c20
+< X13: 0x40
+---
+> X13: 0x42
+5c5
+< PC                : 0x400104
+---
+> PC                : 0x400100
+5c5
+< PC                : 0x400108
+---
+> PC                : 0x400104
+5c5
+< PC                : 0x40010c
+---
+> PC                : 0x400108
+5c5
+< PC                : 0x400110
+---
+> PC                : 0x40010c
+4,5c4,5
+< Instruction Retired : 59
+< PC                : 0x400114
+---
+> Instruction Retired : 58
+> PC                : 0x400110
+16c16
+< X9: 0x13
+---
+> X9: 0x109
+4,5c4,5
+< Instruction Retired : 60
+< PC                : 0x400118
+---
+> Instruction Retired : 59
+> PC                : 0x400114
+17c17
+< X10: 0x10
+---
+> X10: 0x8
+4,5c4,5
+< Instruction Retired : 61
+< PC                : 0x40011c
+---
+> Instruction Retired : 60
+> PC                : 0x400118
+18c18
+< X11: 0x20
+---
+> X11: 0x9
+4,5c4,5
+< Instruction Retired : 62
+< PC                : 0x400120
+---
+> Instruction Retired : 61
+> PC                : 0x40011c
+19c19
+< X12: 0x30
+---
+> X12: 0x48
+4c4
+< Instruction Retired : 63
+---
+> Instruction Retired : 62
+20c20
+< X13: 0x13
+---
+> X13: 0x40
+4c4
+< Instruction Retired : 64
+---
+> Instruction Retired : 63
+8c8
+< X1: 0x1000
+---
+> X1: 0x10000000
+4c4
+< Instruction Retired : 65
+---
+> Instruction Retired : 64
+8c8
+< X1: 0x10000000
+---
+> X1: 0x1000
+4c4
+< Instruction Retired : 66
+---
+> Instruction Retired : 65
+35c35
+< X28: 0x1000
+---
+> X28: 0x0
+5c5
+< PC                : 0x400124
+---
+> PC                : 0x400120
+5c5
+< PC                : 0x400128
+---
+> PC                : 0x400124
+5c5
+< PC                : 0x40012c
+---
+> PC                : 0x400128
+5c5
+< PC                : 0x400130
+---
+> PC                : 0x40012c
+4,5c4,5
+< Instruction Retired : 67
+< PC                : 0x400134
+---
+> Instruction Retired : 66
+> PC                : 0x400130
+35c35
+< X28: 0x10000000
+---
+> X28: 0x1000
+4,5c4,5
+< Instruction Retired : 68
+< PC                : 0x400138
+---
+> Instruction Retired : 67
+> PC                : 0x400134
+7c7
+< X0: 0x2174
+---
+> X0: 0x0
+4,5c4,5
+< Instruction Retired : 69
+< PC                : 0x40013c
+---
+> Instruction Retired : 68
+> PC                : 0x400138
+17c17
+< X10: 0xa
+---
+> X10: 0x10
+46,47c46,47
+<   0x10000000 (268435456) : 0xa
+<   0x10000004 (268435460) : 0x0
+---
+>   0x10000000 (268435456) : 0x1234
+>   0x10000004 (268435460) : 0x12340000
+4,5c4,5
+< Instruction Retired : 70
+< PC                : 0x400140
+---
+> Instruction Retired : 69
+> PC                : 0x40013c
+49,50c49,50
+<   0x1000000c (268435468) : 0x2174
+<   0x10000010 (268435472) : 0x0
+---
+>   0x1000000c (268435468) : 0x0
+>   0x10000010 (268435472) : 0x2
+4c4
+< Instruction Retired : 71
+---
+> Instruction Retired : 70
+50c50
+<   0x10000010 (268435472) : 0x30
+---
+>   0x10000010 (268435472) : 0x0
+4c4
+< Instruction Retired : 72
+---
+> Instruction Retired : 71
+4c4
+< Instruction Retired : 73
+---
+> Instruction Retired : 72
+20c20
+< X13: 0xa
+---
+> X13: 0x13
+4c4
+< Instruction Retired : 74
+---
+> Instruction Retired : 73
+21c21
+< X14: 0x30
+---
+> X14: 0x109
+5c5
+< PC                : 0x400144
+---
+> PC                : 0x400140
+5c5
+< PC                : 0x400148
+---
+> PC                : 0x400144
+5c5
+< PC                : 0x40014c
+---
+> PC                : 0x400148
+5c5
+< PC                : 0x400150
+---
+> PC                : 0x40014c
+4,5c4,5
+< Instruction Retired : 75
+< PC                : 0x400154
+---
+> Instruction Retired : 74
+> PC                : 0x400150
+8c8
+< X1: 0x1000
+---
+> X1: 0x10000000
+4,5c4,5
+< Instruction Retired : 76
+< PC                : 0x400158
+---
+> Instruction Retired : 75
+> PC                : 0x400154
+8c8
+< X1: 0x10000000
+---
+> X1: 0x1000
+4,5c4,5
+< Instruction Retired : 77
+< PC                : 0x40015c
+---
+> Instruction Retired : 76
+> PC                : 0x400158
+17c17
+< X10: 0x1234
+---
+> X10: 0xa
+46c46
+<   0x10000000 (268435456) : 0x1234
+---
+>   0x10000000 (268435456) : 0xa
+4,5c4,5
+< Instruction Retired : 78
+< PC                : 0x400160
+---
+> Instruction Retired : 77
+> PC                : 0x40015c
+47c47
+<   0x10000004 (268435460) : 0x340000
+---
+>   0x10000004 (268435460) : 0x0
+4c4
+< Instruction Retired : 79
+---
+> Instruction Retired : 78
+4c4
+< Instruction Retired : 80
+---
+> Instruction Retired : 79
+20c20
+< X13: 0x34000000001234
+---
+> X13: 0xa
+4c4
+< Instruction Retired : 81
+---
+> Instruction Retired : 80
+21c21
+< X14: 0x340000
+---
+> X14: 0x30
+4c4
+< Instruction Retired : 82
+---
+> Instruction Retired : 81
+22c22
+< X15: 0x34
+---
+> X15: 0x84
+5c5
+< PC                : 0x400164
+---
+> PC                : 0x400160
+5c5
+< PC                : 0x400168
+---
+> PC                : 0x400164
+5c5
+< PC                : 0x40016c
+---
+> PC                : 0x400168
+5c5
+< PC                : 0x400170
+---
+> PC                : 0x40016c
+4,5c4,5
+< Instruction Retired : 83
+< PC                : 0x400174
+---
+> Instruction Retired : 82
+> PC                : 0x400170
+8c8
+< X1: 0x1000
+---
+> X1: 0x10000000
+4,5c4,5
+< Instruction Retired : 84
+< PC                : 0x400178
+---
+> Instruction Retired : 83
+> PC                : 0x400174
+8c8
+< X1: 0x10000000
+---
+> X1: 0x1000
+4,5c4,5
+< Instruction Retired : 85
+< PC                : 0x40017c
+---
+> Instruction Retired : 84
+> PC                : 0x400178
+47c47
+<   0x10000004 (268435460) : 0x0
+---
+>   0x10000004 (268435460) : 0x340000
+4,5c4,5
+< Instruction Retired : 86
+< PC                : 0x400180
+---
+> Instruction Retired : 85
+> PC                : 0x40017c
+47c47
+<   0x10000004 (268435460) : 0x12340000
+---
+>   0x10000004 (268435460) : 0x0
+4c4
+< Instruction Retired : 87
+---
+> Instruction Retired : 86
+4c4
+< Instruction Retired : 88
+---
+> Instruction Retired : 87
+20c20
+< X13: 0x1234000000001234
+---
+> X13: 0x34000000001234
+4c4
+< Instruction Retired : 89
+---
+> Instruction Retired : 88
+21c21
+< X14: 0x1234
+---
+> X14: 0x340000
+4c4
+< Instruction Retired : 90
+---
+> Instruction Retired : 89
+8c8
+< X1: 0x1000
+---
+> X1: 0x10000000
+5c5
+< PC                : 0x400184
+---
+> PC                : 0x400180
+5c5
+< PC                : 0x400188
+---
+> PC                : 0x400184
+5c5
+< PC                : 0x40018c
+---
+> PC                : 0x400188
+5c5
+< PC                : 0x400190
+---
+> PC                : 0x40018c
+4,5c4,5
+< Instruction Retired : 91
+< PC                : 0x400194
+---
+> Instruction Retired : 90
+> PC                : 0x400190
+8c8
+< X1: 0x10000000
+---
+> X1: 0x1000
+4,5c4,5
+< Instruction Retired : 92
+< PC                : 0x400198
+---
+> Instruction Retired : 91
+> PC                : 0x400194
+4,5c4,5
+< Instruction Retired : 93
+< PC                : 0x40019c
+---
+> Instruction Retired : 92
+> PC                : 0x400198
+7c7
+< X0: 0x217400000000
+---
+> X0: 0x2174
+4,5c4,5
+< Instruction Retired : 94
+< PC                : 0x4001a0
+---
+> Instruction Retired : 93
+> PC                : 0x40019c
+7c7
+< X0: 0x217400000126
+---
+> X0: 0x217400000000
+46c46
+<   0x10000000 (268435456) : 0x126
+---
+>   0x10000000 (268435456) : 0x1234
+4c4
+< Instruction Retired : 95
+---
+> Instruction Retired : 94
+50,51c50,51
+<   0x10000010 (268435472) : 0x126
+<   0x10000014 (268435476) : 0x2174
+---
+>   0x10000010 (268435472) : 0x30
+>   0x10000014 (268435476) : 0x0
+4c4
+< Instruction Retired : 96
+---
+> Instruction Retired : 95
+4c4
+< Instruction Retired : 97
+---
+> Instruction Retired : 96
+20c20
+< X13: 0x1234000000000126
+---
+> X13: 0x1234000000001234
+4c4
+< Instruction Retired : 98
+---
+> Instruction Retired : 97
+21c21
+< X14: 0x217400000126
+---
+> X14: 0x1234
+5c5
+< PC                : 0x4001a4
+---
+> PC                : 0x4001a0
+5c5
+< PC                : 0x4001a8
+---
+> PC                : 0x4001a4
+4c4
+< Instruction Retired : 99
+---
+> Instruction Retired : 98
+41c41
+< No. of Cycles: 807
+---
+> No. of Cycles: 808
