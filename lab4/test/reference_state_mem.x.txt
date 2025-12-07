@@ -3,9 +3,7 @@ ARM Simulator
 Read 39 words from program into memory.
 
 ARM-SIM> 
-Simulating for 744 cycles...
-
-Simulator halted
+Simulating for 287 cycles...
 
 ARM-SIM> 
 Invalid Command
@@ -13,8 +11,8 @@ ARM-SIM>
 
 Current register/bus values :
 -------------------------------------
-Instruction Retired : 39
-PC                : 0x4000a0
+Instruction Retired : 22
+PC                : 0x400068
 Registers:
 X0: 0x10000
 X1: 0x10002000
@@ -27,15 +25,15 @@ X7: 0x1000e000
 X8: 0x10010000
 X9: 0x10012000
 X10: 0x0
-X11: 0x10002000
-X12: 0x10004000
-X13: 0x10006000
-X14: 0x10008000
-X15: 0x1000a000
-X16: 0x1000c000
-X17: 0x1000e000
-X18: 0x10010000
-X19: 0x10012000
+X11: 0x0
+X12: 0x0
+X13: 0x0
+X14: 0x0
+X15: 0x0
+X16: 0x0
+X17: 0x0
+X18: 0x0
+X19: 0x0
 X20: 0x0
 X21: 0x0
 X22: 0x0
@@ -50,7 +48,7 @@ X30: 0x0
 X31: 0x0
 FLAG_N: 0
 FLAG_Z: 0
-No. of Cycles: 743
+No. of Cycles: 287
 
 ARM-SIM> 
 
